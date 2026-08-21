@@ -526,6 +526,9 @@ try {
         @keyframes cartBadgeBounce {
             0% { transform: scale(1); }
             45% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
         /* ─── 5.2 REVIEWS WITH VIDEOS CAROUSEL (AMAZON STYLE) ─── */
         .video-reviews-section {
             max-width: 1200px;
