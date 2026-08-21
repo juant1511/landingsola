@@ -634,13 +634,13 @@ if (empty($otros_productos)) {
         /* ─── BARRA DE 3 PILARES DE CONFIANZA EN EL FOOTER ─── */
         .footer-trust-benefits-bar {
             width: 100%;
-            max-width: 780px;
+            max-width: 860px;
             margin: 0 auto 10px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
-            padding-bottom: 22px;
+            gap: 58px;
+            padding-bottom: 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             box-sizing: border-box;
         }
@@ -652,8 +652,8 @@ if (empty($otros_productos)) {
             flex: 0 1 auto;
         }
         .trust-benefit-icon {
-            width: 32px;
-            height: 32px;
+            width: 33px;
+            height: 33px;
             object-fit: contain;
             flex-shrink: 0;
             display: block;
@@ -671,7 +671,7 @@ if (empty($otros_productos)) {
         /* ─── RESPONSIVE MÓVIL (MANTIENE 100% ORDEN HORIZONTAL Y EQUIDISTANTE) ─── */
         @media (max-width: 768px) {
             .footer-trust-benefits-bar {
-                gap: 20px;
+                gap: 26px;
                 padding-bottom: 18px;
             }
             .trust-benefit-col {
@@ -689,7 +689,7 @@ if (empty($otros_productos)) {
 
         @media (max-width: 480px) {
             .footer-trust-benefits-bar {
-                gap: 10px;
+                gap: 14px;
                 padding-bottom: 15px;
             }
             .trust-benefit-col {
@@ -792,24 +792,28 @@ if (empty($otros_productos)) {
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-top: 4px;
+            margin-top: 8px;
+            padding: 0 44px;
+            box-sizing: border-box;
         }
         .footer-copyright-text {
             font-size: 12px;
             color: #9ca3af;
             font-weight: 500;
             letter-spacing: 0.3px;
+            text-align: center;
+            line-height: 1.5;
         }
         .btn-scroll-top {
             position: absolute;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.25);
             color: #ffffff;
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -817,6 +821,7 @@ if (empty($otros_productos)) {
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            flex-shrink: 0;
         }
         .btn-scroll-top:hover {
             background: #ffffff;
@@ -825,18 +830,22 @@ if (empty($otros_productos)) {
         }
         @media (max-width: 640px) {
             .footer-legal-row {
-                gap: 14px;
+                gap: 16px;
             }
             .footer-bottom-row {
-                flex-direction: column;
-                gap: 14px;
+                flex-direction: row;
+                justify-content: center;
+                padding-right: 44px;
+                padding-left: 10px;
             }
             .btn-scroll-top {
-                position: static;
-                transform: none;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
             }
             .btn-scroll-top:hover {
-                transform: scale(1.1);
+                transform: translateY(-50%) scale(1.1);
             }
         }
 
@@ -1955,7 +1964,7 @@ if (empty($otros_productos)) {
             <div class="footer-bottom-row">
                 <div class="footer-copyright-text">
                     © <?= date('Y') ?> TODOS LOS DERECHOS RESERVADOS<br>
-                    <span data-editable="true"><?= htmlspecialchars($nombre_marca ?? "DJI") ?> Store Colombia S.A.S. NIT 900.499.362-8. Calle 99 #14-49 Piso 9, Bogotá, Colombia</span>
+                    <span data-editable="true"><?= htmlspecialchars($nombre_marca ?? "DJI") ?> Store Colombia S.A.S. NIT 901.834.729-3. Centro Comercial Gran Estación, Bogotá, Colombia</span>
                 </div>
                 <button type="button" class="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Volver arriba" aria-label="Volver arriba">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
