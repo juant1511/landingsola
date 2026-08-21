@@ -1433,8 +1433,12 @@ try {
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
         <div class="footer-content-wrap">
-            <!-- MEDIOS DE PAGO -->
+            <!-- MEDIOS DE PAGO (SOLO AME, VISA, MASTE) -->
             <div class="footer-payments-row">
+                <!-- AMEX -->
+                <div class="payment-badge-pill" title="American Express">
+                    <img src="ame.svg" alt="American Express" class="payment-svg-img">
+                </div>
                 <!-- VISA -->
                 <div class="payment-badge-pill" title="Visa">
                     <img src="visa.svg" alt="Visa" class="payment-svg-img">
@@ -1443,27 +1447,12 @@ try {
                 <div class="payment-badge-pill" title="Mastercard">
                     <img src="maste.svg" alt="Mastercard" class="payment-svg-img">
                 </div>
-                <!-- AMEX -->
-                <div class="payment-badge-pill" title="American Express">
-                    <img src="ame.svg" alt="Amex" class="payment-svg-img">
-                </div>
-                <!-- PSE -->
-                <div class="payment-badge-pill" title="PSE">
-                    <img src="pse.svg" alt="PSE" class="payment-svg-img">
-                </div>
-                <!-- CONTRAENTREGA -->
-                <div class="payment-badge-pill" title="Pago Contra Entrega">
-                    <img src="contraentrega.svg" alt="Pago Contra Entrega" class="payment-svg-img">
-                </div>
             </div>
 
-            <!-- ENTIDADES / REGULACIÓN -->
+            <!-- CÁMARA DE COMERCIO ELECTRÓNICO -->
             <div class="footer-legal-row">
-                <span class="footer-flag-icon">🇨🇴</span>
-                <span class="footer-legal-text" data-editable="true">Superintendencia de Industria y Comercio</span>
-                <span class="footer-legal-divider">•</span>
                 <?php if (file_exists(__DIR__ . '/comerciocamara.png')): ?>
-                    <img src="comerciocamara.png" alt="Cámara Colombiana de Comercio Electrónico" class="footer-legal-logo-img" style="height: 22px; max-width: 210px; object-fit: contain; vertical-align: middle;">
+                    <img src="comerciocamara.png" alt="Cámara Colombiana de Comercio Electrónico" class="footer-legal-logo-img" style="height: 28px; max-width: 260px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
                 <?php else: ?>
                     <span class="footer-legal-text" data-editable="true">Cámara Colombiana de Comercio Electrónico</span>
                 <?php endif; ?>
