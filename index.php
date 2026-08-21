@@ -1869,11 +1869,11 @@ if (empty($otros_productos)) {
                     <span class="trust-benefit-text" data-editable="true">Compras seguras</span>
                 </div>
                 <div class="trust-benefit-col">
-                    <img src="tarjeta.svg" alt="Paga en línea o en efectivo" class="trust-benefit-icon">
+                    <img src="puntos_colombia.svg" alt="Paga en línea o en efectivo" class="trust-benefit-icon">
                     <span class="trust-benefit-text" data-editable="true">Paga en línea o en efectivo</span>
                 </div>
                 <div class="trust-benefit-col">
-                    <img src="puntos_colombia.svg" alt="Acumulas Puntos Colombia" class="trust-benefit-icon">
+                    <img src="tarjeta.svg" alt="Acumulas Puntos Colombia" class="trust-benefit-icon">
                     <span class="trust-benefit-text" data-editable="true">Acumulas Puntos Colombia</span>
                 </div>
             </div>
