@@ -631,27 +631,57 @@ if (empty($otros_productos)) {
             gap: 22px;
             position: relative;
         }
-        .footer-secure-header {
-            display: inline-flex;
+        /* ─── BARRA DE 3 PILARES DE CONFIANZA EN EL FOOTER ─── */
+        .footer-trust-benefits-bar {
+            width: 100%;
+            max-width: 820px;
+            display: flex;
             align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .trust-benefit-col {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            flex: 1 1 200px;
             justify-content: center;
-            gap: 8px;
-            color: #ffffff;
-            margin-bottom: -6px;
         }
-        .footer-lock-icon {
-            width: 17px;
-            height: 17px;
-            display: block;
+        .trust-benefit-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
             flex-shrink: 0;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            display: block;
         }
-        .footer-secure-title {
-            font-size: 14.5px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
+        .trust-benefit-text {
+            font-size: 14px;
+            font-weight: 700;
             color: #ffffff;
+            line-height: 1.22;
+            letter-spacing: -0.01em;
+            font-family: var(--font-heading);
+            max-width: 155px;
+        }
+        @media (max-width: 600px) {
+            .footer-trust-benefits-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding-left: 12px;
+            }
+            .trust-benefit-col {
+                justify-content: flex-start;
+                width: 100%;
+            }
+            .trust-benefit-text {
+                max-width: none;
+            }
         }
         .footer-payments-row {
             display: flex;
@@ -1832,12 +1862,20 @@ if (empty($otros_productos)) {
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
         <div class="footer-content-wrap">
-            <!-- ENCABEZADO COMPRA SEGURA CON CANDADO BLANCO -->
-            <div class="footer-secure-header">
-                <svg class="footer-lock-icon" viewBox="0 0 512 512" width="18" height="18" fill="#ffffff">
-                    <path d="M384 192h-16V128C368 57.4 310.6 0 240 0S112 57.4 112 128v64H96c-26.5 0-48 21.5-48 48v224c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V240c0-26.5-21.5-48-48-48zM160 128c0-44.1 35.9-80 80-80s80 35.9 80 80v64H160v-64zm80 236c-22.1 0-40-17.9-40-40 0-14.3 7.6-26.9 18.9-34l-8.9-50h60l-8.9 50c11.3 7.1 18.9 19.7 18.9 34 0 22.1-17.9 40-40 40z"/>
-                </svg>
-                <span class="footer-secure-title" data-editable="true">Compra Segura</span>
+            <!-- BENEFICIOS / TRUST BAR: COMPRAS SEGURAS, PAGA EN LÍNEA O EN EFECTIVO, ACUMULAS PUNTOS COLOMBIA -->
+            <div class="footer-trust-benefits-bar">
+                <div class="trust-benefit-col">
+                    <img src="escudo_candado.svg" alt="Compras seguras" class="trust-benefit-icon">
+                    <span class="trust-benefit-text" data-editable="true">Compras seguras</span>
+                </div>
+                <div class="trust-benefit-col">
+                    <img src="tarjeta.svg" alt="Paga en línea o en efectivo" class="trust-benefit-icon">
+                    <span class="trust-benefit-text" data-editable="true">Paga en línea o en efectivo</span>
+                </div>
+                <div class="trust-benefit-col">
+                    <img src="puntos_colombia.svg" alt="Acumulas Puntos Colombia" class="trust-benefit-icon">
+                    <span class="trust-benefit-text" data-editable="true">Acumulas Puntos Colombia</span>
+                </div>
             </div>
 
             <!-- MEDIOS DE PAGO (AMEX, VISA, MASTE, PSE, NEQUI, MERCADITO, CONTRAENTREGA) CON FONDO BLANCO -->
