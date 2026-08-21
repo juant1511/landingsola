@@ -366,12 +366,11 @@ try {
         }
         .shipping-lead-row {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 10px;
         }
-        .shipping-truck-icon {
+        .shipping-flash-icon {
             flex-shrink: 0;
-            margin-top: 2px;
         }
         .shipping-lead-text {
             display: flex;
@@ -396,26 +395,6 @@ try {
             color: #d9383a;
             font-weight: 700;
             letter-spacing: 0.2px;
-        }
-        .stock-status-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 2px;
-            padding-left: 2px;
-        }
-        .stock-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background-color: #00a650;
-            display: inline-block;
-            box-shadow: 0 0 0 2px rgba(0, 166, 80, 0.2);
-        }
-        .stock-text {
-            font-size: 11.5px;
-            font-weight: 600;
-            color: #1d1d1f;
         }
 
         .variant-block { margin-bottom: 16px; border-top: 1px solid var(--border-light); padding-top: 14px; }
@@ -632,66 +611,36 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 22px;
+            gap: 8px;
             flex-wrap: wrap;
+            margin-top: 4px;
         }
-        .payment-clean-item {
+        .footer-payment-badge {
+            width: 52px;
+            height: 32px;
+            background: #ffffff;
+            border-radius: 6px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 48px;
-            transition: transform 0.2s ease, opacity 0.2s ease;
+            padding: 3px 5px;
+            box-sizing: border-box;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease;
+            overflow: hidden;
+            flex-shrink: 0;
         }
-        .payment-clean-item:hover {
-            transform: translateY(-3px) scale(1.06);
-            opacity: 0.95;
+        .footer-payment-badge:hover {
+            transform: translateY(-2px);
         }
-        .payment-icon-master {
-            height: 42px;
+        .footer-payment-badge img,
+        .footer-payment-badge svg {
+            max-width: 100%;
+            max-height: 100%;
             width: auto;
-            max-width: 62px;
+            height: auto;
+            object-fit: contain;
             display: block;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
-        .payment-icon-visa {
-            height: 40px;
-            width: auto;
-            max-width: 70px;
-            display: block;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
-        .payment-icon-amex {
-            height: 34px;
-            width: auto;
-            max-width: 95px;
-            display: block;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
-        .payment-icon-pse {
-            height: 44px;
-            width: 44px;
-            display: block;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
-        .payment-icon-ml {
-            height: 46px;
-            width: auto;
-            max-width: 65px;
-            display: block;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-        }
-        .footer-contraentrega-label {
-            font-size: 15px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            padding-left: 14px;
-            border-left: 2px solid rgba(255, 255, 255, 0.45);
-            display: inline-flex;
-            align-items: center;
-            height: 34px;
-            line-height: 1;
         }
         .footer-legal-row {
             display: flex;
@@ -1522,11 +1471,8 @@ try {
                 <!-- CAJA DE ENVÍO URGENTE Y CONTADOR PERSISTENTE -->
                 <div class="apple-shipping-urgency-box">
                     <div class="shipping-lead-row">
-                        <svg class="shipping-truck-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#00a650" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="3" width="15" height="13"></rect>
-                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        <svg class="shipping-flash-icon" viewBox="0 0 24 24" width="20" height="20" fill="#00a650" stroke="#00a650" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                         <div class="shipping-lead-text">
                             <span class="shipping-badge-highlight" data-editable="true">Llega gratis <b>mañana</b></span>
@@ -1534,10 +1480,6 @@ try {
                                 <span data-editable="true">Comprando dentro de las próximas</span> <span class="shipping-countdown-val" id="shippingCountdown">20 h 40 min 00 s</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="stock-status-row">
-                        <span class="stock-dot"></span>
-                        <span class="stock-text" data-editable="true">Stock disponible</span>
                     </div>
                 </div>
 
@@ -1848,34 +1790,40 @@ try {
                 <span class="footer-secure-title" data-editable="true">Compra Segura</span>
             </div>
 
-            <!-- MEDIOS DE PAGO (MASTE, VISA, AME, PSE, MERCADITO) + CONTRAENTREGA -->
+            <!-- MEDIOS DE PAGO (AMEX, VISA, MASTE, PSE, NEQUI, MERCADITO, CONTRAENTREGA) CON FONDO BLANCO -->
             <div class="footer-payments-row">
-                <!-- MASTERCARD -->
-                <div class="payment-clean-item" title="Mastercard">
-                    <img src="maste.svg" alt="Mastercard" class="payment-icon-master">
+                <!-- AMERICAN EXPRESS -->
+                <div class="footer-payment-badge" title="American Express">
+                    <img src="amex.svg" alt="American Express">
                 </div>
                 <!-- VISA -->
-                <div class="payment-clean-item" title="Visa">
-                    <img src="visa.svg" alt="Visa" class="payment-icon-visa">
+                <div class="footer-payment-badge" title="Visa">
+                    <img src="visa.svg" alt="Visa">
                 </div>
-                <!-- AMEX -->
-                <div class="payment-clean-item" title="American Express">
-                    <img src="ame.svg" alt="American Express" class="payment-icon-amex">
+                <!-- MASTERCARD -->
+                <div class="footer-payment-badge" title="Mastercard">
+                    <img src="maste.svg" alt="Mastercard">
                 </div>
                 <!-- PSE -->
-                <div class="payment-clean-item" title="PSE">
-                    <img src="pse.svg" alt="PSE" class="payment-icon-pse">
+                <div class="footer-payment-badge" title="PSE">
+                    <img src="pse.png" alt="PSE">
                 </div>
-                <!-- MERCADO LIBRE (MERCADITO) -->
-                <div class="payment-clean-item" title="Mercado Libre">
+                <!-- NEQUI -->
+                <div class="footer-payment-badge" title="Nequi">
+                    <img src="Nequi_Colombia_logo.svg.webp" alt="Nequi">
+                </div>
+                <!-- MERCADO LIBRE -->
+                <div class="footer-payment-badge" title="Mercado Libre">
                     <?php if (file_exists(__DIR__ . '/mercadito_footer.png')): ?>
-                        <img src="mercadito_footer.png" alt="Mercado Libre" class="payment-icon-ml">
+                        <img src="mercadito_footer.png" alt="Mercado Libre">
                     <?php elseif (file_exists(__DIR__ . '/mercadito.webp')): ?>
-                        <img src="mercadito.webp" alt="Mercado Libre" class="payment-icon-ml">
+                        <img src="mercadito.webp" alt="Mercado Libre">
                     <?php endif; ?>
                 </div>
-                <!-- TEXTO CONTRAENTREGA -->
-                <span class="footer-contraentrega-label" data-editable="true">Contraentrega</span>
+                <!-- CONTRAENTREGA -->
+                <div class="footer-payment-badge" title="Pago Contraentrega">
+                    <img src="contraentrega.png" alt="Pago Contraentrega">
+                </div>
             </div>
 
             <!-- SUPERINTENDENCIA (BLANCO) & CÁMARA DE COMERCIO -->
