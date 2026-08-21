@@ -428,20 +428,53 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 22px;
             flex-wrap: wrap;
         }
-        .payment-clean-img {
-            height: 32px;
+        .payment-clean-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .payment-clean-item:hover {
+            transform: translateY(-3px) scale(1.06);
+            opacity: 0.95;
+        }
+        .payment-icon-master {
+            height: 42px;
             width: auto;
-            max-width: 75px;
-            object-fit: contain;
+            max-width: 62px;
             display: block;
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-            transition: transform 0.2s ease;
         }
-        .payment-clean-img:hover {
-            transform: translateY(-3px) scale(1.05);
+        .payment-icon-visa {
+            height: 40px;
+            width: auto;
+            max-width: 70px;
+            display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+        }
+        .payment-icon-amex {
+            height: 34px;
+            width: auto;
+            max-width: 95px;
+            display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+        }
+        .payment-icon-pse {
+            height: 44px;
+            width: 44px;
+            display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+        }
+        .payment-icon-ml {
+            height: 46px;
+            width: auto;
+            max-width: 65px;
+            display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
         }
         .footer-contraentrega-label {
             font-size: 15px;
@@ -453,40 +486,35 @@ try {
             border-left: 2px solid rgba(255, 255, 255, 0.45);
             display: inline-flex;
             align-items: center;
+            height: 34px;
             line-height: 1;
         }
         .footer-legal-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 32px;
+            gap: 36px;
             flex-wrap: wrap;
-            margin-top: 6px;
+            margin-top: 10px;
         }
         .footer-sic-badge {
-            background: transparent;
-            border-radius: 0;
-            padding: 0;
-            height: auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            box-sizing: border-box;
-            box-shadow: none;
             transition: transform 0.2s ease;
         }
         .footer-sic-badge:hover {
             transform: scale(1.04);
         }
         .footer-sic-badge img {
-            height: 42px;
+            height: 44px;
             width: auto;
-            max-width: 250px;
+            max-width: 260px;
             object-fit: contain;
             display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
         }
         .footer-camara-badge {
-            height: auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -496,11 +524,12 @@ try {
             transform: scale(1.04);
         }
         .footer-camara-badge img {
-            height: 38px;
+            height: 40px;
             width: auto;
             max-width: 280px;
             object-fit: contain;
             display: block;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
         }
         .footer-bottom-row {
             width: 100%;
@@ -1383,21 +1412,43 @@ try {
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
         <div class="footer-content-wrap">
-            <!-- MEDIOS DE PAGO (AME, VISA, MASTE) + CONTRAENTREGA -->
+            <!-- MEDIOS DE PAGO (MASTE, VISA, AME, PSE, MERCADITO) + CONTRAENTREGA -->
             <div class="footer-payments-row">
-                <!-- AMEX -->
-                <img src="ame.svg" alt="American Express" class="payment-clean-img" title="American Express">
-                <!-- VISA -->
-                <img src="visa.svg" alt="Visa" class="payment-clean-img" title="Visa">
                 <!-- MASTERCARD -->
-                <img src="maste.svg" alt="Mastercard" class="payment-clean-img" title="Mastercard">
+                <div class="payment-clean-item" title="Mastercard">
+                    <img src="maste.svg" alt="Mastercard" class="payment-icon-master">
+                </div>
+                <!-- VISA -->
+                <div class="payment-clean-item" title="Visa">
+                    <img src="visa.svg" alt="Visa" class="payment-icon-visa">
+                </div>
+                <!-- AMEX -->
+                <div class="payment-clean-item" title="American Express">
+                    <img src="ame.svg" alt="American Express" class="payment-icon-amex">
+                </div>
+                <!-- PSE -->
+                <div class="payment-clean-item" title="PSE">
+                    <img src="pse.svg" alt="PSE" class="payment-icon-pse">
+                </div>
+                <!-- MERCADO LIBRE (MERCADITO) -->
+                <div class="payment-clean-item" title="Mercado Libre">
+                    <?php if (file_exists(__DIR__ . '/mercadito_footer.png')): ?>
+                        <img src="mercadito_footer.png" alt="Mercado Libre" class="payment-icon-ml">
+                    <?php elseif (file_exists(__DIR__ . '/mercadito.webp')): ?>
+                        <img src="mercadito.webp" alt="Mercado Libre" class="payment-icon-ml">
+                    <?php endif; ?>
+                </div>
                 <!-- TEXTO CONTRAENTREGA -->
                 <span class="footer-contraentrega-label" data-editable="true">Contraentrega</span>
             </div>
 
-            <!-- SUPERINTENDENCIA & CÁMARA DE COMERCIO -->
+            <!-- SUPERINTENDENCIA (BLANCO) & CÁMARA DE COMERCIO -->
             <div class="footer-legal-row">
-                <?php if (file_exists(__DIR__ . '/sic.png')): ?>
+                <?php if (file_exists(__DIR__ . '/sic_blanco.png')): ?>
+                    <div class="footer-sic-badge" title="Superintendencia de Industria y Comercio">
+                        <img src="sic_blanco.png" alt="Superintendencia de Industria y Comercio">
+                    </div>
+                <?php elseif (file_exists(__DIR__ . '/sic.png')): ?>
                     <div class="footer-sic-badge" title="Superintendencia de Industria y Comercio">
                         <img src="sic.png" alt="Superintendencia de Industria y Comercio">
                     </div>
