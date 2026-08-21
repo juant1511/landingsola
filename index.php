@@ -631,56 +631,77 @@ if (empty($otros_productos)) {
             gap: 22px;
             position: relative;
         }
-        /* ─── BARRA DE 3 PILARES DE CONFIANZA EN EL FOOTER ─── */
+        /* ─── BARRA DE 3 PILARES DE CONFIANZA EN EL FOOTER (SIEMPRE HORIZONTAL) ─── */
         .footer-trust-benefits-bar {
             width: 100%;
-            max-width: 820px;
-            display: flex;
+            max-width: 860px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             align-items: center;
-            justify-content: space-around;
-            gap: 20px;
-            padding-bottom: 22px;
+            gap: 16px;
+            padding-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             margin-bottom: 8px;
-            flex-wrap: wrap;
+            box-sizing: border-box;
         }
         .trust-benefit-col {
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-align: left;
-            flex: 1 1 200px;
             justify-content: center;
+            gap: 10px;
+            text-align: left;
         }
         .trust-benefit-icon {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             object-fit: contain;
             flex-shrink: 0;
             display: block;
         }
         .trust-benefit-text {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 700;
             color: #ffffff;
-            line-height: 1.22;
+            line-height: 1.2;
             letter-spacing: -0.01em;
             font-family: var(--font-heading);
-            max-width: 155px;
         }
-        @media (max-width: 600px) {
+
+        /* ─── RESPONSIVE MÓVIL (MANTIENE 100% ORDEN HORIZONTAL) ─── */
+        @media (max-width: 768px) {
             .footer-trust-benefits-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-                padding-left: 12px;
+                gap: 10px;
+                padding-bottom: 16px;
             }
             .trust-benefit-col {
+                gap: 7px;
                 justify-content: flex-start;
-                width: 100%;
+            }
+            .trust-benefit-icon {
+                width: 24px;
+                height: 24px;
             }
             .trust-benefit-text {
-                max-width: none;
+                font-size: 11.5px;
+                line-height: 1.15;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .footer-trust-benefits-bar {
+                gap: 6px;
+                padding-bottom: 14px;
+            }
+            .trust-benefit-col {
+                gap: 5px;
+            }
+            .trust-benefit-icon {
+                width: 20px;
+                height: 20px;
+            }
+            .trust-benefit-text {
+                font-size: 10px;
+                letter-spacing: -0.02em;
             }
         }
         .footer-payments-row {
