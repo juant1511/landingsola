@@ -180,7 +180,25 @@ if (empty($otros_productos)) {
         .navbar.nav-hidden {
             transform: translateY(-100%) !important;
         }
-        .nav-left { width: 44px; flex-shrink: 0; }
+        .nav-left { width: 44px; display: flex; align-items: center; justify-content: flex-start; flex-shrink: 0; }
+        .nav-hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #1d1d1f;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+        .nav-hamburger-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .nav-hamburger-btn:active {
+            transform: scale(0.92);
+        }
         .nav-center-logo { flex: 1; display: flex; justify-content: center; align-items: center; text-align: center; }
         .brand-logo-img { height: 56px; max-height: 60px; max-width: 220px; width: auto; object-fit: contain; transition: transform 0.2s ease; display: block; margin: 0 auto; }
         .brand-logo-img:hover { transform: scale(1.02); }
@@ -192,6 +210,125 @@ if (empty($otros_productos)) {
             .navbar { padding: 12px 28px; min-height: 80px; }
             .brand-logo-img { height: 68px; max-height: 72px; max-width: 280px; }
             .brand-logo-text { font-size: 30px; letter-spacing: -0.02em; }
+        }
+
+        /* ─── DRAWER / MENÚ HAMBURGUESA DESPLEGABLE ─── */
+        .nav-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .nav-menu-drawer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 82%;
+            max-width: 320px;
+            background: #ffffff;
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.18);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-menu-overlay.open .nav-menu-drawer {
+            transform: translateX(0);
+        }
+        .nav-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .nav-menu-brand-text {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 700;
+            color: #1d1d1f;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+        }
+        .nav-menu-close-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1d1d1f;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s ease;
+        }
+        .nav-menu-close-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .nav-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 16px 12px;
+            gap: 6px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .nav-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .nav-menu-link:hover, .nav-menu-link:active {
+            background: #f5f5f7;
+            color: var(--primary);
+        }
+        .nav-link-icon {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+        }
+        .nav-menu-footer {
+            padding: 16px 20px 24px 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .btn-menu-order {
+            width: 100%;
+            height: 46px;
+            background: #0071e3;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+        .btn-menu-order:hover {
+            background: #0077ed;
         }
 
         /* ─── PÁGINA FULL WIDTH (SIN CONTAINER ESTRECHO) ─── */
@@ -236,7 +373,7 @@ if (empty($otros_productos)) {
         .gallery-wrapper-desktop {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 0;
             width: 100%;
             max-width: 100%;
             margin: 0;
@@ -283,13 +420,19 @@ if (empty($otros_productos)) {
             }
         }
         .gallery-dots-indicator {
-            display: flex;
+            order: 2;
+            display: flex !important;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 14px;
+            margin: 14px 0 6px 0;
             width: 100%;
             padding: 4px 0;
+        }
+        @media (min-width: 992px) {
+            .gallery-dots-indicator {
+                display: none !important;
+            }
         }
         .gallery-dot {
             width: 8px;
@@ -1625,7 +1768,15 @@ if (empty($otros_productos)) {
     </div>
 
     <nav class="navbar">
-        <div class="nav-left" style="width: 44px;"></div>
+        <div class="nav-left">
+            <button class="nav-hamburger-btn" onclick="toggleNavMenu()" aria-label="Abrir menú de navegación" title="Menú">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
 
         <div class="nav-center-logo">
             <?php if (file_exists(__DIR__ . '/logo.svg')): ?>
@@ -1649,8 +1800,41 @@ if (empty($otros_productos)) {
         </div>
     </nav>
 
+    <!-- MENÚ HAMBURGUESA DESPLEGABLE -->
+    <div class="nav-menu-overlay" id="navMenuOverlay" onclick="if(event.target===this) toggleNavMenu()">
+        <div class="nav-menu-drawer">
+            <div class="nav-menu-header">
+                <div class="nav-menu-brand">
+                    <span class="nav-menu-brand-text"><?= htmlspecialchars("DJI") ?> Store</span>
+                </div>
+                <button class="nav-menu-close-btn" onclick="toggleNavMenu()" aria-label="Cerrar menú">✕</button>
+            </div>
+            <nav class="nav-menu-links">
+                <a href="#productSection" class="nav-menu-link" onclick="navegarSeccion(event, 'productSection')">
+                    <span class="nav-link-icon">📦</span>
+                    <span class="nav-link-text">Producto</span>
+                </a>
+                <a href="#videoReviewsSection" class="nav-menu-link" onclick="navegarSeccion(event, 'videoReviewsSection')">
+                    <span class="nav-link-icon">🎬</span>
+                    <span class="nav-link-text">Video Reviews</span>
+                </a>
+                <a href="#customerReviewsSection" class="nav-menu-link" onclick="navegarSeccion(event, 'customerReviewsSection')">
+                    <span class="nav-link-icon">⭐</span>
+                    <span class="nav-link-text">Customer Reviews</span>
+                </a>
+                <a href="#recommendedProductsSection" class="nav-menu-link" onclick="navegarSeccion(event, 'recommendedProductsSection')">
+                    <span class="nav-link-icon">🛍️</span>
+                    <span class="nav-link-text">Quienes vieron este producto</span>
+                </a>
+            </nav>
+            <div class="nav-menu-footer">
+                <button class="btn-menu-order" onclick="toggleNavMenu(); agregarAlCarrito(event);">🛒 Agregar al Carrito</button>
+            </div>
+        </div>
+    </div>
+
     <!-- 4. CONTENIDO PRINCIPAL -->
-    <main class="landing-container">
+    <main class="landing-container" id="productSection">
         <div class="product-grid-layout">
 
             <!-- COLUMNA 1: GALERÍA CON SLIDE Y PUNTICOS INDICADORES -->
@@ -1865,6 +2049,106 @@ if (empty($otros_productos)) {
                         <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">2:10</span>
                     </div>
                     <div class="video-card-title-text" data-editable="true">Enfoque Rápido & Mic 2</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 6 -->
+            <div class="video-review-card" data-youtube-id="oXjW-qI9Vf8" data-video-title="DJI Osmo Pocket 3 Vlogging Test" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/oXjW-qI9Vf8/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Vlogging" loading="lazy">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">3:05</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Vlogging & Pantalla Giratoria</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 7 -->
+            <div class="video-review-card" data-youtube-id="Gj4bVv252lE" data-video-title="DJI Pocket 3 Low Light & 4K Test" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/Gj4bVv252lE/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Low Light" loading="lazy">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">2:20</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Grabación Nocturna y Modos PRO</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 8 -->
+            <div class="video-review-card" data-youtube-id="qWb1q0uR6v0" data-video-title="DJI Pocket 3 ActiveTrack 6.0" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/qWb1q0uR6v0/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 ActiveTrack" loading="lazy">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">1:45</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">ActiveTrack 6.0 en Movimiento</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 9 -->
+            <div class="video-review-card" data-youtube-id="bL44e4jRk18" data-video-title="DJI Osmo Pocket 3 Unboxing Creator" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/bL44e4jRk18/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Osmo Pocket 3 Unboxing" loading="lazy">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">3:12</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Comparativa y Unboxing Completo</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 10 -->
+            <div class="video-review-card" data-youtube-id="1uA3V-bB45w" data-video-title="DJI Pocket 3 Battery & Accessories" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/1uA3V-bB45w/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Accessories" loading="lazy">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">2:30</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Batería y Accesorios Creator</div>
                 </div>
                 <?php if ($es_modo_edicion): ?>
                 <div class="video-card-admin-bar" onclick="event.stopPropagation()">
@@ -2154,6 +2438,27 @@ if (empty($otros_productos)) {
         let currentReviewPage = 1;
         const REVIEWS_PER_PAGE = 5;
         let cartState = { qty: 0, hasAdded: false, variant: "Creator Combo", size: "Kit Completo 6 en 1" };
+
+        function toggleNavMenu() {
+            const overlay = document.getElementById('navMenuOverlay');
+            if (!overlay) return;
+            const isOpen = overlay.classList.toggle('open');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        function navegarSeccion(e, targetId) {
+            if (e) e.preventDefault();
+            toggleNavMenu();
+            const target = document.getElementById(targetId);
+            if (target) {
+                setTimeout(() => {
+                    const navbar = document.querySelector('.navbar');
+                    const navHeight = navbar ? navbar.offsetHeight : 70;
+                    const targetPos = target.getBoundingClientRect().top + window.pageYOffset - (navHeight + 8);
+                    window.scrollTo({ top: Math.max(0, targetPos), behavior: 'smooth' });
+                }, 180);
+            }
+        }
 
         function initGallery() {
             const mainImg = document.getElementById('mainImage');
