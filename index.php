@@ -2981,56 +2981,6 @@ if (empty($otros_productos)) {
                     48 calificaciones globales
                 </div>
 
-                <!-- BARRAS DE DISTRIBUCIÓN DE ESTRELLAS -->
-                <div class="rating-breakdown-table">
-                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(5)" title="Filtrar por 5 estrellas">
-                        <span class="bar-label">5 estrellas</span>
-                        <div class="bar-track">
-                            <div class="bar-fill" id="barFill5" style="width: 79%;"></div>
-                        </div>
-                        <span class="bar-pct" id="barPct5">79%</span>
-                    </div>
-                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(4)" title="Filtrar por 4 estrellas">
-                        <span class="bar-label">4 estrellas</span>
-                        <div class="bar-track">
-                            <div class="bar-fill" id="barFill4" style="width: 12%;"></div>
-                        </div>
-                        <span class="bar-pct" id="barPct4">12%</span>
-                    </div>
-                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(3)" title="Filtrar por 3 estrellas">
-                        <span class="bar-label">3 estrellas</span>
-                        <div class="bar-track">
-                            <div class="bar-fill" id="barFill3" style="width: 4%;"></div>
-                        </div>
-                        <span class="bar-pct" id="barPct3">4%</span>
-                    </div>
-                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(2)" title="Filtrar por 2 estrellas">
-                        <span class="bar-label">2 estrellas</span>
-                        <div class="bar-track">
-                            <div class="bar-fill" id="barFill2" style="width: 1%;"></div>
-                        </div>
-                        <span class="bar-pct" id="barPct2">1%</span>
-                    </div>
-                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(1)" title="Filtrar por 1 estrella">
-                        <span class="bar-label">1 estrella</span>
-                        <div class="bar-track">
-                            <div class="bar-fill" id="barFill1" style="width: 4%;"></div>
-                        </div>
-                        <span class="bar-pct" id="barPct1">4%</span>
-                    </div>
-                </div>
-
-                <!-- EXPLICACIÓN DESPLEGABLE -->
-                <div class="reviews-explanation-accordion">
-                    <button type="button" class="explanation-toggle-btn" onclick="toggleExplanationReviews(this)">
-                        <span>Cómo funcionan las opiniones y calificaciones de clientes</span>
-                        <span class="explanation-arrow">▾</span>
-                    </button>
-                    <div class="explanation-content" id="reviewsExplanationBox">
-                        Las opiniones de clientes, incluidas las valoraciones del producto, ayudan a los clientes a conocer más sobre el producto y a decidir si es el adecuado para ellos.
-                    </div>
-                </div>
-
                 <div class="reviews-sidebar-divider"></div>
 
                 <!-- SECCIÓN ESCRIBIR OPINIÓN -->
