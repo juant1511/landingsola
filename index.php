@@ -281,54 +281,26 @@ if (empty($otros_productos)) {
         .nav-menu-links {
             display: flex;
             flex-direction: column;
-            padding: 16px 12px;
-            gap: 6px;
+            padding: 20px 14px;
+            gap: 8px;
             flex: 1;
             overflow-y: auto;
         }
         .nav-menu-link {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 16px;
+            display: block;
+            padding: 14px 18px;
             color: #1d1d1f;
             text-decoration: none;
             font-family: var(--font-heading);
-            font-size: 15px;
+            font-size: 15.5px;
             font-weight: 600;
+            letter-spacing: -0.01em;
             border-radius: 12px;
             transition: background 0.15s ease, color 0.15s ease;
         }
         .nav-menu-link:hover, .nav-menu-link:active {
             background: #f5f5f7;
             color: var(--primary);
-        }
-        .nav-link-icon {
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-        }
-        .nav-menu-footer {
-            padding: 16px 20px 24px 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-        .btn-menu-order {
-            width: 100%;
-            height: 46px;
-            background: #0071e3;
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-family: var(--font-heading);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.15s ease;
-        }
-        .btn-menu-order:hover {
-            background: #0077ed;
         }
 
         /* ─── PÁGINA FULL WIDTH (SIN CONTAINER ESTRECHO) ─── */
@@ -1805,31 +1777,24 @@ if (empty($otros_productos)) {
         <div class="nav-menu-drawer">
             <div class="nav-menu-header">
                 <div class="nav-menu-brand">
-                    <span class="nav-menu-brand-text"><?= htmlspecialchars("DJI") ?> Store</span>
+                    <span class="nav-menu-brand-text"><?= htmlspecialchars("DJI") ?></span>
                 </div>
                 <button class="nav-menu-close-btn" onclick="toggleNavMenu()" aria-label="Cerrar menú">✕</button>
             </div>
             <nav class="nav-menu-links">
                 <a href="#productSection" class="nav-menu-link" onclick="navegarSeccion(event, 'productSection')">
-                    <span class="nav-link-icon">📦</span>
-                    <span class="nav-link-text">Producto</span>
+                    Producto
                 </a>
                 <a href="#videoReviewsSection" class="nav-menu-link" onclick="navegarSeccion(event, 'videoReviewsSection')">
-                    <span class="nav-link-icon">🎬</span>
-                    <span class="nav-link-text">Video Reviews</span>
+                    Video Reviews
                 </a>
                 <a href="#customerReviewsSection" class="nav-menu-link" onclick="navegarSeccion(event, 'customerReviewsSection')">
-                    <span class="nav-link-icon">⭐</span>
-                    <span class="nav-link-text">Customer Reviews</span>
+                    Customer Reviews
                 </a>
                 <a href="#recommendedProductsSection" class="nav-menu-link" onclick="navegarSeccion(event, 'recommendedProductsSection')">
-                    <span class="nav-link-icon">🛍️</span>
-                    <span class="nav-link-text">Quienes vieron este producto</span>
+                    Quienes vieron este producto
                 </a>
             </nav>
-            <div class="nav-menu-footer">
-                <button class="btn-menu-order" onclick="toggleNavMenu(); agregarAlCarrito(event);">🛒 Agregar al Carrito</button>
-            </div>
         </div>
     </div>
 
