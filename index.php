@@ -8,7 +8,7 @@ $precio_num    = 1850000;
 $precio_fmt    = '1.850.000';
 $es_modo_edicion = isset($_GET['modo_edicion']) && $_GET['modo_edicion'] == '1';
 
-// ─── Cargar Productos de Otras Landings con Rutas Relativas Correctas ───
+// ─── Cargar Productos de Otras Landings o Productos Demo ───
 $otros_productos = [];
 try {
     if (isset($pdo)) {
@@ -32,6 +32,48 @@ try {
         }
     }
 } catch (Exception $e) {}
+
+// Fallback con productos demo de alta calidad para previsualización
+if (empty($otros_productos)) {
+    $otros_productos = [
+        [
+            'nombre' => 'DJI Mic 2 Transmisor Inalámbrico con Cancelación de Ruido Inteligente',
+            'precio' => '$ 490.000',
+            'url'    => '#',
+            'img'    => 'https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%203.webp'
+        ],
+        [
+            'nombre' => 'DJI Mini 4 Pro Drone Ultraligero 4K HDR con Detección Omnidireccional',
+            'precio' => '$ 3.450.000',
+            'url'    => '#',
+            'img'    => 'https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%204.webp'
+        ],
+        [
+            'nombre' => 'DJI Osmo Mobile 6 Estabilizador Gimbal Inteligente para Smartphone',
+            'precio' => '$ 620.000',
+            'url'    => '#',
+            'img'    => 'https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%202.webp'
+        ],
+        [
+            'nombre' => 'DJI Action 4 Cámara Deportiva Sumergible 4K 120fps Sensor 1/1.3"',
+            'precio' => '$ 1.420.000',
+            'url'    => '#',
+            'img'    => 'https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%205.webp'
+        ],
+        [
+            'nombre' => 'Batería de Alta Capacidad y Hub de Carga Rápida Osmo Series',
+            'precio' => '$ 280.000',
+            'url'    => '#',
+            'img'    => 'https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%206.webp'
+        ],
+        [
+            'nombre' => 'Estuche Rígido Impermeable de Transporte Premium para Osmo Pocket',
+            'precio' => '$ 145.000',
+            'url'    => '#',
+            'img'    => 'https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%201.webp'
+        ]
+    ];
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -657,9 +699,6 @@ try {
         .footer-payment-badge.badge-nequi img {
             transform: scale(1.22);
         }
-        .footer-payment-badge.badge-ml img {
-            transform: scale(1.18);
-        }
         .footer-payment-badge.badge-contraentrega img {
             transform: scale(1.22);
         }
@@ -667,40 +706,26 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 36px;
+            gap: 32px;
             flex-wrap: wrap;
             margin-top: 10px;
         }
-        .footer-sic-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-        }
-        .footer-sic-badge:hover {
-            transform: scale(1.04);
-        }
-        .footer-sic-badge img {
-            height: 44px;
-            width: auto;
-            max-width: 260px;
-            object-fit: contain;
-            display: block;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
-        }
+        .footer-sic-badge,
         .footer-camara-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.2s ease;
         }
+        .footer-sic-badge:hover,
         .footer-camara-badge:hover {
             transform: scale(1.04);
         }
+        .footer-sic-badge img,
         .footer-camara-badge img {
-            height: 40px;
+            height: 42px;
             width: auto;
-            max-width: 280px;
+            max-width: 240px;
             object-fit: contain;
             display: block;
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
@@ -1832,14 +1857,6 @@ try {
                 <!-- NEQUI -->
                 <div class="footer-payment-badge badge-nequi" title="Nequi">
                     <img src="Nequi_Colombia_logo.svg.webp" alt="Nequi">
-                </div>
-                <!-- MERCADO LIBRE -->
-                <div class="footer-payment-badge badge-ml" title="Mercado Libre">
-                    <?php if (file_exists(__DIR__ . '/mercadito_footer.png')): ?>
-                        <img src="mercadito_footer.png" alt="Mercado Libre">
-                    <?php elseif (file_exists(__DIR__ . '/mercadito.webp')): ?>
-                        <img src="mercadito.webp" alt="Mercado Libre">
-                    <?php endif; ?>
                 </div>
                 <!-- CONTRAENTREGA -->
                 <div class="footer-payment-badge badge-contraentrega" title="Pago Contraentrega">
