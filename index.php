@@ -3083,36 +3083,42 @@ if (empty($otros_productos)) {
 
         // ─── SCROLL DINÁMICO: OCULTAR/MOSTRAR NAVBAR Y STICKY ADD TO CART ───
         (function() {
-            let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+            let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
             let ticking = false;
 
-            function handleScrollDirection() {
-                const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+            function updateNavScroll() {
+                const currentScrollY = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0);
                 const navbar = document.querySelector('.navbar');
                 const stickyBar = document.querySelector('.sticky-footer-bar');
 
-                if (Math.abs(currentScrollY - lastScrollY) < 6) {
-                    ticking = false;
-                    return;
-                }
-
-                if (currentScrollY > lastScrollY && currentScrollY > 70) {
-                    // Scrolling Down -> Ocultar navbar y boton sticky
-                    if (navbar) navbar.classList.add('nav-hidden');
-                    if (stickyBar) stickyBar.classList.add('bar-hidden');
-                } else {
-                    // Scrolling Up -> Mostrar navbar y boton sticky
+                if (currentScrollY <= 20) {
+                    // Cerca del inicio superior -> Mostrar siempre
                     if (navbar) navbar.classList.remove('nav-hidden');
                     if (stickyBar) stickyBar.classList.remove('bar-hidden');
+                } else if (currentScrollY < lastScrollY) {
+                    // Scrolleando hacia arriba -> Mostrar navbar y sticky bar de inmediato
+                    if (navbar) navbar.classList.remove('nav-hidden');
+                    if (stickyBar) stickyBar.classList.remove('bar-hidden');
+                } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                    // Scrolleando hacia abajo -> Ocultar navbar y sticky bar
+                    if (navbar) navbar.classList.add('nav-hidden');
+                    if (stickyBar) stickyBar.classList.add('bar-hidden');
                 }
 
-                lastScrollY = Math.max(0, currentScrollY);
+                lastScrollY = currentScrollY;
                 ticking = false;
             }
 
             window.addEventListener('scroll', function() {
                 if (!ticking) {
-                    window.requestAnimationFrame(handleScrollDirection);
+                    window.requestAnimationFrame(updateNavScroll);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchmove', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateNavScroll);
                     ticking = true;
                 }
             }, { passive: true });
