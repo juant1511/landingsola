@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 require_once __DIR__ . '/config.php';
 $landing_slug  = 'dji-osmo-pocket-3';
 $landing_token = obtenerOCrearTokenLanding($landing_slug, "DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"", 1850000);
