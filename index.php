@@ -1888,15 +1888,15 @@ if (empty($otros_productos)) {
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
         <div class="footer-content-wrap">
-            <!-- BENEFICIOS / TRUST BAR: COMPRAS SEGURAS, PAGA EN LÍNEA O EN EFECTIVO, ACUMULAS PUNTOS COLOMBIA -->
+            <!-- BENEFICIOS / TRUST BAR: 1. PAGA EN LÍNEA, 2. COMPRAS SEGURAS, 3. ACUMULAS PUNTOS COLOMBIA -->
             <div class="footer-trust-benefits-bar">
-                <div class="trust-benefit-col">
-                    <img src="escudo_candado.svg" alt="Compras seguras" class="trust-benefit-icon">
-                    <span class="trust-benefit-text" data-editable="true">Compras seguras</span>
-                </div>
                 <div class="trust-benefit-col">
                     <img src="tarjeta.svg" alt="Paga en línea o en efectivo" class="trust-benefit-icon">
                     <span class="trust-benefit-text" data-editable="true">Paga en línea o en efectivo</span>
+                </div>
+                <div class="trust-benefit-col">
+                    <img src="escudo_candado.svg" alt="Compras seguras" class="trust-benefit-icon">
+                    <span class="trust-benefit-text" data-editable="true">Compras seguras</span>
                 </div>
                 <div class="trust-benefit-col">
                     <img src="puntos_colombia.svg" alt="Acumulas Puntos Colombia" class="trust-benefit-icon">
