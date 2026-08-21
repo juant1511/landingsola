@@ -611,36 +611,57 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 7px;
             flex-wrap: wrap;
             margin-top: 4px;
         }
         .footer-payment-badge {
-            width: 52px;
-            height: 32px;
+            width: 44px;
+            height: 27px;
             background: #ffffff;
-            border-radius: 6px;
+            border-radius: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 3px 5px;
+            padding: 1px 2px;
             box-sizing: border-box;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease;
             overflow: hidden;
             flex-shrink: 0;
         }
         .footer-payment-badge:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.06);
         }
         .footer-payment-badge img,
         .footer-payment-badge svg {
             max-width: 100%;
             max-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             display: block;
+        }
+        .footer-payment-badge.badge-amex img {
+            transform: scale(1.42);
+        }
+        .footer-payment-badge.badge-visa img {
+            transform: scale(1.18);
+        }
+        .footer-payment-badge.badge-master img {
+            transform: scale(1.22);
+        }
+        .footer-payment-badge.badge-pse img {
+            transform: scale(1.12);
+        }
+        .footer-payment-badge.badge-nequi img {
+            transform: scale(1.22);
+        }
+        .footer-payment-badge.badge-ml img {
+            transform: scale(1.18);
+        }
+        .footer-payment-badge.badge-contraentrega img {
+            transform: scale(1.22);
         }
         .footer-legal-row {
             display: flex;
@@ -1793,27 +1814,27 @@ try {
             <!-- MEDIOS DE PAGO (AMEX, VISA, MASTE, PSE, NEQUI, MERCADITO, CONTRAENTREGA) CON FONDO BLANCO -->
             <div class="footer-payments-row">
                 <!-- AMERICAN EXPRESS -->
-                <div class="footer-payment-badge" title="American Express">
+                <div class="footer-payment-badge badge-amex" title="American Express">
                     <img src="amex.svg" alt="American Express">
                 </div>
                 <!-- VISA -->
-                <div class="footer-payment-badge" title="Visa">
+                <div class="footer-payment-badge badge-visa" title="Visa">
                     <img src="visa.svg" alt="Visa">
                 </div>
                 <!-- MASTERCARD -->
-                <div class="footer-payment-badge" title="Mastercard">
+                <div class="footer-payment-badge badge-master" title="Mastercard">
                     <img src="maste.svg" alt="Mastercard">
                 </div>
                 <!-- PSE -->
-                <div class="footer-payment-badge" title="PSE">
+                <div class="footer-payment-badge badge-pse" title="PSE">
                     <img src="pse.png" alt="PSE">
                 </div>
                 <!-- NEQUI -->
-                <div class="footer-payment-badge" title="Nequi">
+                <div class="footer-payment-badge badge-nequi" title="Nequi">
                     <img src="Nequi_Colombia_logo.svg.webp" alt="Nequi">
                 </div>
                 <!-- MERCADO LIBRE -->
-                <div class="footer-payment-badge" title="Mercado Libre">
+                <div class="footer-payment-badge badge-ml" title="Mercado Libre">
                     <?php if (file_exists(__DIR__ . '/mercadito_footer.png')): ?>
                         <img src="mercadito_footer.png" alt="Mercado Libre">
                     <?php elseif (file_exists(__DIR__ . '/mercadito.webp')): ?>
@@ -1821,7 +1842,7 @@ try {
                     <?php endif; ?>
                 </div>
                 <!-- CONTRAENTREGA -->
-                <div class="footer-payment-badge" title="Pago Contraentrega">
+                <div class="footer-payment-badge badge-contraentrega" title="Pago Contraentrega">
                     <img src="contraentrega.png" alt="Pago Contraentrega">
                 </div>
             </div>
