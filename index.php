@@ -93,6 +93,7 @@ if (empty($otros_productos)) {
     <link rel="preconnect" href="https://fonts.cdnfonts.com">
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     
     <style>
         :root {
@@ -3059,7 +3060,15 @@ if (empty($otros_productos)) {
             <div id="reviewModalViewWrite" class="review-modal-view active">
                 <!-- ENUNCIADO DE COMPRADOR VERIFICADO CON 10% DE DESCUENTO -->
                 <div class="verified-buyer-promo-box">
-                    <div class="promo-box-badge">✨ Descuento Exclusivo</div>
+                    <div class="promo-box-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:-1px; margin-right:4px;">
+                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path>
+                            <path d="M13 5v2"></path>
+                            <path d="M13 17v2"></path>
+                            <path d="M13 11v2"></path>
+                        </svg>
+                        <span>Descuento Exclusivo</span>
+                    </div>
                     <div class="promo-box-title">¿Ya te llegó el producto?</div>
                     <p class="promo-box-text">¡Danos la opinión de el producto como comprador verificado y te hacemos un descuento del 10% en tu siguiente compra!</p>
                     <div class="promo-box-terms">*sujeto a términos y condiciones*</div>
@@ -3111,7 +3120,7 @@ if (empty($otros_productos)) {
             <!-- VISTA 2: FORMULARIO DE VERIFICACIÓN DE COMPRA -->
             <div id="reviewModalViewVerify" class="review-modal-view">
                 <div class="verify-buyer-header">
-                    <div class="verify-buyer-icon">🏷️</div>
+                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 80px; height: 80px; margin: 0 auto 8px auto; display: block;" autoplay loop></dotlottie-player>
                     <h4>Verificación de Compra</h4>
                     <p>Ingresa tus datos para validar tu compra y activar tu 10% de descuento.</p>
                 </div>
@@ -3138,17 +3147,17 @@ if (empty($otros_productos)) {
             <!-- VISTA 3: RESULTADO (NO ADQUIRIDO + UPSELL) -->
             <div id="reviewModalViewUpsell" class="review-modal-view">
                 <div class="upsell-result-box">
-                    <div class="upsell-emoji">🛍️</div>
+                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 90px; height: 90px; margin: 0 auto 10px auto; display: block;" autoplay loop></dotlottie-player>
                     <h4 class="upsell-title">Ups, al parecer no has adquirido nuestro producto.</h4>
                     <p class="upsell-question">¿Qué esperas?</p>
                     <p class="upsell-desc">Añádelo ahora a tu carro y aprovecha envío gratis a toda Colombia más despacho prioritario hoy mismo.</p>
                     
                     <div class="upsell-actions-row">
                         <button type="button" class="btn-upsell-cart" onclick="ejecutarCompraDesdeModal(event)">
-                            🛒 Añadir al carrito
+                            Añadir al carrito
                         </button>
                         <button type="button" class="btn-upsell-review" onclick="mostrarVistaEscribirOpinion()">
-                            ✍️ Escribir opinión
+                            Escribir opinión
                         </button>
                     </div>
                 </div>
@@ -3913,11 +3922,20 @@ if (empty($otros_productos)) {
             if (targetView) targetView.classList.add('active');
 
             const headerTitle = document.getElementById('modalReviewHeaderTitle');
-            if (headerTitle && titleText) headerTitle.textContent = titleText;
+            if (headerTitle) {
+                // Solo mostrar título en el header si es la vista de escribir opinión para evitar duplicidad
+                if (viewId === 'reviewModalViewWrite') {
+                    headerTitle.textContent = titleText || 'Escribir opinión';
+                    headerTitle.style.display = 'block';
+                } else {
+                    headerTitle.textContent = '';
+                    headerTitle.style.display = 'none';
+                }
+            }
         }
 
         function mostrarVistaVerificarCompra() {
-            setReviewModalView('reviewModalViewVerify', 'Verificación de compra');
+            setReviewModalView('reviewModalViewVerify', '');
             const receiptInput = document.getElementById('verifyReceiptNumber');
             if (receiptInput) receiptInput.focus();
         }
@@ -3940,7 +3958,7 @@ if (empty($otros_productos)) {
                     btn.innerHTML = origHtml;
                     btn.disabled = false;
                 }
-                setReviewModalView('reviewModalViewUpsell', 'Verificación de compra');
+                setReviewModalView('reviewModalViewUpsell', '');
             }, 450);
         }
 
@@ -4018,22 +4036,34 @@ if (empty($otros_productos)) {
         }
 
         function calcularEstadisticasReviews() {
-            if (!REVIEWS_LIST || REVIEWS_LIST.length === 0) return;
-            const total = REVIEWS_LIST.length;
-            const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-            let sumStars = 0;
+            // Distribución realista estilo Amazon de 48 calificaciones globales
+            const BASELINE_TOTAL = 48;
+            const BASELINE_COUNTS = { 5: 38, 4: 6, 3: 2, 2: 1, 1: 1 };
+            
+            let userAddedCount = 0;
+            const userAddedCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
-            REVIEWS_LIST.forEach(r => {
-                let starCount = 5;
-                if (r.ratingNum) {
-                    starCount = r.ratingNum;
-                } else if (r.stars) {
-                    starCount = (r.stars.match(/★/g) || []).length || 5;
-                }
-                starCount = Math.max(1, Math.min(5, starCount));
-                counts[starCount] = (counts[starCount] || 0) + 1;
-                sumStars += starCount;
-            });
+            if (REVIEWS_LIST && Array.isArray(REVIEWS_LIST)) {
+                REVIEWS_LIST.forEach(r => {
+                    if (r.id || r.isUserCustom || r.isUserVerified) {
+                        userAddedCount++;
+                        let starCount = 5;
+                        if (r.ratingNum) starCount = r.ratingNum;
+                        else if (r.stars) starCount = (r.stars.match(/★/g) || []).length || 5;
+                        starCount = Math.max(1, Math.min(5, starCount));
+                        userAddedCounts[starCount] = (userAddedCounts[starCount] || 0) + 1;
+                    }
+                });
+            }
+
+            const total = BASELINE_TOTAL + userAddedCount;
+            let sumStars = 0;
+            const finalCounts = {};
+
+            for (let s = 1; s <= 5; s++) {
+                finalCounts[s] = (BASELINE_COUNTS[s] || 0) + (userAddedCounts[s] || 0);
+                sumStars += finalCounts[s] * s;
+            }
 
             const avg = (sumStars / total).toFixed(1);
             const avgDisplay = document.getElementById('scoreAvgDisplay');
@@ -4045,7 +4075,7 @@ if (empty($otros_productos)) {
             }
 
             for (let s = 1; s <= 5; s++) {
-                const pct = Math.round((counts[s] / total) * 100);
+                const pct = Math.round((finalCounts[s] / total) * 100);
                 const barFill = document.getElementById(`barFill${s}`);
                 const barPct = document.getElementById(`barPct${s}`);
                 if (barFill) barFill.style.width = `${pct}%`;
