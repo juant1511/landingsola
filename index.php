@@ -526,9 +526,319 @@ try {
         @keyframes cartBadgeBounce {
             0% { transform: scale(1); }
             45% { transform: scale(1.5); }
-            100% { transform: scale(1); }
+        /* ─── 5.2 REVIEWS WITH VIDEOS CAROUSEL (AMAZON STYLE) ─── */
+        .video-reviews-section {
+            max-width: 1200px;
+            margin: 28px auto 14px auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+        .video-reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 14px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .video-reviews-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .video-reviews-main-title {
+            font-family: var(--font-heading, 'Montserrat', sans-serif);
+            font-size: 20px;
+            font-weight: 800;
+            color: #111827;
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+        .video-reviews-subtitle {
+            font-size: 13px;
+            color: var(--text-muted, #6b7280);
+            font-weight: 500;
+        }
+        .video-reviews-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-add-video-card {
+            background: #22c55e;
+            color: #ffffff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.35);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .btn-add-video-card:hover {
+            background: #16a34a;
+            transform: scale(1.03);
+        }
+        .video-carousel-arrows {
+            display: flex;
+            gap: 6px;
+        }
+        .video-arrow-btn {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #1f2937;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            transition: all 0.2s ease;
+        }
+        .video-arrow-btn:hover {
+            background: #111827;
+            color: #ffffff;
+            border-color: #111827;
         }
 
+        .video-reviews-carousel-track {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 8px 4px 18px 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+        .video-reviews-carousel-track::-webkit-scrollbar {
+            height: 6px;
+        }
+        .video-reviews-carousel-track::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 6px;
+        }
+
+        .video-review-card {
+            flex: 0 0 160px;
+            height: 250px;
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden;
+            background: #000000;
+            cursor: pointer;
+            scroll-snap-align: start;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+            user-select: none;
+        }
+        @media (max-width: 640px) {
+            .video-review-card {
+                flex: 0 0 140px;
+                height: 220px;
+                border-radius: 12px;
+            }
+        }
+        .video-review-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+        }
+        .video-card-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+            background: #1e293b;
+        }
+        .video-review-card:hover .video-card-thumb {
+            transform: scale(1.06);
+        }
+        .video-card-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.05) 80%, transparent 100%);
+            pointer-events: none;
+        }
+        .video-card-badge-play {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            padding-left: 2px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+        .video-review-card:hover .video-card-badge-play {
+            background: #e11d48;
+            border-color: #e11d48;
+            transform: scale(1.15);
+        }
+        .video-card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 10px;
+            color: #ffffff;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .video-card-stars {
+            color: #f97316;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            margin-bottom: 3px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .video-card-duration {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 800;
+            font-family: var(--font-heading, sans-serif);
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+        }
+        .play-icon-mini {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        .video-card-title-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-top: 3px;
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+        }
+
+        .video-card-admin-bar {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            display: flex;
+            gap: 4px;
+            z-index: 15;
+        }
+        .btn-vcard-edit {
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .btn-vcard-del {
+            background: #ef4444;
+            color: #ffffff;
+            border: none;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        /* ─── VIDEO LIGHTBOX MODAL ─── */
+        .video-modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 9999999;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .video-modal-backdrop.active {
+            display: flex;
+            opacity: 1;
+        }
+        .video-modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 820px;
+            background: #000000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transform: scale(0.94);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .video-modal-backdrop.active .video-modal-container {
+            transform: scale(1);
+        }
+        .video-modal-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .video-modal-close-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+            transform: scale(1.1);
+        }
+        .video-modal-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000000;
+        }
+        .video-modal-iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
     </style>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </head>
@@ -716,6 +1026,137 @@ try {
                     <span class="pill-dark">🚚 ENVÍO GRATIS</span>
                     <span class="pill-white">EN TU PRIMERA COMPRA</span>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.2 REVIEWS WITH VIDEOS CAROUSEL (AMAZON STYLE) -->
+    <section class="video-reviews-section" id="videoReviewsSection">
+        <div class="video-reviews-header">
+            <div class="video-reviews-title-wrap">
+                <h2 class="video-reviews-main-title" data-editable="true">Reviews with videos</h2>
+                <span class="video-reviews-subtitle" data-editable="true">Opiniones y unboxings en video de clientes verificados</span>
+            </div>
+            <div class="video-reviews-controls">
+                <?php if ($es_modo_edicion): ?>
+                    <button type="button" class="btn-add-video-card" onclick="agregarNuevoVideoReview()">➕ Agregar Video</button>
+                <?php endif; ?>
+                <div class="video-carousel-arrows">
+                    <button type="button" class="video-arrow-btn" onclick="desplazarVideoCarrusel(-1)" aria-label="Anterior">❮</button>
+                    <button type="button" class="video-arrow-btn" onclick="desplazarVideoCarrusel(1)" aria-label="Siguiente">❯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-reviews-carousel-track" id="videoReviewsTrack">
+            <!-- Video Card 1 -->
+            <div class="video-review-card" data-youtube-id="Nl9oU54_Fdg" data-video-title="DJI Osmo Pocket 3 Unboxing & Review" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://img.youtube.com/vi/Nl9oU54_Fdg/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">1:45</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Unboxing Creator Combo & 4K</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 2 -->
+            <div class="video-review-card" data-youtube-id="r3z5F8wA8cE" data-video-title="Prueba de Estabilización Mecánica" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://img.youtube.com/vi/r3z5F8wA8cE/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">1:57</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Estabilización 3 Ejes Gimbal</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 3 -->
+            <div class="video-review-card" data-youtube-id="Fm9rQ1Hk4K0" data-video-title="Prueba Micrófono Inalámbrico" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://img.youtube.com/vi/Fm9rQ1Hk4K0/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">0:45</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Audio Nítido DJI Mic 2</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 4 -->
+            <div class="video-review-card" data-youtube-id="M7lc1UVf-VE" data-video-title="Grabación Nocturna Sensor 1 pulgada" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://img.youtube.com/vi/M7lc1UVf-VE/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">1:12</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Rendimiento en Poca Luz</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Video Card 5 -->
+            <div class="video-review-card" data-youtube-id="e-ORhEE9VVg" data-video-title="Pantalla Giratoria Touch OLED" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://img.youtube.com/vi/e-ORhEE9VVg/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">2:05</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">Pantalla Giratoria Touch</div>
+                </div>
+                <?php if ($es_modo_edicion): ?>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO MODAL LIGHTBOX -->
+    <div id="videoModalLightbox" class="video-modal-backdrop" onclick="cerrarVideoModal(event)">
+        <div class="video-modal-container" onclick="event.stopPropagation()">
+            <button type="button" class="video-modal-close-btn" onclick="cerrarVideoModal(event)" aria-label="Cerrar video">✕</button>
+            <div class="video-modal-iframe-wrapper">
+                <iframe id="videoModalIframe" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -1524,6 +1965,142 @@ try {
                 }
             });
         })();
+
+        // ─── 5.2 FUNCIONES PARA REVIEWS CON VIDEO Y REPRODUCTOR YOUTUBE ───
+        function extraerYouTubeId(url) {
+            if (!url) return '';
+            url = url.trim();
+            const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=|shorts\/)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = url.match(regExp);
+            if (match && match[1]) return match[1];
+            if (url.length === 11 && !url.includes('/') && !url.includes('.')) return url;
+            return url;
+        }
+
+        function abrirVideoModal(youtubeId) {
+            const modal = document.getElementById('videoModalLightbox');
+            const iframe = document.getElementById('videoModalIframe');
+            if (!modal || !iframe || !youtubeId) return;
+            iframe.src = 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarVideoModal(e) {
+            if (e && e.target && e.target.classList && e.target.classList.contains('video-modal-container')) {
+                return;
+            }
+            if (e) e.stopPropagation();
+            const modal = document.getElementById('videoModalLightbox');
+            const iframe = document.getElementById('videoModalIframe');
+            if (!modal) return;
+            modal.classList.remove('active');
+            if (iframe) iframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        function manejarClickVideoCard(card, event) {
+            if (typeof ES_MODO_EDICION !== 'undefined' && ES_MODO_EDICION) {
+                return;
+            }
+            const ytid = card.getAttribute('data-youtube-id');
+            if (ytid) {
+                abrirVideoModal(ytid);
+            }
+        }
+
+        function desplazarVideoCarrusel(direccion) {
+            const track = document.getElementById('videoReviewsTrack');
+            if (track) {
+                track.scrollBy({ left: direccion * 320, behavior: 'smooth' });
+            }
+        }
+
+        function editarVideoCard(card) {
+            if (!card) return;
+            const currentId = card.getAttribute('data-youtube-id') || '';
+            const currentDurElem = card.querySelector('.video-duration-text');
+            const currentTitleElem = card.querySelector('.video-card-title-text');
+            
+            const currentDur = currentDurElem ? currentDurElem.innerText.trim() : '1:30';
+            const currentTitle = currentTitleElem ? currentTitleElem.innerText.trim() : 'Review DJI Pocket 3';
+
+            const newUrl = prompt('Ingresa el Link de YouTube o ID del video:\n(Ej: https://www.youtube.com/watch?v=... o https://youtu.be/... o https://youtube.com/shorts/...)', currentId ? 'https://www.youtube.com/watch?v=' + currentId : '');
+            if (newUrl === null) return;
+            
+            const parsedId = extraerYouTubeId(newUrl);
+            if (!parsedId) {
+                alert('No se pudo reconocer un ID de YouTube válido.');
+                return;
+            }
+
+            const newDur = prompt('Duración del video (ej. 1:45):', currentDur) || currentDur;
+            const newTitle = prompt('Título o descripción corta:', currentTitle) || currentTitle;
+
+            card.setAttribute('data-youtube-id', parsedId);
+            const thumb = card.querySelector('.video-card-thumb');
+            if (thumb) {
+                thumb.src = 'https://img.youtube.com/vi/' + parsedId + '/hqdefault.jpg';
+            }
+            if (currentDurElem) currentDurElem.innerText = newDur;
+            if (currentTitleElem) currentTitleElem.innerText = newTitle;
+
+            alert('✅ Video actualizado. Recuerda hacer clic en "💾 Guardar Cambios" para guardar.');
+        }
+
+        function eliminarVideoCard(card) {
+            if (!card) return;
+            if (confirm('¿Estás seguro de eliminar este video del carrusel?')) {
+                card.remove();
+            }
+        }
+
+        function agregarNuevoVideoReview() {
+            const url = prompt('Ingresa el link de YouTube del nuevo video:\n(Ej: https://www.youtube.com/watch?v=... o https://youtu.be/...)');
+            if (!url) return;
+            const id = extraerYouTubeId(url);
+            if (!id) {
+                alert('Link de YouTube no válido.');
+                return;
+            }
+            const dur = prompt('Duración del video (ej. 1:30):', '1:30') || '1:30';
+            const title = prompt('Título / Resumen:', 'Opinión DJI Osmo Pocket 3') || 'Opinión DJI Osmo Pocket 3';
+
+            const track = document.getElementById('videoReviewsTrack');
+            if (!track) return;
+
+            const card = document.createElement('div');
+            card.className = 'video-review-card';
+            card.setAttribute('data-youtube-id', id);
+            card.setAttribute('onclick', 'manejarClickVideoCard(this, event)');
+            card.innerHTML = `
+                <img class="video-card-thumb" src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <div class="video-card-gradient"></div>
+                <div class="video-card-badge-play">▶</div>
+                <div class="video-card-info">
+                    <div class="video-card-stars">★★★★★</div>
+                    <div class="video-card-duration">
+                        <span class="play-icon-mini">▶</span> <span class="video-duration-text" data-editable="true">${dur}</span>
+                    </div>
+                    <div class="video-card-title-text" data-editable="true">${title}</div>
+                </div>
+                <div class="video-card-admin-bar" onclick="event.stopPropagation()">
+                    <button type="button" class="btn-vcard-edit" onclick="editarVideoCard(this.closest('.video-review-card'))" title="Editar link de YouTube">✏️ Editar</button>
+                    <button type="button" class="btn-vcard-del" onclick="eliminarVideoCard(this.closest('.video-review-card'))" title="Eliminar video">🗑️</button>
+                </div>
+            `;
+            track.appendChild(card);
+            if (typeof initModoEdicion === 'function') {
+                initModoEdicion();
+            }
+            alert('✅ Video agregado al carrusel. Recuerda hacer clic en "💾 Guardar Cambios" para guardar permanentemente.');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarVideoModal();
+            }
+        });
 
     </script>
 </body>
