@@ -88,6 +88,21 @@ if (empty($otros_productos)) {
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title><?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?></title>
+    
+    <!-- FAVICON / NAVICON -->
+    <?php if (file_exists(__DIR__ . '/logo.svg')): ?>
+        <link rel="icon" type="image/svg+xml" href="logo.svg">
+        <link rel="apple-touch-icon" href="logo.svg">
+    <?php elseif (file_exists(__DIR__ . '/logo.webp')): ?>
+        <link rel="icon" type="image/webp" href="logo.webp">
+        <link rel="shortcut icon" type="image/webp" href="logo.webp">
+        <link rel="apple-touch-icon" href="logo.webp">
+    <?php elseif (file_exists(__DIR__ . '/logo.png')): ?>
+        <link rel="icon" type="image/png" href="logo.png">
+        <link rel="shortcut icon" type="image/png" href="logo.png">
+        <link rel="apple-touch-icon" href="logo.png">
+    <?php endif; ?>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.cdnfonts.com">
