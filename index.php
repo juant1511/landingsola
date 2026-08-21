@@ -408,7 +408,7 @@ try {
         .generic-footer {
             background: #000000;
             color: #ffffff;
-            padding: 38px 20px 32px 20px;
+            padding: 40px 20px 34px 20px;
             margin-top: 45px;
             width: 100%;
             box-sizing: border-box;
@@ -421,65 +421,85 @@ try {
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 20px;
+            gap: 22px;
             position: relative;
         }
         .footer-payments-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 16px;
             flex-wrap: wrap;
         }
-        .payment-badge-pill {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            border-radius: 6px;
-            padding: 4px 8px;
-            height: 28px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s ease;
-            box-sizing: border-box;
-        }
-        .payment-badge-pill:hover {
-            transform: translateY(-2px);
-        }
-        .payment-svg-img {
-            max-height: 20px;
-            height: auto;
+        .payment-clean-img {
+            height: 24px;
             width: auto;
-            max-width: 65px;
+            max-width: 58px;
             object-fit: contain;
             display: block;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+            transition: transform 0.2s ease;
+        }
+        .payment-clean-img:hover {
+            transform: translateY(-2px);
+        }
+        .footer-contraentrega-label {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding-left: 10px;
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            display: inline-flex;
+            align-items: center;
+            line-height: 1;
         }
         .footer-legal-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #e5e7eb;
+            gap: 22px;
             flex-wrap: wrap;
-            letter-spacing: 0.2px;
         }
-        .footer-flag-icon {
-            font-size: 16px;
+        .footer-sic-badge {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 4px 10px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
         }
-        .footer-legal-text {
-            color: #e5e7eb;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: color 0.2s ease;
+        .footer-sic-badge:hover {
+            transform: scale(1.03);
         }
-        .footer-legal-text:hover {
-            color: #ffffff;
+        .footer-sic-badge img {
+            height: 20px;
+            width: auto;
+            max-width: 145px;
+            object-fit: contain;
+            display: block;
         }
-        .footer-legal-divider {
-            color: #6b7280;
-            font-size: 10px;
+        .footer-camara-badge {
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+        .footer-camara-badge:hover {
+            transform: scale(1.03);
+        }
+        .footer-camara-badge img {
+            height: 26px;
+            width: auto;
+            max-width: 220px;
+            object-fit: contain;
+            display: block;
         }
         .footer-bottom-row {
             width: 100%;
@@ -520,78 +540,7 @@ try {
         }
         @media (max-width: 640px) {
             .footer-legal-row {
-                font-size: 12px;
-                gap: 6px;
-            }
-            .footer-bottom-row {
-                flex-direction: column;
                 gap: 14px;
-            }
-            .btn-scroll-top {
-                position: static;
-                transform: none;
-            }
-            .btn-scroll-top:hover {
-                transform: scale(1.1);
-            }
-        }
-        .footer-flag-icon {
-            font-size: 16px;
-        }
-        .footer-legal-text {
-            color: #e5e7eb;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: color 0.2s ease;
-        }
-        .footer-legal-text:hover {
-            color: #ffffff;
-        }
-        .footer-legal-divider {
-            color: #6b7280;
-            font-size: 10px;
-        }
-        .footer-bottom-row {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-top: 4px;
-        }
-        .footer-copyright-text {
-            font-size: 12px;
-            color: #9ca3af;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-        .btn-scroll-top {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        }
-        .btn-scroll-top:hover {
-            background: #ffffff;
-            color: #000000;
-            transform: translateY(-50%) scale(1.1);
-        }
-        @media (max-width: 640px) {
-            .footer-legal-row {
-                font-size: 12px;
-                gap: 6px;
             }
             .footer-bottom-row {
                 flex-direction: column;
@@ -1433,26 +1382,32 @@ try {
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
         <div class="footer-content-wrap">
-            <!-- MEDIOS DE PAGO (SOLO AME, VISA, MASTE) -->
+            <!-- MEDIOS DE PAGO (AME, VISA, MASTE) + CONTRAENTREGA -->
             <div class="footer-payments-row">
                 <!-- AMEX -->
-                <div class="payment-badge-pill" title="American Express">
-                    <img src="ame.svg" alt="American Express" class="payment-svg-img">
-                </div>
+                <img src="ame.svg" alt="American Express" class="payment-clean-img" title="American Express">
                 <!-- VISA -->
-                <div class="payment-badge-pill" title="Visa">
-                    <img src="visa.svg" alt="Visa" class="payment-svg-img">
-                </div>
+                <img src="visa.svg" alt="Visa" class="payment-clean-img" title="Visa">
                 <!-- MASTERCARD -->
-                <div class="payment-badge-pill" title="Mastercard">
-                    <img src="maste.svg" alt="Mastercard" class="payment-svg-img">
-                </div>
+                <img src="maste.svg" alt="Mastercard" class="payment-clean-img" title="Mastercard">
+                <!-- TEXTO CONTRAENTREGA -->
+                <span class="footer-contraentrega-label" data-editable="true">Contraentrega</span>
             </div>
 
-            <!-- CÁMARA DE COMERCIO ELECTRÓNICO -->
+            <!-- SUPERINTENDENCIA & CÁMARA DE COMERCIO -->
             <div class="footer-legal-row">
+                <?php if (file_exists(__DIR__ . '/sic.png')): ?>
+                    <div class="footer-sic-badge" title="Superintendencia de Industria y Comercio">
+                        <img src="sic.png" alt="Superintendencia de Industria y Comercio">
+                    </div>
+                <?php else: ?>
+                    <span class="footer-legal-text" data-editable="true">Superintendencia de Industria y Comercio</span>
+                <?php endif; ?>
+
                 <?php if (file_exists(__DIR__ . '/comerciocamara.png')): ?>
-                    <img src="comerciocamara.png" alt="Cámara Colombiana de Comercio Electrónico" class="footer-legal-logo-img" style="height: 28px; max-width: 260px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+                    <div class="footer-camara-badge" title="Cámara Colombiana de Comercio Electrónico">
+                        <img src="comerciocamara.png" alt="Cámara Colombiana de Comercio Electrónico">
+                    </div>
                 <?php else: ?>
                     <span class="footer-legal-text" data-editable="true">Cámara Colombiana de Comercio Electrónico</span>
                 <?php endif; ?>
