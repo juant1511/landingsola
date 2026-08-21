@@ -1249,8 +1249,8 @@ try {
 
         <div class="video-reviews-carousel-track" id="videoReviewsTrack">
             <!-- Video Card 1 -->
-            <div class="video-review-card" data-youtube-id="kYJv8ZgP3k0" data-video-title="DJI Osmo Pocket 3 Ultimate Vlog Setup" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://img.youtube.com/vi/kYJv8ZgP3k0/hqdefault.jpg" alt="DJI Osmo Pocket 3 Vlog Setup" loading="lazy" onerror="this.src='desktop.webp'">
+            <div class="video-review-card" data-youtube-id="xrtdYHHRNrA" data-video-title="DJI Osmo Pocket 3 Review & Setup" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/xrtdYHHRNrA/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Osmo Pocket 3 Review" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -1269,8 +1269,8 @@ try {
             </div>
 
             <!-- Video Card 2 -->
-            <div class="video-review-card" data-youtube-id="02f9i7e1oIs" data-video-title="DJI Osmo Pocket 3 Review y Sensor 1 pulgada" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://img.youtube.com/vi/02f9i7e1oIs/hqdefault.jpg" alt="DJI Osmo Pocket 3 Review" loading="lazy" onerror="this.src='desktop.webp'">
+            <div class="video-review-card" data-youtube-id="889E7RRXN2Q" data-video-title="DJI Osmo Pocket 3 Creator Combo" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/889E7RRXN2Q/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Osmo Pocket 3 Creator Combo" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -1289,8 +1289,8 @@ try {
             </div>
 
             <!-- Video Card 3 -->
-            <div class="video-review-card" data-youtube-id="hB1S4X29hKk" data-video-title="DJI Osmo Pocket 3: Calidad 4K 120fps" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://img.youtube.com/vi/hB1S4X29hKk/hqdefault.jpg" alt="DJI Pocket 3 4K 120fps" loading="lazy" onerror="this.src='desktop.webp'">
+            <div class="video-review-card" data-youtube-id="O5Z0ilq_Qqw" data-video-title="DJI Pocket 3: Unboxing y Calidad 4K" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/O5Z0ilq_Qqw/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 4K" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -1309,8 +1309,8 @@ try {
             </div>
 
             <!-- Video Card 4 -->
-            <div class="video-review-card" data-youtube-id="G3Y1yH_67p0" data-video-title="DJI Osmo Pocket 3 en la Vida Real" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://img.youtube.com/vi/G3Y1yH_67p0/hqdefault.jpg" alt="DJI Osmo Pocket 3 Test" loading="lazy" onerror="this.src='desktop.webp'">
+            <div class="video-review-card" data-youtube-id="xqv8b84g9iM" data-video-title="DJI Osmo Pocket 3 en la Vida Real" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/xqv8b84g9iM/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Osmo Pocket 3 Test" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -1329,8 +1329,8 @@ try {
             </div>
 
             <!-- Video Card 5 -->
-            <div class="video-review-card" data-youtube-id="33KxH4zS3qQ" data-video-title="DJI Osmo Pocket 3 y Micrófono DJI Mic 2" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://img.youtube.com/vi/33KxH4zS3qQ/hqdefault.jpg" alt="DJI Pocket 3 Audio Test" loading="lazy" onerror="this.src='desktop.webp'">
+            <div class="video-review-card" data-youtube-id="vYZBr_K38W8" data-video-title="DJI Osmo Pocket 3 y Micrófono DJI Mic 2" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/vYZBr_K38W8/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Audio Test" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -2247,7 +2247,8 @@ try {
             card.setAttribute('data-youtube-id', parsedId);
             const thumb = card.querySelector('.video-card-thumb');
             if (thumb) {
-                thumb.src = 'https://img.youtube.com/vi/' + parsedId + '/hqdefault.jpg';
+                thumb.src = 'https://i.ytimg.com/vi/' + parsedId + '/hqdefault.jpg';
+                thumb.setAttribute('referrerpolicy', 'no-referrer');
             }
             if (currentDurElem) currentDurElem.innerText = newDur;
             if (currentTitleElem) currentTitleElem.innerText = newTitle;
@@ -2281,7 +2282,7 @@ try {
             card.setAttribute('data-youtube-id', id);
             card.setAttribute('onclick', 'manejarClickVideoCard(this, event)');
             card.innerHTML = `
-                <img class="video-card-thumb" src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="Video Review" loading="lazy" onerror="this.src='desktop.webp'">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" referrerpolicy="no-referrer" alt="Video Review" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
