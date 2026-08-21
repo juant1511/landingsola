@@ -137,50 +137,27 @@ if (empty($otros_productos)) {
             body { padding-bottom: 85px; }
         }
 
-        /* ─── TOPBAR TICKER INFINITO EN MOVIMIENTO CONTINUO ─── */
+        /* ─── TOPBAR ESTÁTICO (ENVÍOS A TODO COLOMBIA) ─── */
         .top-announcement {
             background-color: var(--topbar-bg, #000000);
             color: #ffffff;
             font-family: var(--font-heading);
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
-            padding: 4.5px 0;
+            padding: 7px 12px;
             line-height: 1.2;
             letter-spacing: 0.8px;
             text-transform: uppercase;
-            overflow: hidden !important;
-            white-space: nowrap;
-            position: relative;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100% !important;
-            max-width: 100% !important;
             box-sizing: border-box;
-            display: flex;
-            align-items: center;
-        }
-        .topbar-marquee-track {
-            display: flex;
-            width: max-content;
-            animation: topbarMarqueeScroll 35s linear infinite;
-            will-change: transform;
-        }
-        .topbar-marquee-track:hover {
-            animation-play-state: paused;
-        }
-        .marquee-content {
-            display: flex;
-            flex-shrink: 0;
-            align-items: center;
-        }
-        .marquee-content span {
-            padding: 0 18px;
-            display: inline-block;
-        }
-        @keyframes topbarMarqueeScroll {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
+            user-select: none;
         }
 
-        /* ─── NAVBAR CON LOGO CENTRADO (APPLE FROSTED GLASS) ─── */
+        /* ─── NAVBAR CON LOGO CENTRADO (APPLE FROSTED GLASS Y SCROLL DINÁMICO) ─── */
         .navbar {
             display: flex;
             align-items: center;
@@ -197,6 +174,11 @@ if (empty($otros_productos)) {
             width: 100% !important;
             max-width: 100% !important;
             box-sizing: border-box;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+            will-change: transform;
+        }
+        .navbar.nav-hidden {
+            transform: translateY(-100%) !important;
         }
         .nav-left { width: 44px; flex-shrink: 0; }
         .nav-center-logo { flex: 1; display: flex; justify-content: center; align-items: center; text-align: center; }
@@ -212,16 +194,17 @@ if (empty($otros_productos)) {
             .brand-logo-text { font-size: 30px; letter-spacing: -0.02em; }
         }
 
+        /* ─── PÁGINA FULL WIDTH (SIN CONTAINER ESTRECHO) ─── */
         .landing-container {
-            max-width: 1200px;
+            max-width: 100% !important;
             width: 100% !important;
-            margin: 0 auto;
-            padding: 20px 16px 30px 16px;
+            margin: 0;
+            padding: 16px 20px 30px 20px;
             box-sizing: border-box;
             overflow-x: hidden;
         }
         @media (min-width: 768px) {
-            .landing-container { padding: 30px 24px 40px 24px; }
+            .landing-container { padding: 24px 36px 40px 36px; }
         }
 
         .product-grid-layout {
@@ -229,46 +212,89 @@ if (empty($otros_productos)) {
             flex-direction: column;
             gap: 24px;
             width: 100%;
+            max-width: 100%;
             box-sizing: border-box;
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
         }
         @media (min-width: 992px) {
-            .product-grid-layout { padding: 36px 32px; gap: 44px; }
+            .product-grid-layout {
+                display: grid;
+                grid-template-columns: 1.1fr 1fr;
+                gap: 48px;
+                align-items: start;
+                max-width: 100%;
+                padding: 0 10px;
+            }
         }
 
-        /* ─── GALLERY SECTION ─── */
+        /* ─── GALLERY SECTION CON SLIDE Y PUNTICOS INDICADORES ─── */
         .gallery-wrapper-desktop {
             display: flex;
             flex-direction: column;
             gap: 12px;
             width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
             box-sizing: border-box;
+        }
+        .gallery-slider-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
         }
         .main-image-wrap {
             order: 1;
             width: 100%;
             aspect-ratio: 1 / 1;
             background-color: #fbfbfd;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.06);
             cursor: pointer;
             box-sizing: border-box;
             touch-action: pan-y pinch-zoom;
+        }
+        .gallery-dots-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            width: 100%;
+            padding: 4px 0;
+        }
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d2d2d7;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .gallery-dot.active {
+            background: #0071e3;
+            width: 24px;
+            border-radius: 999px;
+        }
+        .gallery-dot:hover:not(.active) {
+            background: #86868b;
         }
         .main-image-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.25s ease, transform 0.3s ease;
+            transition: opacity 0.22s ease-out, transform 0.25s ease-out;
             user-select: none;
             -webkit-user-drag: none;
         }
@@ -601,15 +627,131 @@ if (empty($otros_productos)) {
         .page-btn:hover:not(.active) { background: #e5e5ea; }
 
         /* ─── MÁS PRODUCTOS RECOMENDADOS (CRUZADOS) ─── */
-        .more-to-love-section { max-width: 1200px; width: 100%; margin: 30px auto 40px auto; padding: 0 16px; box-sizing: border-box; text-align: center; overflow-x: hidden; }
-        .section-heading-center { font-family: var(--font-heading); font-size: 20px; font-weight: 700; letter-spacing: -0.015em; color: #1d1d1f; margin-bottom: 18px; text-transform: uppercase; }
-        .more-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
-        .more-card { background: #ffffff; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; overflow: hidden; padding: 12px; text-align: left; text-decoration: none; display: flex; flex-direction: column; transition: all 0.25s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-        .more-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); border-color: var(--primary); }
+        /* ─── QUIENES VIERON ESTE PRODUCTO TAMBIÉN COMPRARON (SLIDE SINGLE-ROW) ─── */
+        .more-to-love-section {
+            max-width: 1240px;
+            width: 100%;
+            margin: 36px auto 44px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+        }
+        .section-heading-center {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+        .more-slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .more-slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            color: #1d1d1f;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            transition: all 0.2s ease;
+        }
+        .more-slider-arrow:hover {
+            background: #111111;
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.08);
+        }
+        .more-slider-arrow.prev { left: -14px; }
+        .more-slider-arrow.next { right: -14px; }
+        @media (max-width: 768px) {
+            .more-slider-arrow { display: none !important; }
+        }
+        .more-grid {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            gap: 16px;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 8px 4px 14px 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            width: 100%;
+        }
+        .more-grid::-webkit-scrollbar {
+            display: none;
+        }
+        .more-card {
+            flex: 0 0 200px !important;
+            min-width: 200px !important;
+            max-width: 200px !important;
+            scroll-snap-align: start;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 12px;
+            text-align: left;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .more-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+        @media (max-width: 640px) {
+            .more-card {
+                flex: 0 0 155px !important;
+                min-width: 155px !important;
+                max-width: 155px !important;
+                padding: 10px;
+            }
+        }
         .more-card-img { width: 100%; aspect-ratio: 1/1; border-radius: 10px; object-fit: cover; background: #fbfbfd; }
         .more-card-title { font-size: 13px; font-weight: 600; color: #1d1d1f; margin: 8px 0 4px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.35; }
         .more-card-stars { font-size: 12px; color: var(--star-color); margin-bottom: 4px; }
         .more-card-price { font-weight: 700; font-size: 14.5px; color: #1d1d1f; margin-top: auto; letter-spacing: -0.01em; }
+
+        .more-products-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            width: 100%;
+        }
+        .more-prod-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d2d2d7;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .more-prod-dot.active {
+            background: #0071e3;
+            width: 22px;
+            border-radius: 999px;
+        }
 
         /* ─── 7. FOOTER MODERNO (ESTILO SHEGLAM / AMAZON) ─── */
         .generic-footer {
@@ -849,19 +991,35 @@ if (empty($otros_productos)) {
             }
         }
 
-        .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid var(--border-color); padding: 10px 16px 14px 16px; display: flex; align-items: center; gap: 12px; z-index: 900; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); max-width: 540px; margin: 0 auto; }
+        .sticky-footer-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 1px solid var(--border-color);
+            padding: 10px 16px 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 900;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+            max-width: 540px;
+            margin: 0 auto;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+        .sticky-footer-bar.bar-hidden {
+            transform: translateY(120%) !important;
+        }
         .support-btn { width: 46px; height: 46px; border-radius: 10px; border: 1px solid var(--border-color); background: #ffffff; display: flex; align-items: center; justify-content: center; color: #111111; text-decoration: none; flex-shrink: 0; }
         .btn-add-to-cart { flex: 1; height: 48px; background-color: var(--btn-bg); color: #ffffff; border: none; border-radius: 12px; font-family: var(--font-heading); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
         @media (min-width: 992px) {
-            .product-grid-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 50px; align-items: start; }
-            .gallery-wrapper-desktop { flex-direction: row; gap: 16px; }
-            .thumbnails-strip { order: 1; flex-direction: column; width: 76px; max-height: 520px; overflow-y: auto; overflow-x: hidden; padding-bottom: 0; }
-            .thumb-item { flex: 0 0 74px; height: 74px; }
-            .main-image-wrap { order: 2; flex: 1; max-width: 520px; }
+            .product-grid-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; max-width: 100%; }
+            .gallery-wrapper-desktop { flex-direction: column; max-width: 680px; }
             .desktop-action-row { display: flex; }
             .sticky-footer-bar { display: none !important; }
-            .more-grid { grid-template-columns: repeat(6, 1fr); }
         }
 
         .lightbox-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.94); z-index: 99999; display: none; align-items: center; justify-content: center; flex-direction: column; backdrop-filter: blur(5px); }
@@ -1506,22 +1664,9 @@ if (empty($otros_productos)) {
         <p style="margin-top: 14px; font-family: var(--font-heading); font-weight: 700; font-size: 14px;">Preparando tu pedido seguro...</p>
     </div>
 
-                        <!-- 1. TOP ANNOUNCEMENT BAR TICKER -->
+    <!-- 1. TOP ANNOUNCEMENT BAR ESTÁTICO -->
     <div class="top-announcement">
-        <div class="topbar-marquee-track">
-            <div class="marquee-content">
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-            </div>
-            <div class="marquee-content" aria-hidden="true">
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-                <span>ENVÍO GRATIS A TODA COLOMBIA &bull; PAGO CONTRAENTREGA &bull; GARANTÍA DE 3 AÑOS</span>
-            </div>
-        </div>
+        <span data-editable="true">ENVIOS A TODO COLOMBIA</span>
     </div>
 
     <nav class="navbar">
@@ -1553,15 +1698,17 @@ if (empty($otros_productos)) {
     <main class="landing-container">
         <div class="product-grid-layout">
 
-            <!-- COLUMNA 1: GALERÍA -->
+            <!-- COLUMNA 1: GALERÍA CON SLIDE Y PUNTICOS INDICADORES -->
             <section class="gallery-wrapper-desktop">
-                <div class="main-image-wrap" onclick="abrirLightbox(activeImgIndex)" title="Haz clic para ampliar">
-                    <button class="gallery-arrow prev" onclick="event.stopPropagation(); cambiarImagenRelativa(-1)">❮</button>
-                    <img id="mainImage" src="https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%201.webp" alt="<?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?>">
-                    <button class="gallery-arrow next" onclick="event.stopPropagation(); cambiarImagenRelativa(1)">❯</button>
+                <div class="gallery-slider-container">
+                    <div class="main-image-wrap" id="mainGallerySlider" onclick="abrirLightbox(activeImgIndex)" title="Haz clic para ampliar">
+                        <button type="button" class="gallery-arrow prev" onclick="event.stopPropagation(); cambiarImagenRelativa(-1)" aria-label="Imagen anterior">❮</button>
+                        <img id="mainImage" src="https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%201.webp" alt="<?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?>">
+                        <button type="button" class="gallery-arrow next" onclick="event.stopPropagation(); cambiarImagenRelativa(1)" aria-label="Siguiente imagen">❯</button>
+                    </div>
+                    <!-- PUNTICOS INDICADORES DE LA GALERÍA -->
+                    <div class="gallery-dots-indicator" id="galleryDotsIndicator"></div>
                 </div>
-
-                <div class="thumbnails-strip" id="thumbnailsStrip"></div>
             </section>
 
             <!-- COLUMNA 2: INFORMACIÓN Y COMPRA -->
@@ -1658,36 +1805,6 @@ if (empty($otros_productos)) {
 
         </div>
     </main>
-
-    <!-- 5. BANNER OFICIAL ESTILO MERCADOLIBRE -->
-    <div class="ml-promo-banner-wrap" onclick="window.location.href='<?= URL_PASARELA_MERCADOLIBRE ?>/pago/mercadolibre_clone/index.php?token=<?= $landing_token ?>'">
-        <div class="ml-banner-inner">
-            <div class="ml-banner-left">
-                <?php if (file_exists(__DIR__ . '/mercadito.webp')): ?>
-                    <img src="mercadito.webp" alt="Mercado Libre" class="ml-logo-img">
-                <?php elseif (file_exists(__DIR__ . '/../../mercadito.webp')): ?>
-                    <img src="../../mercadito.webp" alt="Mercado Libre" class="ml-logo-img">
-                <?php else: ?>
-                    <img src="/mercadito.webp" alt="Mercado Libre" class="ml-logo-img">
-                <?php endif; ?>
-            </div>
-
-            <div class="ml-banner-divider"></div>
-
-            <div class="ml-banner-center">
-                <span class="ml-brand-name"><?= htmlspecialchars("DJI") ?></span>
-                <span class="ml-product-name"><?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?></span>
-                <div class="ml-stripes"><span>/</span><span>/</span><span>/</span></div>
-            </div>
-
-            <div class="ml-banner-right">
-                <div class="ml-free-shipping-pill">
-                    <span class="pill-dark">🚚 ENVÍO GRATIS</span>
-                    <span class="pill-white">EN TU PRIMERA COMPRA</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- 5.2 REVIEWS WITH VIDEOS CAROUSEL (AMAZON STYLE) -->
     <section class="video-reviews-section" id="videoReviewsSection">
@@ -1872,22 +1989,61 @@ if (empty($otros_productos)) {
         <div class="reviews-pagination-row" id="reviewsPaginationContainer"></div>
     </section>
 
-    <!-- 6. SECCIÓN MÁS PRODUCTOS RECOMENDADOS (CRUZADOS CON RUTA RELATIVA REAL) -->
-    <section class="more-to-love-section">
-        <h2 class="section-heading-center" data-editable="true">Más Productos Recomendados</h2>
+    <!-- 5. BANNER OFICIAL ESTILO MERCADOLIBRE (ANTES DE PRODUCTOS RECOMENDADOS) -->
+    <div class="ml-promo-banner-wrap" onclick="window.location.href='<?= URL_PASARELA_MERCADOLIBRE ?>/pago/mercadolibre_clone/index.php?token=<?= $landing_token ?>'">
+        <div class="ml-banner-inner">
+            <div class="ml-banner-left">
+                <?php if (file_exists(__DIR__ . '/mercadito.webp')): ?>
+                    <img src="mercadito.webp" alt="Mercado Libre" class="ml-logo-img">
+                <?php elseif (file_exists(__DIR__ . '/../../mercadito.webp')): ?>
+                    <img src="../../mercadito.webp" alt="Mercado Libre" class="ml-logo-img">
+                <?php else: ?>
+                    <img src="/mercadito.webp" alt="Mercado Libre" class="ml-logo-img">
+                <?php endif; ?>
+            </div>
 
-        <div class="more-grid">
-            <?php if (!empty($otros_productos)): ?>
-                <?php foreach ($otros_productos as $o): ?>
-                <a href="<?= htmlspecialchars($o['url']) ?>" class="more-card">
-                    <img src="<?= htmlspecialchars($o['img']) ?>" class="more-card-img" alt="<?= htmlspecialchars($o['nombre']) ?>">
-                    <div class="more-card-title"><?= htmlspecialchars($o['nombre']) ?></div>
-                    <div class="more-card-stars">★★★★★</div>
-                    <div class="more-card-price"><?= htmlspecialchars($o['precio'] ?? 'Ver Oferta ➔') ?></div>
-                </a>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <div class="ml-banner-divider"></div>
+
+            <div class="ml-banner-center">
+                <span class="ml-brand-name"><?= htmlspecialchars("DJI") ?></span>
+                <span class="ml-product-name"><?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?></span>
+                <div class="ml-stripes"><span>/</span><span>/</span><span>/</span></div>
+            </div>
+
+            <div class="ml-banner-right">
+                <div class="ml-free-shipping-pill">
+                    <span class="pill-dark">🚚 ENVÍO GRATIS</span>
+                    <span class="pill-white">EN TU PRIMERA COMPRA</span>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- 6. SECCIÓN QUIENES VIERON ESTE PRODUCTO TAMBIÉN COMPRARON -->
+    <section class="more-to-love-section" id="recommendedProductsSection">
+        <h2 class="section-heading-center" data-editable="true">Quienes vieron este producto también compraron</h2>
+
+        <div class="more-slider-wrapper">
+            <button type="button" class="more-slider-arrow prev" onclick="slideRecommendedProducts(-1)" aria-label="Anterior">❮</button>
+            
+            <div class="more-grid" id="recommendedProductsTrack">
+                <?php if (!empty($otros_productos)): ?>
+                    <?php foreach ($otros_productos as $o): ?>
+                    <a href="<?= htmlspecialchars($o['url']) ?>" class="more-card">
+                        <img src="<?= htmlspecialchars($o['img']) ?>" class="more-card-img" alt="<?= htmlspecialchars($o['nombre']) ?>">
+                        <div class="more-card-title"><?= htmlspecialchars($o['nombre']) ?></div>
+                        <div class="more-card-stars">★★★★★</div>
+                        <div class="more-card-price"><?= htmlspecialchars($o['precio'] ?? 'Ver Oferta ➔') ?></div>
+                    </a>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+
+            <button type="button" class="more-slider-arrow next" onclick="slideRecommendedProducts(1)" aria-label="Siguiente">❯</button>
+        </div>
+
+        <!-- PUNTICOS INDICADORES DEL CARRUSEL DE PRODUCTOS -->
+        <div class="more-products-dots" id="recommendedProductsDots"></div>
     </section>
 
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
@@ -2056,16 +2212,16 @@ if (empty($otros_productos)) {
 
         function initGallery() {
             const mainImg = document.getElementById('mainImage');
-            const strip = document.getElementById('thumbnailsStrip');
-            if (strip) strip.innerHTML = '';
+            const dotsContainer = document.getElementById('galleryDotsIndicator');
+            if (dotsContainer) dotsContainer.innerHTML = '';
             if (IMAGENES.length > 0 && mainImg) mainImg.src = IMAGENES[0];
-            if (strip) {
+            if (dotsContainer) {
                 IMAGENES.forEach((src, idx) => {
-                    const thumb = document.createElement('div');
-                    thumb.className = 'thumb-item' + (idx === 0 ? ' active' : '');
-                    thumb.onclick = () => seleccionarImagen(idx);
-                    thumb.innerHTML = `<img src="${src}" alt="Thumb ${idx + 1}">`;
-                    strip.appendChild(thumb);
+                    const dot = document.createElement('div');
+                    dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
+                    dot.onclick = () => seleccionarImagen(idx);
+                    dot.setAttribute('title', `Imagen ${idx + 1}`);
+                    dotsContainer.appendChild(dot);
                 });
             }
         }
@@ -2075,10 +2231,15 @@ if (empty($otros_productos)) {
             activeImgIndex = idx;
             const mainImg = document.getElementById('mainImage');
             if (mainImg) {
-                mainImg.style.opacity = '0.3';
-                setTimeout(() => { mainImg.src = IMAGENES[idx]; mainImg.style.opacity = '1'; }, 120);
+                mainImg.style.opacity = '0.35';
+                mainImg.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    mainImg.src = IMAGENES[idx];
+                    mainImg.style.opacity = '1';
+                    mainImg.style.transform = 'scale(1)';
+                }, 120);
             }
-            document.querySelectorAll('.thumb-item').forEach((el, i) => el.classList.toggle('active', i === idx));
+            document.querySelectorAll('.gallery-dot').forEach((el, i) => el.classList.toggle('active', i === idx));
         }
 
         function cambiarImagenRelativa(step) {
@@ -2667,6 +2828,81 @@ if (empty($otros_productos)) {
             setInterval(actualizarDisplay, 1000);
         }
 
+        // ─── SLIDER Y PUNTICOS PARA 'QUIENES VIERON ESTE PRODUCTO TAMBIÉN COMPRARON' ───
+        function initRecommendedProductsSlider() {
+            const track = document.getElementById('recommendedProductsTrack');
+            const dotsContainer = document.getElementById('recommendedProductsDots');
+            if (!track || !dotsContainer) return;
+
+            const cards = track.querySelectorAll('.more-card');
+            if (cards.length === 0) return;
+
+            dotsContainer.innerHTML = '';
+            cards.forEach((card, idx) => {
+                const dot = document.createElement('div');
+                dot.className = 'more-prod-dot' + (idx === 0 ? ' active' : '');
+                dot.setAttribute('title', `Producto ${idx + 1}`);
+                dot.onclick = () => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                };
+                dotsContainer.appendChild(dot);
+            });
+
+            track.addEventListener('scroll', () => {
+                const scrollLeft = track.scrollLeft;
+                const cardWidth = cards[0].offsetWidth + 16;
+                const activeIdx = Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / cardWidth)));
+                dotsContainer.querySelectorAll('.more-prod-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === activeIdx);
+                });
+            }, { passive: true });
+        }
+
+        function slideRecommendedProducts(delta) {
+            const track = document.getElementById('recommendedProductsTrack');
+            if (!track) return;
+            const card = track.querySelector('.more-card');
+            const scrollAmount = card ? (card.offsetWidth + 16) * 1.5 : 300;
+            track.scrollBy({ left: delta * scrollAmount, behavior: 'smooth' });
+        }
+
+        // ─── SCROLL DINÁMICO: OCULTAR/MOSTRAR NAVBAR Y STICKY ADD TO CART ───
+        (function() {
+            let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+            let ticking = false;
+
+            function handleScrollDirection() {
+                const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+                const navbar = document.querySelector('.navbar');
+                const stickyBar = document.querySelector('.sticky-footer-bar');
+
+                if (Math.abs(currentScrollY - lastScrollY) < 6) {
+                    ticking = false;
+                    return;
+                }
+
+                if (currentScrollY > lastScrollY && currentScrollY > 70) {
+                    // Scrolling Down -> Ocultar navbar y boton sticky
+                    if (navbar) navbar.classList.add('nav-hidden');
+                    if (stickyBar) stickyBar.classList.add('bar-hidden');
+                } else {
+                    // Scrolling Up -> Mostrar navbar y boton sticky
+                    if (navbar) navbar.classList.remove('nav-hidden');
+                    if (stickyBar) stickyBar.classList.remove('bar-hidden');
+                }
+
+                lastScrollY = Math.max(0, currentScrollY);
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(handleScrollDirection);
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
+
         document.addEventListener('DOMContentLoaded', () => {
             cargarCarritoStorage();
             actualizarControlesPagina();
@@ -2676,6 +2912,7 @@ if (empty($otros_productos)) {
             renderReviews();
             initModoEdicion();
             initShippingCountdown();
+            initRecommendedProductsSlider();
         });
     
         // ─── GESTOS TÁCTILES (SWIPE) PARA MÓVIL EN GALERÍA Y LIGHTBOX ───
