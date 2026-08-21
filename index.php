@@ -152,9 +152,22 @@ if (empty($otros_productos)) {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100% !important;
+            width: 100%;
             box-sizing: border-box;
             user-select: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            height: 36px;
+        }
+        /* Spacer para compensar el top-announcement + navbar fijos */
+        body {
+            padding-top: 108px; /* 36px topbar + 72px navbar */
+        }
+        @media (min-width: 992px) {
+            body { padding-top: 118px; } /* 36px topbar + 82px navbar desktop */
         }
 
         /* ─── NAVBAR CON LOGO CENTRADO (APPLE FROSTED GLASS Y SCROLL DINÁMICO) ─── */
@@ -163,22 +176,23 @@ if (empty($otros_productos)) {
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.92);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: fixed;
+            top: 36px; /* debajo del top-announcement bar */
+            left: 0;
+            right: 0;
+            z-index: 1000;
             min-height: 70px;
-            width: 100% !important;
-            max-width: 100% !important;
+            width: 100%;
             box-sizing: border-box;
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
             will-change: transform;
         }
         .navbar.nav-hidden {
-            transform: translateY(-100%) !important;
+            transform: translateY(-110%);
         }
         .nav-left { width: 44px; display: flex; align-items: center; justify-content: flex-start; flex-shrink: 0; }
         .nav-hamburger-btn {
@@ -380,10 +394,52 @@ if (empty($otros_productos)) {
             margin: 0;
             padding: 0;
         }
+
+        /* ─── DESKTOP: layout con thumbnails a la izquierda ─── */
         @media (min-width: 992px) {
             .gallery-wrapper-desktop {
-                max-width: 680px;
-                margin: 0 auto;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 12px;
+                max-width: 100%;
+                margin: 0;
+            }
+            .gallery-thumbnails-strip {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 72px;
+                flex-shrink: 0;
+                padding: 4px 0;
+            }
+            .gallery-thumb-item {
+                width: 70px;
+                height: 70px;
+                border-radius: 10px;
+                overflow: hidden;
+                cursor: pointer;
+                border: 2px solid transparent;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+                flex-shrink: 0;
+                background: #f5f5f7;
+            }
+            .gallery-thumb-item:hover {
+                border-color: #86868b;
+                transform: scale(1.04);
+            }
+            .gallery-thumb-item.active {
+                border-color: #1d1d1f;
+                box-shadow: 0 0 0 1px #1d1d1f;
+            }
+            .gallery-thumb-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .gallery-slider-container {
+                flex: 1;
+                min-width: 0;
             }
             .main-image-wrap {
                 border-radius: 18px;
@@ -391,6 +447,12 @@ if (empty($otros_productos)) {
                 border: 1px solid rgba(0, 0, 0, 0.06);
             }
         }
+
+        /* Miniaturas ocultas en móvil */
+        .gallery-thumbnails-strip {
+            display: none;
+        }
+
         .gallery-dots-indicator {
             order: 2;
             display: flex !important;
@@ -1804,11 +1866,14 @@ if (empty($otros_productos)) {
 
             <!-- COLUMNA 1: GALERÍA CON SLIDE Y PUNTICOS INDICADORES -->
             <section class="gallery-wrapper-desktop">
+                <!-- MINIATURAS DESKTOP (IZQUIERDA) -->
+                <div class="gallery-thumbnails-strip" id="galleryThumbsStrip"></div>
+
                 <div class="gallery-slider-container">
                     <div class="main-image-wrap" id="mainGallerySlider" onclick="abrirLightbox(activeImgIndex)" title="Haz clic para ampliar">
                         <img id="mainImage" src="https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%201.webp" alt="<?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?>">
                     </div>
-                    <!-- PUNTICOS INDICADORES DE LA GALERÍA -->
+                    <!-- PUNTICOS INDICADORES DE LA GALERÍA (solo móvil) -->
                     <div class="gallery-dots-indicator" id="galleryDotsIndicator"></div>
                 </div>
             </section>
@@ -2428,8 +2493,13 @@ if (empty($otros_productos)) {
         function initGallery() {
             const mainImg = document.getElementById('mainImage');
             const dotsContainer = document.getElementById('galleryDotsIndicator');
+            const thumbsStrip = document.getElementById('galleryThumbsStrip');
+
             if (dotsContainer) dotsContainer.innerHTML = '';
+            if (thumbsStrip) thumbsStrip.innerHTML = '';
             if (IMAGENES.length > 0 && mainImg) mainImg.src = IMAGENES[0];
+
+            // Punticos (solo móvil)
             if (dotsContainer) {
                 IMAGENES.forEach((src, idx) => {
                     const dot = document.createElement('div');
@@ -2437,6 +2507,18 @@ if (empty($otros_productos)) {
                     dot.onclick = () => seleccionarImagen(idx);
                     dot.setAttribute('title', `Imagen ${idx + 1}`);
                     dotsContainer.appendChild(dot);
+                });
+            }
+
+            // Miniaturas desktop
+            if (thumbsStrip) {
+                IMAGENES.forEach((src, idx) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = 'gallery-thumb-item' + (idx === 0 ? ' active' : '');
+                    thumb.onclick = () => seleccionarImagen(idx);
+                    thumb.setAttribute('title', `Imagen ${idx + 1}`);
+                    thumb.innerHTML = `<img src="${src}" alt="Imagen ${idx + 1}" loading="lazy">`;
+                    thumbsStrip.appendChild(thumb);
                 });
             }
         }
@@ -2454,7 +2536,10 @@ if (empty($otros_productos)) {
                     mainImg.style.transform = 'scale(1)';
                 }, 120);
             }
+            // Sincronizar dots (móvil)
             document.querySelectorAll('.gallery-dot').forEach((el, i) => el.classList.toggle('active', i === idx));
+            // Sincronizar thumbnails (desktop)
+            document.querySelectorAll('.gallery-thumb-item').forEach((el, i) => el.classList.toggle('active', i === idx));
         }
 
         function cambiarImagenRelativa(step) {
@@ -3083,24 +3168,25 @@ if (empty($otros_productos)) {
 
         // ─── SCROLL DINÁMICO: OCULTAR/MOSTRAR NAVBAR Y STICKY ADD TO CART ───
         (function() {
-            let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            let lastScrollY = 0;
             let ticking = false;
 
             function updateNavScroll() {
-                const currentScrollY = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0);
+                const currentScrollY = Math.max(0, window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0);
                 const navbar = document.querySelector('.navbar');
                 const stickyBar = document.querySelector('.sticky-footer-bar');
+                const delta = currentScrollY - lastScrollY;
 
-                if (currentScrollY <= 20) {
-                    // Cerca del inicio superior -> Mostrar siempre
+                if (currentScrollY <= 10) {
+                    // En la cima → siempre visible
                     if (navbar) navbar.classList.remove('nav-hidden');
                     if (stickyBar) stickyBar.classList.remove('bar-hidden');
-                } else if (currentScrollY < lastScrollY) {
-                    // Scrolleando hacia arriba -> Mostrar navbar y sticky bar de inmediato
+                } else if (delta < -2) {
+                    // Scroll UP (delta negativo) → mostrar
                     if (navbar) navbar.classList.remove('nav-hidden');
                     if (stickyBar) stickyBar.classList.remove('bar-hidden');
-                } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-                    // Scrolleando hacia abajo -> Ocultar navbar y sticky bar
+                } else if (delta > 4 && currentScrollY > 60) {
+                    // Scroll DOWN (delta positivo, superada zona inicial) → ocultar
                     if (navbar) navbar.classList.add('nav-hidden');
                     if (stickyBar) stickyBar.classList.add('bar-hidden');
                 }
@@ -3109,19 +3195,14 @@ if (empty($otros_productos)) {
                 ticking = false;
             }
 
-            window.addEventListener('scroll', function() {
+            function onScroll() {
                 if (!ticking) {
-                    window.requestAnimationFrame(updateNavScroll);
                     ticking = true;
+                    window.requestAnimationFrame(updateNavScroll);
                 }
-            }, { passive: true });
+            }
 
-            window.addEventListener('touchmove', function() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateNavScroll);
-                    ticking = true;
-                }
-            }, { passive: true });
+            window.addEventListener('scroll', onScroll, { passive: true });
         })();
 
         document.addEventListener('DOMContentLoaded', () => {
