@@ -1287,6 +1287,187 @@ if (empty($otros_productos)) {
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        /* ─── VISTAS INTERNAS DEL MODAL DE OPINIÓN Y VERIFICACIÓN ─── */
+        .review-modal-view {
+            display: none;
+            animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .review-modal-view.active {
+            display: block;
+        }
+
+        /* ENUNCIADO COMPRADOR VERIFICADO (10% OFF) */
+        .verified-buyer-promo-box {
+            background: linear-gradient(135deg, #f8faff 0%, #edf5ff 100%);
+            border: 1.5px solid #b8daff;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 113, 227, 0.06);
+        }
+        .promo-box-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #0071e3;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .promo-box-title {
+            font-family: var(--font-heading);
+            font-size: 15.5px;
+            font-weight: 700;
+            color: #0f1111;
+            margin: 0 0 4px 0;
+        }
+        .promo-box-text {
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.45;
+            margin: 0 0 4px 0;
+            font-weight: 500;
+        }
+        .promo-box-terms {
+            font-size: 11px;
+            color: #8c9b9e;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .btn-verify-purchase-trigger {
+            background: #ffffff;
+            border: 1.5px solid #0071e3;
+            color: #0071e3;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 7px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0, 113, 227, 0.12);
+        }
+        .btn-verify-purchase-trigger:hover {
+            background: #0071e3;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.28);
+            transform: translateY(-1px);
+        }
+
+        /* CABECERA VISTA VERIFICAR */
+        .verify-buyer-header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .verify-buyer-icon {
+            font-size: 34px;
+            margin-bottom: 6px;
+        }
+        .verify-buyer-header h4 {
+            margin: 0 0 4px 0;
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f1111;
+        }
+        .verify-buyer-header p {
+            margin: 0;
+            font-size: 13px;
+            color: #565959;
+        }
+
+        /* RESULTADO NO ADQUIRIDO (UPSELL) */
+        .upsell-result-box {
+            text-align: center;
+            padding: 16px 8px 6px 8px;
+        }
+        .upsell-emoji {
+            font-size: 46px;
+            margin-bottom: 12px;
+            animation: modalFadeIn 0.3s ease;
+        }
+        .upsell-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f1111;
+            margin: 0 0 6px 0;
+            line-height: 1.35;
+        }
+        .upsell-question {
+            font-size: 21px;
+            font-weight: 800;
+            color: #0071e3;
+            margin: 0 0 10px 0;
+        }
+        .upsell-desc {
+            font-size: 13.5px;
+            color: #565959;
+            margin: 0 auto 22px auto;
+            max-width: 400px;
+            line-height: 1.45;
+        }
+        .upsell-actions-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn-upsell-cart {
+            flex: 1;
+            min-width: 170px;
+            height: 44px;
+            background: #ffd814;
+            border: 1px solid #fcd200;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f1111;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-upsell-cart:hover {
+            background: #f7ca00;
+            border-color: #f2c200;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+            transform: scale(1.02);
+        }
+        .btn-upsell-review {
+            flex: 1;
+            min-width: 170px;
+            height: 44px;
+            background: #ffffff;
+            border: 1px solid #d5d9d9;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f1111;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-upsell-review:hover {
+            background: #f7fafa;
+            border-color: #0f1111;
+        }
+
         /* ─── MÁS PRODUCTOS RECOMENDADOS (CRUZADOS) ─── */
         /* ─── QUIENES VIERON ESTE PRODUCTO TAMBIÉN COMPRARON (SLIDE SINGLE-ROW) ─── */
         .more-to-love-section {
@@ -2866,51 +3047,112 @@ if (empty($otros_productos)) {
         </div>
     </section>
 
-    <!-- MODAL INTERACTIVO PARA ESCRIBIR OPINIÓN -->
+    <!-- MODAL INTERACTIVO PARA ESCRIBIR OPINIÓN Y VERIFICAR COMPRA -->
     <div class="write-review-modal-overlay" id="writeReviewModal" onclick="if(event.target===this) cerrarModalEscribirOpinion()">
         <div class="write-review-modal-dialog">
             <div class="write-review-modal-header">
-                <h3>Escribir opinión</h3>
+                <h3 id="modalReviewHeaderTitle">Escribir opinión</h3>
                 <button type="button" class="modal-close-btn" onclick="cerrarModalEscribirOpinion()" aria-label="Cerrar">✕</button>
             </div>
-            <form id="writeReviewForm" onsubmit="guardarNuevaOpinion(event)" class="write-review-form">
-                <!-- PUNTUACIÓN DE ESTRELLAS -->
-                <div class="form-group">
-                    <label class="form-label">Calificación general <span class="required">*</span></label>
-                    <div class="star-rating-picker" id="starRatingPicker">
-                        <span class="star-pick selected" data-val="1" onmouseover="hoverStars(1)" onmouseout="resetStars()" onclick="selectStars(1)">★</span>
-                        <span class="star-pick selected" data-val="2" onmouseover="hoverStars(2)" onmouseout="resetStars()" onclick="selectStars(2)">★</span>
-                        <span class="star-pick selected" data-val="3" onmouseover="hoverStars(3)" onmouseout="resetStars()" onclick="selectStars(3)">★</span>
-                        <span class="star-pick selected" data-val="4" onmouseover="hoverStars(4)" onmouseout="resetStars()" onclick="selectStars(4)">★</span>
-                        <span class="star-pick selected" data-val="5" onmouseover="hoverStars(5)" onmouseout="resetStars()" onclick="selectStars(5)">★</span>
-                        <span class="star-rating-text" id="starRatingLabel">Excelente (5 de 5)</span>
+
+            <!-- VISTA 1: FORMULARIO PRINCIPAL DE OPINIÓN CON ENUNCIADO DE COMPRADOR VERIFICADO -->
+            <div id="reviewModalViewWrite" class="review-modal-view active">
+                <!-- ENUNCIADO DE COMPRADOR VERIFICADO CON 10% DE DESCUENTO -->
+                <div class="verified-buyer-promo-box">
+                    <div class="promo-box-badge">✨ Descuento Exclusivo</div>
+                    <div class="promo-box-title">¿Ya te llegó el producto?</div>
+                    <p class="promo-box-text">¡Danos la opinión de el producto como comprador verificado y te hacemos un descuento del 10% en tu siguiente compra!</p>
+                    <div class="promo-box-terms">*sujeto a términos y condiciones*</div>
+                    <button type="button" class="btn-verify-purchase-trigger" onclick="mostrarVistaVerificarCompra()">
+                        Verificar compra
+                    </button>
+                </div>
+
+                <form id="writeReviewForm" onsubmit="guardarNuevaOpinion(event)" class="write-review-form">
+                    <!-- PUNTUACIÓN DE ESTRELLAS -->
+                    <div class="form-group">
+                        <label class="form-label">Calificación general <span class="required">*</span></label>
+                        <div class="star-rating-picker" id="starRatingPicker">
+                            <span class="star-pick selected" data-val="1" onmouseover="hoverStars(1)" onmouseout="resetStars()" onclick="selectStars(1)">★</span>
+                            <span class="star-pick selected" data-val="2" onmouseover="hoverStars(2)" onmouseout="resetStars()" onclick="selectStars(2)">★</span>
+                            <span class="star-pick selected" data-val="3" onmouseover="hoverStars(3)" onmouseout="resetStars()" onclick="selectStars(3)">★</span>
+                            <span class="star-pick selected" data-val="4" onmouseover="hoverStars(4)" onmouseout="resetStars()" onclick="selectStars(4)">★</span>
+                            <span class="star-pick selected" data-val="5" onmouseover="hoverStars(5)" onmouseout="resetStars()" onclick="selectStars(5)">★</span>
+                            <span class="star-rating-text" id="starRatingLabel">Excelente (5 de 5)</span>
+                        </div>
+                        <input type="hidden" id="reviewRatingInput" value="5">
                     </div>
-                    <input type="hidden" id="reviewRatingInput" value="5">
-                </div>
 
-                <!-- NOMBRE -->
-                <div class="form-group">
-                    <label class="form-label" for="reviewAuthorInput">Tu nombre o alias <span class="required">*</span></label>
-                    <input type="text" id="reviewAuthorInput" class="form-input" placeholder="Ej. Carlos M. o Andrés Gómez" required maxlength="40">
-                </div>
+                    <!-- NOMBRE -->
+                    <div class="form-group">
+                        <label class="form-label" for="reviewAuthorInput">Tu nombre o alias <span class="required">*</span></label>
+                        <input type="text" id="reviewAuthorInput" class="form-input" placeholder="Ej. Carlos M. o Andrés Gómez" required maxlength="40">
+                    </div>
 
-                <!-- TÍTULO -->
-                <div class="form-group">
-                    <label class="form-label" for="reviewTitleInput">Título de la reseña <span class="optional">(opcional)</span></label>
-                    <input type="text" id="reviewTitleInput" class="form-input" placeholder="Ej. ¡Excelente estabilización y calidad en 4K!" maxlength="80">
-                </div>
+                    <!-- TÍTULO -->
+                    <div class="form-group">
+                        <label class="form-label" for="reviewTitleInput">Título de la reseña <span class="optional">(opcional)</span></label>
+                        <input type="text" id="reviewTitleInput" class="form-input" placeholder="Ej. ¡Excelente estabilización y calidad en 4K!" maxlength="80">
+                    </div>
 
-                <!-- COMENTARIO -->
-                <div class="form-group">
-                    <label class="form-label" for="reviewCommentInput">Escribe tu opinión <span class="required">*</span></label>
-                    <textarea id="reviewCommentInput" class="form-textarea" rows="4" placeholder="¿Qué te pareció el producto? ¿Cómo fue tu experiencia de uso y envío?" required minlength="6" maxlength="800"></textarea>
-                </div>
+                    <!-- COMENTARIO -->
+                    <div class="form-group">
+                        <label class="form-label" for="reviewCommentInput">Escribe tu opinión <span class="required">*</span></label>
+                        <textarea id="reviewCommentInput" class="form-textarea" rows="4" placeholder="¿Qué te pareció el producto? ¿Cómo fue tu experiencia de uso y envío?" required minlength="6" maxlength="800"></textarea>
+                    </div>
 
-                <div class="write-review-modal-actions">
-                    <button type="button" class="btn-review-cancel" onclick="cerrarModalEscribirOpinion()">Cancelar</button>
-                    <button type="submit" class="btn-review-submit">Publicar opinión</button>
+                    <div class="write-review-modal-actions">
+                        <button type="button" class="btn-review-cancel" onclick="cerrarModalEscribirOpinion()">Cancelar</button>
+                        <button type="submit" class="btn-review-submit">Publicar opinión</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- VISTA 2: FORMULARIO DE VERIFICACIÓN DE COMPRA -->
+            <div id="reviewModalViewVerify" class="review-modal-view">
+                <div class="verify-buyer-header">
+                    <div class="verify-buyer-icon">🏷️</div>
+                    <h4>Verificación de Compra</h4>
+                    <p>Ingresa tus datos para validar tu compra y activar tu 10% de descuento.</p>
                 </div>
-            </form>
+                <form id="verifyBuyerForm" onsubmit="ejecutarVerificacionCompra(event)" class="write-review-form">
+                    <div class="form-group">
+                        <label class="form-label" for="verifyReceiptNumber">Número de recibo <span class="required">*</span></label>
+                        <input type="text" id="verifyReceiptNumber" class="form-input" placeholder="Ej. REC-984210" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="verifyBuyerName">Nombre <span class="required">*</span></label>
+                        <input type="text" id="verifyBuyerName" class="form-input" placeholder="Ej. Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="verifyBuyerEmail">Correo <span class="required">*</span></label>
+                        <input type="email" id="verifyBuyerEmail" class="form-input" placeholder="tu-correo@ejemplo.com" required>
+                    </div>
+                    <div class="write-review-modal-actions">
+                        <button type="button" class="btn-review-cancel" onclick="mostrarVistaEscribirOpinion()">Volver</button>
+                        <button type="submit" class="btn-review-submit" id="btnDoVerify">Verificar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- VISTA 3: RESULTADO (NO ADQUIRIDO + UPSELL) -->
+            <div id="reviewModalViewUpsell" class="review-modal-view">
+                <div class="upsell-result-box">
+                    <div class="upsell-emoji">🛍️</div>
+                    <h4 class="upsell-title">Ups, al parecer no has adquirido nuestro producto.</h4>
+                    <p class="upsell-question">¿Qué esperas?</p>
+                    <p class="upsell-desc">Añádelo ahora a tu carro y aprovecha envío gratis a toda Colombia más despacho prioritario hoy mismo.</p>
+                    
+                    <div class="upsell-actions-row">
+                        <button type="button" class="btn-upsell-cart" onclick="ejecutarCompraDesdeModal(event)">
+                            🛒 Añadir al carrito
+                        </button>
+                        <button type="button" class="btn-upsell-review" onclick="mostrarVistaEscribirOpinion()">
+                            ✍️ Escribir opinión
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3663,9 +3905,54 @@ if (empty($otros_productos)) {
             } catch (e) {}
         }
 
+        function setReviewModalView(viewId, titleText) {
+            const views = document.querySelectorAll('.review-modal-view');
+            views.forEach(v => v.classList.remove('active'));
+
+            const targetView = document.getElementById(viewId);
+            if (targetView) targetView.classList.add('active');
+
+            const headerTitle = document.getElementById('modalReviewHeaderTitle');
+            if (headerTitle && titleText) headerTitle.textContent = titleText;
+        }
+
+        function mostrarVistaVerificarCompra() {
+            setReviewModalView('reviewModalViewVerify', 'Verificación de compra');
+            const receiptInput = document.getElementById('verifyReceiptNumber');
+            if (receiptInput) receiptInput.focus();
+        }
+
+        function mostrarVistaEscribirOpinion() {
+            setReviewModalView('reviewModalViewWrite', 'Escribir opinión');
+        }
+
+        function ejecutarVerificacionCompra(e) {
+            if (e) e.preventDefault();
+            const btn = document.getElementById('btnDoVerify');
+            const origHtml = btn ? btn.innerHTML : 'Verificar';
+            if (btn) {
+                btn.innerHTML = '⏳ Verificando...';
+                btn.disabled = true;
+            }
+
+            setTimeout(() => {
+                if (btn) {
+                    btn.innerHTML = origHtml;
+                    btn.disabled = false;
+                }
+                setReviewModalView('reviewModalViewUpsell', 'Verificación de compra');
+            }, 450);
+        }
+
+        function ejecutarCompraDesdeModal(e) {
+            cerrarModalEscribirOpinion();
+            agregarAlCarrito(e);
+        }
+
         function abrirModalEscribirOpinion() {
             const modal = document.getElementById('writeReviewModal');
             if (modal) {
+                mostrarVistaEscribirOpinion();
                 modal.classList.add('open');
                 document.body.style.overflow = 'hidden';
                 selectStars(5);
@@ -3679,6 +3966,8 @@ if (empty($otros_productos)) {
             if (modal) {
                 modal.classList.remove('open');
                 document.body.style.overflow = '';
+                // Restablecer a vista normal al cerrar
+                setTimeout(mostrarVistaEscribirOpinion, 300);
             }
         }
 
