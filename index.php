@@ -199,18 +199,18 @@ if (empty($otros_productos)) {
             max-width: 100% !important;
             width: 100% !important;
             margin: 0;
-            padding: 16px 20px 30px 20px;
+            padding: 0 0 30px 0;
             box-sizing: border-box;
             overflow-x: hidden;
         }
-        @media (min-width: 768px) {
+        @media (min-width: 992px) {
             .landing-container { padding: 24px 36px 40px 36px; }
         }
 
         .product-grid-layout {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
@@ -219,6 +219,7 @@ if (empty($otros_productos)) {
             padding: 0;
             box-shadow: none;
             border: none;
+            margin: 0;
         }
         @media (min-width: 992px) {
             .product-grid-layout {
@@ -227,7 +228,7 @@ if (empty($otros_productos)) {
                 gap: 48px;
                 align-items: start;
                 max-width: 100%;
-                padding: 0 10px;
+                padding: 0;
             }
         }
 
@@ -237,8 +238,9 @@ if (empty($otros_productos)) {
             flex-direction: column;
             gap: 12px;
             width: 100%;
-            max-width: 680px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
         .gallery-slider-container {
@@ -247,23 +249,38 @@ if (empty($otros_productos)) {
             flex-direction: column;
             align-items: center;
             position: relative;
+            margin: 0;
+            padding: 0;
         }
         .main-image-wrap {
             order: 1;
             width: 100%;
             aspect-ratio: 1 / 1;
             background-color: #fbfbfd;
-            border-radius: 18px;
+            border-radius: 0;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: none;
+            border: none;
             cursor: pointer;
             box-sizing: border-box;
             touch-action: pan-y pinch-zoom;
+            margin: 0;
+            padding: 0;
+        }
+        @media (min-width: 992px) {
+            .gallery-wrapper-desktop {
+                max-width: 680px;
+                margin: 0 auto;
+            }
+            .main-image-wrap {
+                border-radius: 18px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+                border: 1px solid rgba(0, 0, 0, 0.06);
+            }
         }
         .gallery-dots-indicator {
             display: flex;
@@ -283,7 +300,7 @@ if (empty($otros_productos)) {
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .gallery-dot.active {
-            background: #0071e3;
+            background: #59595e;
             width: 24px;
             border-radius: 999px;
         }
@@ -297,43 +314,8 @@ if (empty($otros_productos)) {
             transition: opacity 0.22s ease-out, transform 0.25s ease-out;
             user-select: none;
             -webkit-user-drag: none;
+            display: block;
         }
-        
-        /* ─── FLECHAS DE GALERÍA: TRANSLÚCIDO ESTILO APPLE ─── */
-        .gallery-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.8) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.08) !important;
-            border-radius: 50%;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            color: #1d1d1f !important;
-            font-size: 15px;
-            font-weight: 700;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            outline: none;
-            opacity: 1 !important;
-            visibility: visible !important;
-            transition: all 0.15s ease;
-        }
-        .gallery-arrow:hover {
-            background: rgba(255, 255, 255, 0.95) !important;
-            transform: translateY(-50%) scale(1.05);
-        }
-        .gallery-arrow:active {
-            transform: translateY(-50%) scale(0.92);
-        }
-        .gallery-arrow.prev { left: 12px; }
-        .gallery-arrow.next { right: 12px; }
 
         /* ─── BOTONES DE MODO VISUALIZACIÓN (LIGHTBOX) ─── */
         .lightbox-nav-btn {
@@ -386,7 +368,10 @@ if (empty($otros_productos)) {
         .thumb-item img { width: 100%; height: 100%; object-fit: cover; }
 
         /* ─── PRODUCT INFORMATION (APPLE MINIMALIST) ─── */
-        .product-info { padding: 0; }
+        .product-info { padding: 0 20px; box-sizing: border-box; }
+        @media (min-width: 992px) {
+            .product-info { padding: 0; }
+        }
         .product-title {
             font-family: var(--font-heading);
             font-size: 24px;
@@ -651,36 +636,6 @@ if (empty($otros_productos)) {
             align-items: center;
             width: 100%;
         }
-        .more-slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 38px;
-            height: 38px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            color: #1d1d1f;
-            font-size: 15px;
-            font-weight: 700;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-            transition: all 0.2s ease;
-        }
-        .more-slider-arrow:hover {
-            background: #111111;
-            color: #ffffff;
-            transform: translateY(-50%) scale(1.08);
-        }
-        .more-slider-arrow.prev { left: -14px; }
-        .more-slider-arrow.next { right: -14px; }
-        @media (max-width: 768px) {
-            .more-slider-arrow { display: none !important; }
-        }
         .more-grid {
             display: flex !important;
             flex-wrap: nowrap !important;
@@ -748,7 +703,7 @@ if (empty($otros_productos)) {
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .more-prod-dot.active {
-            background: #0071e3;
+            background: #59595e;
             width: 22px;
             border-radius: 999px;
         }
@@ -1702,9 +1657,7 @@ if (empty($otros_productos)) {
             <section class="gallery-wrapper-desktop">
                 <div class="gallery-slider-container">
                     <div class="main-image-wrap" id="mainGallerySlider" onclick="abrirLightbox(activeImgIndex)" title="Haz clic para ampliar">
-                        <button type="button" class="gallery-arrow prev" onclick="event.stopPropagation(); cambiarImagenRelativa(-1)" aria-label="Imagen anterior">❮</button>
                         <img id="mainImage" src="https://iwqhaxegjefuhanfmejh.supabase.co/storage/v1/object/public/imagenes/DJI/dji%20osmo%201.webp" alt="<?= htmlspecialchars("DJI Osmo Pocket 3 Creator Combo | Cámara Gimbal 4K 120fps Sensor 1\"") ?>">
-                        <button type="button" class="gallery-arrow next" onclick="event.stopPropagation(); cambiarImagenRelativa(1)" aria-label="Siguiente imagen">❯</button>
                     </div>
                     <!-- PUNTICOS INDICADORES DE LA GALERÍA -->
                     <div class="gallery-dots-indicator" id="galleryDotsIndicator"></div>
@@ -1817,10 +1770,6 @@ if (empty($otros_productos)) {
                 <?php if ($es_modo_edicion): ?>
                     <button type="button" class="btn-add-video-card" onclick="agregarNuevoVideoReview()">➕ Agregar Video</button>
                 <?php endif; ?>
-                <div class="video-carousel-arrows">
-                    <button type="button" class="video-arrow-btn" onclick="desplazarVideoCarrusel(-1)" aria-label="Anterior">❮</button>
-                    <button type="button" class="video-arrow-btn" onclick="desplazarVideoCarrusel(1)" aria-label="Siguiente">❯</button>
-                </div>
             </div>
         </div>
 
@@ -2024,8 +1973,6 @@ if (empty($otros_productos)) {
         <h2 class="section-heading-center" data-editable="true">Quienes vieron este producto también compraron</h2>
 
         <div class="more-slider-wrapper">
-            <button type="button" class="more-slider-arrow prev" onclick="slideRecommendedProducts(-1)" aria-label="Anterior">❮</button>
-            
             <div class="more-grid" id="recommendedProductsTrack">
                 <?php if (!empty($otros_productos)): ?>
                     <?php foreach ($otros_productos as $o): ?>
@@ -2038,8 +1985,6 @@ if (empty($otros_productos)) {
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
-
-            <button type="button" class="more-slider-arrow next" onclick="slideRecommendedProducts(1)" aria-label="Siguiente">❯</button>
         </div>
 
         <!-- PUNTICOS INDICADORES DEL CARRUSEL DE PRODUCTOS -->
