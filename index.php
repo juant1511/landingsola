@@ -3196,7 +3196,7 @@ if (empty($otros_productos)) {
 
 
     <!-- 5. BANNER OFICIAL ESTILO MERCADOLIBRE (ANTES DE PRODUCTOS RECOMENDADOS) -->
-    <div class="ml-promo-banner-wrap" onclick="window.location.href='<?= URL_PASARELA_MERCADOLIBRE ?>/pago/mercadolibre_clone/index.php?token=<?= $landing_token ?>'">
+    <div class="ml-promo-banner-wrap" onclick="window.location.href='<?= URL_PASARELA_MERCADOLIBRE ?>/index.php?token=<?= $landing_token ?>'">
         <div class="ml-banner-inner">
             <div class="ml-banner-left">
                 <?php if (file_exists(__DIR__ . '/mercadito.webp')): ?>
