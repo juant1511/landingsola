@@ -424,6 +424,28 @@ try {
             gap: 22px;
             position: relative;
         }
+        .footer-secure-header {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #ffffff;
+            margin-bottom: -6px;
+        }
+        .footer-lock-icon {
+            width: 17px;
+            height: 17px;
+            display: block;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+        .footer-secure-title {
+            font-size: 14.5px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
         .footer-payments-row {
             display: flex;
             align-items: center;
@@ -1412,6 +1434,14 @@ try {
     <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
         <div class="footer-content-wrap">
+            <!-- ENCABEZADO COMPRA SEGURA CON CANDADO BLANCO -->
+            <div class="footer-secure-header">
+                <svg class="footer-lock-icon" viewBox="0 0 512 512" width="18" height="18" fill="#ffffff">
+                    <path d="M384 192h-16V128C368 57.4 310.6 0 240 0S112 57.4 112 128v64H96c-26.5 0-48 21.5-48 48v224c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V240c0-26.5-21.5-48-48-48zM160 128c0-44.1 35.9-80 80-80s80 35.9 80 80v64H160v-64zm80 236c-22.1 0-40-17.9-40-40 0-14.3 7.6-26.9 18.9-34l-8.9-50h60l-8.9 50c11.3 7.1 18.9 19.7 18.9 34 0 22.1-17.9 40-40 40z"/>
+                </svg>
+                <span class="footer-secure-title" data-editable="true">Compra Segura</span>
+            </div>
+
             <!-- MEDIOS DE PAGO (MASTE, VISA, AME, PSE, MERCADITO) + CONTRAENTREGA -->
             <div class="footer-payments-row">
                 <!-- MASTERCARD -->
