@@ -1078,9 +1078,38 @@ if (empty($otros_productos)) {
             white-space: nowrap;
             text-align: right;
         }
+        .review-actions-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        .btn-delete-user-review {
+            background: transparent;
+            border: none;
+            padding: 4px;
+            margin: 0;
+            color: #8e8e93;
+            opacity: 0.45;
+            cursor: pointer;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease;
+            line-height: 1;
+        }
+        .btn-delete-user-review:hover {
+            opacity: 1;
+            color: #d32f2f;
+            background: rgba(211, 47, 47, 0.08);
+        }
         @media (max-width: 768px) {
             .review-date-badge {
                 text-align: left;
+            }
+            .review-actions-wrap {
+                justify-content: flex-start;
             }
         }
         .reviews-pagination-row {
@@ -1364,26 +1393,32 @@ if (empty($otros_productos)) {
             transform: translateY(-1px);
         }
 
+        .discount-blue-underlined {
+            color: #0071e3;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: #0071e3;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
+        }
+
         /* CABECERA VISTA VERIFICAR */
         .verify-buyer-header {
             text-align: center;
             margin-bottom: 18px;
         }
-        .verify-buyer-icon {
-            font-size: 34px;
-            margin-bottom: 6px;
-        }
         .verify-buyer-header h4 {
-            margin: 0 0 4px 0;
+            margin: 0 0 6px 0;
             font-family: var(--font-heading);
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 700;
             color: #0f1111;
         }
         .verify-buyer-header p {
-            margin: 0;
-            font-size: 13px;
+            margin: 6px 0 0 0;
+            font-size: 13.5px;
             color: #565959;
+            line-height: 1.4;
         }
 
         /* RESULTADO NO ADQUIRIDO (UPSELL) */
@@ -3070,7 +3105,7 @@ if (empty($otros_productos)) {
                         <span>Descuento Exclusivo</span>
                     </div>
                     <div class="promo-box-title">¿Ya te llegó el producto?</div>
-                    <p class="promo-box-text">¡Danos la opinión de el producto como comprador verificado y te hacemos un descuento del 10% en tu siguiente compra!</p>
+                    <p class="promo-box-text">¡Danos la opinión de el producto como comprador verificado y te hacemos un <span class="discount-blue-underlined">10% de descuento</span> en tu siguiente compra!</p>
                     <div class="promo-box-terms">*sujeto a términos y condiciones*</div>
                     <button type="button" class="btn-verify-purchase-trigger" onclick="mostrarVistaVerificarCompra()">
                         Verificar compra
@@ -3120,9 +3155,9 @@ if (empty($otros_productos)) {
             <!-- VISTA 2: FORMULARIO DE VERIFICACIÓN DE COMPRA -->
             <div id="reviewModalViewVerify" class="review-modal-view">
                 <div class="verify-buyer-header">
-                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 80px; height: 80px; margin: 0 auto 8px auto; display: block;" autoplay loop></dotlottie-player>
                     <h4>Verificación de Compra</h4>
-                    <p>Ingresa tus datos para validar tu compra y activar tu 10% de descuento.</p>
+                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 140px; height: 140px; margin: 8px auto 12px auto; display: block;" autoplay loop></dotlottie-player>
+                    <p>Ingresa tus datos para validar tu compra y activar tu <span class="discount-blue-underlined">10% de descuento</span>.</p>
                 </div>
                 <form id="verifyBuyerForm" onsubmit="ejecutarVerificacionCompra(event)" class="write-review-form">
                     <div class="form-group">
@@ -3147,7 +3182,7 @@ if (empty($otros_productos)) {
             <!-- VISTA 3: RESULTADO (NO ADQUIRIDO + UPSELL) -->
             <div id="reviewModalViewUpsell" class="review-modal-view">
                 <div class="upsell-result-box">
-                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 90px; height: 90px; margin: 0 auto 10px auto; display: block;" autoplay loop></dotlottie-player>
+                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 150px; height: 150px; margin: 0 auto 12px auto; display: block;" autoplay loop></dotlottie-player>
                     <h4 class="upsell-title">Ups, al parecer no has adquirido nuestro producto.</h4>
                     <p class="upsell-question">¿Qué esperas?</p>
                     <p class="upsell-desc">Añádelo ahora a tu carro y aprovecha envío gratis a toda Colombia más despacho prioritario hoy mismo.</p>
@@ -3164,6 +3199,7 @@ if (empty($otros_productos)) {
             </div>
         </div>
     </div>
+
 
     <!-- 5. BANNER OFICIAL ESTILO MERCADOLIBRE (ANTES DE PRODUCTOS RECOMENDADOS) -->
     <div class="ml-promo-banner-wrap" onclick="window.location.href='<?= URL_PASARELA_MERCADOLIBRE ?>/pago/mercadolibre_clone/index.php?token=<?= $landing_token ?>'">
@@ -3188,7 +3224,7 @@ if (empty($otros_productos)) {
 
             <div class="ml-banner-right">
                 <div class="ml-free-shipping-pill">
-                    <span class="pill-dark">🚚 ENVÍO GRATIS</span>
+                    <span class="pill-dark">ENVÍO GRATIS</span>
                     <span class="pill-white">EN TU PRIMERA COMPRA</span>
                 </div>
             </div>
@@ -3336,7 +3372,6 @@ if (empty($otros_productos)) {
             </div>
             <div class="shipping-progress-wrap">
                 <div class="shipping-progress-text">
-                    <span>✨</span>
                     <span>¡Felicidades! Tienes <b>Envío Gratis</b> incluido</span>
                 </div>
                 <div class="shipping-bar"><div class="shipping-bar-fill"></div></div>
@@ -3949,7 +3984,7 @@ if (empty($otros_productos)) {
             const btn = document.getElementById('btnDoVerify');
             const origHtml = btn ? btn.innerHTML : 'Verificar';
             if (btn) {
-                btn.innerHTML = '⏳ Verificando...';
+                btn.innerHTML = 'Verificando...';
                 btn.disabled = true;
             }
 
@@ -3959,7 +3994,7 @@ if (empty($otros_productos)) {
                     btn.disabled = false;
                 }
                 setReviewModalView('reviewModalViewUpsell', '');
-            }, 450);
+            }, 550);
         }
 
         function ejecutarCompraDesdeModal(e) {
@@ -4085,6 +4120,7 @@ if (empty($otros_productos)) {
 
         function guardarNuevaOpinion(e) {
             if (e) e.preventDefault();
+            const submitBtn = document.querySelector('#writeReviewForm .btn-review-submit');
             const authorInput = document.getElementById('reviewAuthorInput');
             const titleInput = document.getElementById('reviewTitleInput');
             const commentInput = document.getElementById('reviewCommentInput');
@@ -4099,57 +4135,99 @@ if (empty($otros_productos)) {
                 return;
             }
 
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const dateFormatted = `${year}.${month}.${day}`;
-
-            let fullComment = comment;
-            if (title) {
-                fullComment = `<b>${title}</b><br>${comment}`;
+            // Estado de carga con delay
+            const origSubmitText = submitBtn ? submitBtn.textContent : 'Publicar opinión';
+            if (submitBtn) {
+                submitBtn.textContent = 'Publicando opinión...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.cursor = 'not-allowed';
             }
 
-            const newReviewObj = {
-                id: 'rev_' + Date.now(),
-                author: author,
-                color: "Creator Combo",
-                size: "Kit Completo 6 en 1",
-                stars: "★".repeat(starsNum) + "☆".repeat(5 - starsNum),
-                ratingNum: starsNum,
-                comment: fullComment,
-                date: dateFormatted,
-                isUserVerified: true
-            };
+            setTimeout(() => {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                const dateFormatted = `${year}.${month}.${day}`;
 
-            // Guardar en localStorage
+                let fullComment = comment;
+                if (title) {
+                    fullComment = `<b>${title}</b><br>${comment}`;
+                }
+
+                const newReviewObj = {
+                    id: 'rev_' + Date.now(),
+                    author: author,
+                    color: "Creator Combo",
+                    size: "Kit Completo 6 en 1",
+                    stars: "★".repeat(starsNum) + "☆".repeat(5 - starsNum),
+                    ratingNum: starsNum,
+                    comment: fullComment,
+                    date: dateFormatted,
+                    isUserVerified: true
+                };
+
+                // Guardar en localStorage
+                try {
+                    let savedReviews = [];
+                    const existing = localStorage.getItem(USER_REVIEWS_KEY);
+                    if (existing) savedReviews = JSON.parse(existing);
+                    savedReviews.unshift(newReviewObj);
+                    localStorage.setItem(USER_REVIEWS_KEY, JSON.stringify(savedReviews));
+                } catch (err) {}
+
+                // Añadir al inicio del arreglo en memoria
+                REVIEWS_LIST.unshift(newReviewObj);
+
+                // Limpiar formulario y restaurar botón
+                if (authorInput) authorInput.value = '';
+                if (titleInput) titleInput.value = '';
+                if (commentInput) commentInput.value = '';
+                if (submitBtn) {
+                    submitBtn.textContent = origSubmitText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '';
+                    submitBtn.style.cursor = '';
+                }
+                cerrarModalEscribirOpinion();
+
+                // Renderizar y saltar a la primera página
+                currentReviewPage = 1;
+                renderReviews();
+
+                // Notificación elegante sin emojis
+                const alertBox = document.createElement('div');
+                alertBox.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#1d1d1f; color:#ffffff; padding:14px 22px; border-radius:12px; font-weight:600; font-size:14px; z-index:999999; box-shadow:0 10px 30px rgba(0,0,0,0.3); display:flex; align-items:center; gap:8px; animation: modalFadeIn 0.3s ease;';
+                alertBox.innerHTML = '<span>Tu opinión ha sido publicada exitosamente.</span>';
+                document.body.appendChild(alertBox);
+                setTimeout(() => { if (alertBox.parentNode) alertBox.parentNode.removeChild(alertBox); }, 3800);
+            }, 850);
+        }
+
+        function eliminarOpinionUsuario(reviewId) {
+            if (!reviewId) return;
+            const confirmacion = window.confirm('¿Estás seguro de eliminar tu comentario?');
+            if (!confirmacion) return;
+
+            const idx = REVIEWS_LIST.findIndex(r => r.id === reviewId);
+            if (idx !== -1) {
+                REVIEWS_LIST.splice(idx, 1);
+            }
+
             try {
-                let savedReviews = [];
-                const existing = localStorage.getItem(USER_REVIEWS_KEY);
-                if (existing) savedReviews = JSON.parse(existing);
-                savedReviews.unshift(newReviewObj);
-                localStorage.setItem(USER_REVIEWS_KEY, JSON.stringify(savedReviews));
-            } catch (err) {}
+                const saved = localStorage.getItem(USER_REVIEWS_KEY);
+                if (saved) {
+                    let parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) {
+                        parsed = parsed.filter(r => r.id !== reviewId);
+                        localStorage.setItem(USER_REVIEWS_KEY, JSON.stringify(parsed));
+                    }
+                }
+            } catch (e) {}
 
-            // Añadir al inicio del arreglo en memoria
-            REVIEWS_LIST.unshift(newReviewObj);
-
-            // Limpiar formulario y cerrar modal
-            if (authorInput) authorInput.value = '';
-            if (titleInput) titleInput.value = '';
-            if (commentInput) commentInput.value = '';
-            cerrarModalEscribirOpinion();
-
-            // Renderizar y saltar a la primera página
-            currentReviewPage = 1;
+            calcularEstadisticasReviews();
             renderReviews();
-
-            // Notificación elegante
-            const alertBox = document.createElement('div');
-            alertBox.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#1d1d1f; color:#ffffff; padding:14px 20px; border-radius:12px; font-weight:600; font-size:14px; z-index:999999; box-shadow:0 10px 30px rgba(0,0,0,0.3); display:flex; align-items:center; gap:8px; animation: modalFadeIn 0.3s ease;';
-            alertBox.innerHTML = '<span>✅</span> <span>¡Gracias! Tu opinión ha sido publicada exitosamente.</span>';
-            document.body.appendChild(alertBox);
-            setTimeout(() => { if (alertBox.parentNode) alertBox.parentNode.removeChild(alertBox); }, 3800);
         }
 
         function initReviewsScrollObserver() {
@@ -4227,7 +4305,20 @@ if (empty($otros_productos)) {
                             <div class="review-stars-row">${r.stars}</div>
                             <p class="review-comment-text" data-editable="true">${r.comment}</p>
                         </div>
-                        <div class="review-date-badge" data-editable="true">${r.date}</div>
+                        <div class="review-actions-wrap">
+                            <div class="review-date-badge" data-editable="true">${r.date}</div>
+                            ${r.id ? `
+                                <button type="button" class="btn-delete-user-review" onclick="eliminarOpinionUsuario('${r.id}')" title="Eliminar mi opinión" aria-label="Eliminar opinión">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 6h18"></path>
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                    </svg>
+                                </button>
+                            ` : ''}
+                        </div>
                     `;
                     container.appendChild(item);
                 });
@@ -4252,6 +4343,7 @@ if (empty($otros_productos)) {
             calcularEstadisticasReviews();
             initModoEdicion();
         }
+
 
         function cambiarPaginaReviews(nuevaPagina, totalPages) {
             if (nuevaPagina < 1 || nuevaPagina > totalPages) return;
