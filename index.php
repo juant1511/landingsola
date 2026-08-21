@@ -1,5 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
+header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 require_once __DIR__ . '/config.php';
 $landing_slug  = 'dji-osmo-pocket-3';
 $nombre_marca  = 'DJI';
@@ -7,6 +10,7 @@ $landing_token = obtenerOCrearTokenLanding($landing_slug, "DJI Osmo Pocket 3 Cre
 $precio_num    = 1850000;
 $precio_fmt    = '1.850.000';
 $es_modo_edicion = isset($_GET['modo_edicion']) && $_GET['modo_edicion'] == '1';
+$app_version   = file_exists(__FILE__) ? md5_file(__FILE__) : (string)time();
 
 // ─── Cargar Productos de Otras Landings o Productos Demo ───
 $otros_productos = [];
@@ -2780,6 +2784,49 @@ if (empty($otros_productos)) {
                 cerrarVideoModal();
             }
         });
+
+        // ─── ACTUALIZACIÓN EN TIEMPO REAL AL PUBLICAR NUEVA VERSIÓN ───
+        (function() {
+            const CURRENT_VERSION = '<?= $app_version ?>';
+            const CHECK_INTERVAL = 8000; // Chequear cada 8 segundos
+            let isChecking = false;
+
+            async function checkVersion() {
+                if (isChecking) return;
+                // No recargar automáticamente si el usuario está en modo de edición visual
+                if (typeof ES_MODO_EDICION !== 'undefined' && ES_MODO_EDICION) return;
+
+                isChecking = true;
+                try {
+                    const res = await fetch('version.php?t=' + Date.now(), { 
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && data.version && data.version !== CURRENT_VERSION) {
+                            console.log('🔄 Nueva versión detectada en producción (' + data.version + '). Actualizando en tiempo real...');
+                            window.location.reload();
+                        }
+                    }
+                } catch (e) {
+                    // Manejo silencioso en caso de micro-cortes de red
+                } finally {
+                    isChecking = false;
+                }
+            }
+
+            // Chequeo periódico en segundo plano
+            setInterval(checkVersion, CHECK_INTERVAL);
+
+            // Chequeo instantáneo cuando el usuario vuelve a enfocar la pestaña
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    checkVersion();
+                }
+            });
+            window.addEventListener('focus', checkVersion);
+        })();
 
     </script>
 </body>
