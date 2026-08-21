@@ -1964,7 +1964,7 @@ if (empty($otros_productos)) {
             <div class="footer-bottom-row">
                 <div class="footer-copyright-text">
                     © <?= date('Y') ?> TODOS LOS DERECHOS RESERVADOS<br>
-                    <span data-editable="true"><?= htmlspecialchars($nombre_marca ?? "DJI") ?> Store Colombia S.A.S. NIT 901.834.729-3. Centro Comercial Gran Estación, Bogotá, Colombia</span>
+                    <span data-editable="true"><?= htmlspecialchars($nombre_marca ?? "DJI") ?> Store Colombia S.A.S. NIT 901.834.729-3. Avenida El Dorado (Calle 26) N.º 62 - 47, Bogotá, Colombia</span>
                 </div>
                 <button type="button" class="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Volver arriba" aria-label="Volver arriba">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
