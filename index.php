@@ -1424,12 +1424,31 @@ if (empty($otros_productos)) {
         /* RESULTADO NO ADQUIRIDO (UPSELL) */
         .upsell-result-box {
             text-align: center;
-            padding: 16px 8px 6px 8px;
+            padding: 4px 6px 4px 6px;
         }
-        .upsell-emoji {
-            font-size: 46px;
-            margin-bottom: 12px;
-            animation: modalFadeIn 0.3s ease;
+        .upsell-logo-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 0 10px 0;
+            margin: 0 auto;
+        }
+        .upsell-brand-logo {
+            max-width: 220px;
+            width: 80%;
+            height: auto;
+            max-height: 85px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .upsell-brand-logo-text {
+            font-size: 38px;
+            font-weight: 900;
+            font-family: var(--font-heading);
+            letter-spacing: 2px;
+            color: #0f1111;
+            margin: 0;
         }
         .upsell-title {
             font-size: 18px;
@@ -3132,7 +3151,17 @@ if (empty($otros_productos)) {
             <!-- VISTA 3: RESULTADO (NO ADQUIRIDO + UPSELL) -->
             <div id="reviewModalViewUpsell" class="review-modal-view">
                 <div class="upsell-result-box">
-                    <dotlottie-player src="https://lottie.host/ee25be13-6ccf-4bae-be53-1813b28bca0a/XXHRxw0szZ.lottie" background="transparent" speed="1" style="width: 150px; height: 150px; margin: 0 auto 12px auto; display: block;" autoplay loop></dotlottie-player>
+                    <div class="upsell-logo-wrap">
+                        <?php if (file_exists(__DIR__ . '/logo.svg')): ?>
+                            <img src="logo.svg" alt="<?= htmlspecialchars($nombre_marca) ?>" class="upsell-brand-logo">
+                        <?php elseif (file_exists(__DIR__ . '/logo.webp')): ?>
+                            <img src="logo.webp" alt="<?= htmlspecialchars($nombre_marca) ?>" class="upsell-brand-logo">
+                        <?php elseif (file_exists(__DIR__ . '/logo.png')): ?>
+                            <img src="logo.png" alt="<?= htmlspecialchars($nombre_marca) ?>" class="upsell-brand-logo">
+                        <?php else: ?>
+                            <h2 class="upsell-brand-logo-text"><?= htmlspecialchars($nombre_marca) ?></h2>
+                        <?php endif; ?>
+                    </div>
                     <h4 class="upsell-title">Ups, al parecer no has adquirido nuestro producto.</h4>
                     <p class="upsell-question">¿Qué esperas?</p>
                     <p class="upsell-desc">Añádelo ahora a tu carro y aprovecha envío gratis a toda Colombia más despacho prioritario hoy mismo.</p>
@@ -3882,14 +3911,19 @@ if (empty($otros_productos)) {
             5: "Excelente (5 de 5)"
         };
 
+        let isPurchaseVerifiedSuccessfully = false;
+
         function cargarOpinionesUsuario() {
             try {
                 const saved = localStorage.getItem(USER_REVIEWS_KEY);
                 if (saved) {
                     const parsed = JSON.parse(saved);
                     if (Array.isArray(parsed) && parsed.length > 0) {
-                        // Prepend user reviews to the beginning of REVIEWS_LIST
                         parsed.forEach(ur => {
+                            // Las opiniones de usuario por defecto no tienen compra verificada a menos que haya sido verificada con éxito
+                            if (ur.isUserVerified !== true) {
+                                ur.isUserVerified = false;
+                            }
                             if (!REVIEWS_LIST.some(r => r.id && r.id === ur.id)) {
                                 REVIEWS_LIST.unshift(ur);
                             }
@@ -4115,7 +4149,7 @@ if (empty($otros_productos)) {
                     ratingNum: starsNum,
                     comment: fullComment,
                     date: dateFormatted,
-                    isUserVerified: true
+                    isUserVerified: isPurchaseVerifiedSuccessfully
                 };
 
                 // Guardar en localStorage
@@ -4246,8 +4280,9 @@ if (empty($otros_productos)) {
                         <div class="reviewer-col">
                             <span class="reviewer-name" data-editable="true">
                                 ${r.author}
-                                <span class="reviewer-badge-verified">Compra verificada</span>
+                                ${(!r.id || r.isUserVerified === true) ? '<span class="reviewer-badge-verified">Compra verificada</span>' : ''}
                             </span>
+
                             <span class="reviewer-meta" data-editable="true">Color: ${r.color || 'Creator Combo'}</span>
                             ${r.size ? `<span class="reviewer-meta" data-editable="true">Size: ${r.size}</span>` : ''}
                         </div>
