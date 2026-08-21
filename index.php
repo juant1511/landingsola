@@ -631,82 +631,78 @@ if (empty($otros_productos)) {
             gap: 22px;
             position: relative;
         }
-        /* ─── BARRA DE 3 PILARES DE CONFIANZA EN EL FOOTER (AMPLIADA Y PERFECTAMENTE CENTRADA) ─── */
+        /* ─── BARRA DE 3 PILARES DE CONFIANZA EN EL FOOTER ─── */
         .footer-trust-benefits-bar {
             width: 100%;
-            max-width: 880px;
-            margin: 0 auto 8px auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            max-width: 780px;
+            margin: 0 auto 10px auto;
+            display: flex;
             align-items: center;
             justify-content: center;
-            justify-items: center;
-            gap: 20px;
+            gap: 40px;
             padding-bottom: 22px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             box-sizing: border-box;
         }
         .trust-benefit-col {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 12px;
             text-align: left;
-            margin: 0 auto;
+            flex: 0 1 auto;
         }
         .trust-benefit-icon {
-            width: 35px;
-            height: 35px;
+            width: 32px;
+            height: 32px;
             object-fit: contain;
             flex-shrink: 0;
             display: block;
         }
         .trust-benefit-text {
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 700;
             color: #ffffff;
             line-height: 1.22;
             letter-spacing: -0.01em;
             font-family: var(--font-heading);
+            white-space: nowrap;
         }
 
-        /* ─── RESPONSIVE MÓVIL (MANTIENE 100% ORDEN HORIZONTAL Y CENTRADO) ─── */
+        /* ─── RESPONSIVE MÓVIL (MANTIENE 100% ORDEN HORIZONTAL Y EQUIDISTANTE) ─── */
         @media (max-width: 768px) {
             .footer-trust-benefits-bar {
-                gap: 12px;
+                gap: 20px;
                 padding-bottom: 18px;
             }
             .trust-benefit-col {
                 gap: 8px;
-                justify-content: center;
             }
             .trust-benefit-icon {
-                width: 27px;
-                height: 27px;
+                width: 26px;
+                height: 26px;
             }
             .trust-benefit-text {
-                font-size: 12px;
+                font-size: 11.5px;
                 line-height: 1.18;
             }
         }
 
-        @media (max-width: 460px) {
+        @media (max-width: 480px) {
             .footer-trust-benefits-bar {
-                gap: 6px;
+                gap: 10px;
                 padding-bottom: 15px;
             }
             .trust-benefit-col {
                 gap: 6px;
-                justify-content: center;
             }
             .trust-benefit-icon {
-                width: 23px;
-                height: 23px;
+                width: 22px;
+                height: 22px;
             }
             .trust-benefit-text {
-                font-size: 10.5px;
+                font-size: 10px;
                 line-height: 1.15;
-                letter-spacing: -0.01em;
+                letter-spacing: -0.015em;
             }
         }
         .footer-payments-row {
@@ -1892,15 +1888,15 @@ if (empty($otros_productos)) {
             <div class="footer-trust-benefits-bar">
                 <div class="trust-benefit-col">
                     <img src="tarjeta.svg" alt="Paga en línea o en efectivo" class="trust-benefit-icon">
-                    <span class="trust-benefit-text" data-editable="true">Paga en línea o en efectivo</span>
+                    <span class="trust-benefit-text" data-editable="true">Paga en línea<br>o en efectivo</span>
                 </div>
                 <div class="trust-benefit-col">
                     <img src="escudo_candado.svg" alt="Compras seguras" class="trust-benefit-icon">
-                    <span class="trust-benefit-text" data-editable="true">Compras seguras</span>
+                    <span class="trust-benefit-text" data-editable="true">Compras<br>seguras</span>
                 </div>
                 <div class="trust-benefit-col">
                     <img src="puntos_colombia.svg" alt="Acumulas Puntos Colombia" class="trust-benefit-icon">
-                    <span class="trust-benefit-text" data-editable="true">Acumulas Puntos Colombia</span>
+                    <span class="trust-benefit-text" data-editable="true">Acumulas<br>Puntos Colombia</span>
                 </div>
             </div>
 
