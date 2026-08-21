@@ -403,12 +403,130 @@ try {
         .more-card-stars { font-size: 12px; color: var(--star-color); margin-bottom: 4px; }
         .more-card-price { font-weight: 900; font-size: 14px; color: #111111; margin-top: auto; }
 
-        .generic-footer { background: #000000; color: #ffffff; padding: 40px 14px 24px 14px; margin-top: 50px; width: 100%; box-sizing: border-box; overflow-x: hidden; }
-        .generic-footer-container { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; border-bottom: 1px solid #222222; padding-bottom: 30px; }
-        .footer-pillar { display: flex; gap: 12px; align-items: flex-start; }
-        .footer-pillar h4 { font-family: var(--font-heading); font-size: 13px; font-weight: 800; color: #ffffff; margin-bottom: 4px; text-transform: uppercase; }
-        .footer-pillar p { font-size: 12px; color: #9ca3af; line-height: 1.4; }
-        .footer-bottom-generic { max-width: 1280px; margin: 20px auto 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #6b7280; flex-wrap: wrap; gap: 14px; }
+        /* ─── 7. FOOTER MODERNO (ESTILO SHEGLAM / AMAZON) ─── */
+        .generic-footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 36px 20px 30px 20px;
+            margin-top: 45px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        .footer-content-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            position: relative;
+        }
+        .footer-payments-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .payment-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 3px 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease;
+        }
+        .payment-badge-pill:hover {
+            transform: translateY(-2px);
+        }
+        .payment-badge-pill svg {
+            display: block;
+        }
+        .footer-legal-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e5e7eb;
+            flex-wrap: wrap;
+            letter-spacing: 0.2px;
+        }
+        .footer-flag-icon {
+            font-size: 16px;
+        }
+        .footer-legal-text {
+            color: #e5e7eb;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s ease;
+        }
+        .footer-legal-text:hover {
+            color: #ffffff;
+        }
+        .footer-legal-divider {
+            color: #6b7280;
+            font-size: 10px;
+        }
+        .footer-bottom-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 4px;
+        }
+        .footer-copyright-text {
+            font-size: 12px;
+            color: #9ca3af;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .btn-scroll-top {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        .btn-scroll-top:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-50%) scale(1.1);
+        }
+        @media (max-width: 640px) {
+            .footer-legal-row {
+                font-size: 12px;
+                gap: 6px;
+            }
+            .footer-bottom-row {
+                flex-direction: column;
+                gap: 14px;
+            }
+            .btn-scroll-top {
+                position: static;
+                transform: none;
+            }
+            .btn-scroll-top:hover {
+                transform: scale(1.1);
+            }
+        }
 
         .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid var(--border-color); padding: 10px 16px 14px 16px; display: flex; align-items: center; gap: 12px; z-index: 900; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); max-width: 540px; margin: 0 auto; }
         .support-btn { width: 46px; height: 46px; border-radius: 10px; border: 1px solid var(--border-color); background: #ffffff; display: flex; align-items: center; justify-content: center; color: #111111; text-decoration: none; flex-shrink: 0; }
@@ -1234,37 +1352,52 @@ try {
         </div>
     </section>
 
-    <!-- 7. FOOTER GENÉRICO -->
+    <!-- 7. FOOTER MODERNO ESTILO SHEGLAM -->
     <footer class="generic-footer">
-        <div class="generic-footer-container">
-            <div class="footer-pillar">
-                <div>
-                    <h4 data-editable="true">Envíos Rápidos a Colombia</h4>
-                    <p data-editable="true">Entregas seguras a nivel nacional con número de guía en tiempo real.</p>
+        <div class="footer-content-wrap">
+            <!-- MEDIOS DE PAGO -->
+            <div class="footer-payments-row">
+                <!-- VISA -->
+                <div class="payment-badge-pill" title="Visa">
+                    <svg viewBox="0 0 38 24" width="38" height="24"><rect width="38" height="24" rx="4" fill="#ffffff"/><path d="M15.2 16.5h-2.1l1.3-8.2h2.1l-1.3 8.2zm7.6-8c-.4-.2-1.1-.3-1.9-.3-2.1 0-3.6 1.1-3.6 2.7 0 1.2 1.1 1.8 1.9 2.2.8.4 1.1.7 1.1 1.1 0 .6-.7.9-1.4.9-1 0-1.5-.1-2.3-.5l-.3-.2-.3 1.9c.5.2 1.5.4 2.5.4 2.3 0 3.8-1.1 3.8-2.8 0-1-.6-1.7-1.9-2.3-.8-.4-1.3-.7-1.3-1.1 0-.4.4-.8 1.3-.8.7 0 1.3.2 1.7.3l.2.1.3-1.6zm4.9 5.2l.9-2.5.5 2.5h-1.4zm2.1-5.4h-1.6c-.5 0-.9.1-1.1.7l-3.2 7.5h2.2l.4-1.2h2.7l.3 1.2h1.9l-1.6-8.2zm-12.7 0l-2 5.6-.2-1.1c-.4-1.3-1.5-2.8-2.8-3.5l1.8 7.1h2.2l3.3-8.1h-2.3z" fill="#1434CB"/><path d="M7.7 8.3H4.4l-.1.3c2.6.7 4.3 2.3 5 4.3l-.7-3.8c-.1-.5-.5-.8-.9-.8z" fill="#F8B11B"/></svg>
+                </div>
+                <!-- MASTERCARD -->
+                <div class="payment-badge-pill" title="Mastercard">
+                    <svg viewBox="0 0 38 24" width="38" height="24"><rect width="38" height="24" rx="4" fill="#ffffff"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 6.8a6.96 6.96 0 0 0-2.6 5.2c0 2.1 1 4 2.6 5.2a6.96 6.96 0 0 0 2.6-5.2c0-2.1-1-4-2.6-5.2z" fill="#FF5F00"/></svg>
+                </div>
+                <!-- AMEX -->
+                <div class="payment-badge-pill" title="American Express">
+                    <svg viewBox="0 0 38 24" width="38" height="24"><rect width="38" height="24" rx="4" fill="#006FCF"/><path d="M6 14.5l1.6-4.5h2.1l1.6 4.5h-1.3l-.3-1H7.7l-.3 1H6zm2-2.1h1.4L8.7 10 8 12.4zm4.2 2.1V10h1.8l1.3 2.8 1.3-2.8h1.8v4.5h-1.2v-3.1l-1.3 2.8h-1.2l-1.3-2.8v3.1h-1.2zm8.7 0V10h3.5v1.1h-2.3v.6h2.1v1.1h-2.1v.6h2.3v1.1h-3.5zm5.5 0l1.5-2.3-1.4-2.2h1.5l.7 1.3.7-1.3h1.5l-1.4 2.2 1.5 2.3h-1.6l-.8-1.4-.8 1.4h-1.4z" fill="#ffffff"/></svg>
+                </div>
+                <!-- PSE -->
+                <div class="payment-badge-pill" title="PSE">
+                    <svg viewBox="0 0 38 24" width="38" height="24"><rect width="38" height="24" rx="4" fill="#ffffff"/><circle cx="19" cy="12" r="8.5" fill="#0c2340"/><text x="19" y="14.8" font-family="'Inter', Arial, sans-serif" font-size="7.5" font-weight="900" fill="#f8b11b" text-anchor="middle" letter-spacing="0.5">PSE</text></svg>
+                </div>
+                <!-- CONTRAENTREGA -->
+                <div class="payment-badge-pill" title="Pago Contra Entrega">
+                    <svg viewBox="0 0 54 24" width="54" height="24"><rect width="54" height="24" rx="4" fill="#ffffff"/><rect x="3" y="3" width="48" height="18" rx="3" fill="#059669"/><text x="27" y="15" font-family="'Inter', Arial, sans-serif" font-size="6.5" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="0.3">CONTRAENTREGA</text></svg>
                 </div>
             </div>
-            <div class="footer-pillar">
-                <div>
-                    <h4 data-editable="true">Garantía de Satisfacción</h4>
-                    <p data-editable="true">Respaldamos tu compra con 30 días de cobertura total.</p>
-                </div>
+
+            <!-- ENTIDADES / REGULACIÓN -->
+            <div class="footer-legal-row">
+                <span class="footer-flag-icon">🇨🇴</span>
+                <span class="footer-legal-text" data-editable="true">Superintendencia de Industria y Comercio</span>
+                <span class="footer-legal-divider">•</span>
+                <span class="footer-legal-text" data-editable="true">Cámara Colombiana de Comercio Electrónico</span>
             </div>
-            <div class="footer-pillar">
-                <div>
-                    <h4 data-editable="true">Pago Contra Entrega</h4>
-                    <p data-editable="true">Paga en efectivo cuando recibas tu pedido en la puerta de tu casa.</p>
+
+            <!-- COPYRIGHT & VOLVER ARRIBA -->
+            <div class="footer-bottom-row">
+                <div class="footer-copyright-text">
+                    © <?= date('Y') ?> <span data-editable="true"><?= htmlspecialchars("DJI") ?></span> - All Rights Reserved
                 </div>
+                <button type="button" class="btn-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Volver arriba" aria-label="Volver arriba">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                </button>
             </div>
-            <div class="footer-pillar">
-                <div>
-                    <h4 data-editable="true">Atención Personalizada</h4>
-                    <p data-editable="true">Canal de soporte y asesoría directa vía WhatsApp las 24 horas.</p>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom-generic">
-            <div>© <?= date('Y') ?> <span data-editable="true"><?= htmlspecialchars("DJI") ?></span>. Todos los derechos reservados.</div>
-            <div>Pagos Cifrados SSL & Envío Asegurado</div>
         </div>
     </footer>
 
