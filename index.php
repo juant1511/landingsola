@@ -428,29 +428,29 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
         .payment-clean-img {
-            height: 24px;
+            height: 32px;
             width: auto;
-            max-width: 58px;
+            max-width: 75px;
             object-fit: contain;
             display: block;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
             transition: transform 0.2s ease;
         }
         .payment-clean-img:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
         }
         .footer-contraentrega-label {
-            font-size: 13.5px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 800;
             color: #ffffff;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            padding-left: 10px;
-            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            padding-left: 14px;
+            border-left: 2px solid rgba(255, 255, 255, 0.45);
             display: inline-flex;
             align-items: center;
             line-height: 1;
@@ -459,45 +459,46 @@ try {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 22px;
+            gap: 32px;
             flex-wrap: wrap;
+            margin-top: 6px;
         }
         .footer-sic-badge {
-            background: #ffffff;
-            border-radius: 6px;
-            padding: 4px 10px;
-            height: 28px;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            height: auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: none;
             transition: transform 0.2s ease;
         }
         .footer-sic-badge:hover {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
         .footer-sic-badge img {
-            height: 20px;
+            height: 42px;
             width: auto;
-            max-width: 145px;
+            max-width: 250px;
             object-fit: contain;
             display: block;
         }
         .footer-camara-badge {
-            height: 28px;
+            height: auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.2s ease;
         }
         .footer-camara-badge:hover {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
         .footer-camara-badge img {
-            height: 26px;
+            height: 38px;
             width: auto;
-            max-width: 220px;
+            max-width: 280px;
             object-fit: contain;
             display: block;
         }
