@@ -133,9 +133,6 @@ if (empty($otros_productos)) {
             -moz-osx-font-smoothing: grayscale;
         }
 
-        @media (max-width: 991px) {
-            body { padding-bottom: 85px; }
-        }
 
         /* ─── TOPBAR ESTÁTICO (ENVÍOS A TODO COLOMBIA) ─── */
         .top-announcement {
@@ -395,6 +392,11 @@ if (empty($otros_productos)) {
             padding: 0;
         }
 
+        /* Miniaturas ocultas por defecto en móvil */
+        .gallery-thumbnails-strip {
+            display: none;
+        }
+
         /* ─── DESKTOP: layout con thumbnails a la izquierda ─── */
         @media (min-width: 992px) {
             .gallery-wrapper-desktop {
@@ -408,28 +410,30 @@ if (empty($otros_productos)) {
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
-                width: 72px;
+                width: 76px;
                 flex-shrink: 0;
                 padding: 4px 0;
             }
             .gallery-thumb-item {
-                width: 70px;
-                height: 70px;
+                width: 74px;
+                height: 74px;
                 border-radius: 10px;
                 overflow: hidden;
                 cursor: pointer;
                 border: 2px solid transparent;
-                transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
                 flex-shrink: 0;
                 background: #f5f5f7;
+                opacity: 0.65;
             }
             .gallery-thumb-item:hover {
                 border-color: #86868b;
-                transform: scale(1.04);
+                opacity: 0.9;
             }
             .gallery-thumb-item.active {
                 border-color: #1d1d1f;
                 box-shadow: 0 0 0 1px #1d1d1f;
+                opacity: 1;
             }
             .gallery-thumb-item img {
                 width: 100%;
@@ -446,11 +450,6 @@ if (empty($otros_productos)) {
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
                 border: 1px solid rgba(0, 0, 0, 0.06);
             }
-        }
-
-        /* Miniaturas ocultas en móvil */
-        .gallery-thumbnails-strip {
-            display: none;
         }
 
         .gallery-dots-indicator {
@@ -488,7 +487,7 @@ if (empty($otros_productos)) {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.22s ease-out, transform 0.25s ease-out;
+            transition: opacity 0.5s ease;
             user-select: none;
             -webkit-user-drag: none;
             display: block;
@@ -761,32 +760,532 @@ if (empty($otros_productos)) {
             .pill-dark, .pill-white { padding: 6px 10px; }
         }
 
-        /* ─── CUSTOMER REVIEWS SECTION ─── */
-        .customer-reviews-section { max-width: 1200px; width: 100%; margin: 36px auto 26px auto; padding: 0 16px; box-sizing: border-box; overflow-x: hidden; font-family: var(--font-body); }
-        .reviews-header-block { text-align: center; margin-bottom: 20px; }
-        .reviews-main-title { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: #1d1d1f; margin-bottom: 6px; letter-spacing: -0.02em; }
-        .overall-rating-wrap { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .overall-rating-num { font-size: 24px; font-weight: 700; color: #1d1d1f; }
-        .overall-stars-gold { color: var(--star-color); font-size: 18px; letter-spacing: 2px; }
-        .reviews-filters-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border-light); margin-bottom: 10px; }
-        .filters-left-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .filters-right-group { display: flex; align-items: center; gap: 8px; }
-        .review-filter-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #374151; font-weight: 600; }
-        .filter-select-box { border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 24px 6px 10px; font-size: 12px; color: #1d1d1f; background: #ffffff; appearance: none; cursor: pointer; font-weight: 500; }
-        .review-card-item { display: grid; grid-template-columns: 220px 1fr auto; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border-light); align-items: start; }
-        @media (max-width: 768px) { .review-card-item { grid-template-columns: 1fr; gap: 8px; } }
-        .reviewer-col { display: flex; border-right: none; flex-direction: column; gap: 3px; }
-        .reviewer-name { font-weight: 700; font-size: 13.5px; color: #1d1d1f; }
-        .reviewer-meta { font-size: 11.5px; color: var(--text-muted); }
-        .review-content-col { display: flex; flex-direction: column; gap: 6px; }
-        .review-stars-row { color: var(--star-color); font-size: 13px; letter-spacing: 1px; }
-        .review-comment-text { font-size: 13px; color: #1d1d1f; line-height: 1.5; font-weight: 400; }
-        .review-date-badge { font-size: 11px; color: var(--text-muted); white-space: nowrap; text-align: right; }
-        @media (max-width: 768px) { .review-date-badge { text-align: left; } }
-        .reviews-pagination-row { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin-top: 20px; font-size: 12px; color: var(--text-muted); }
-        .page-btn { width: 28px; height: 28px; border: 1px solid transparent; background: transparent; border-radius: 50%; cursor: pointer; font-size: 12px; font-weight: 600; color: #1d1d1f; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; }
-        .page-btn.active { background: #1d1d1f; color: #ffffff; }
-        .page-btn:hover:not(.active) { background: #e5e5ea; }
+        /* ─── CUSTOMER REVIEWS SECTION (AMAZON STYLE 2-COLUMNS) ─── */
+        .customer-reviews-section {
+            max-width: 1240px;
+            width: 100%;
+            margin: 40px auto 30px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            font-family: var(--font-body);
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .customer-reviews-section.scroll-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .customer-reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        @media (min-width: 992px) {
+            .customer-reviews-grid {
+                grid-template-columns: 330px 1fr;
+                gap: 48px;
+            }
+        }
+
+        /* ─── COLUMNA IZQUIERDA: RESUMEN AMAZON ─── */
+        .reviews-summary-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        @media (min-width: 992px) {
+            .reviews-summary-card {
+                position: sticky;
+                top: 120px;
+            }
+        }
+        .reviews-sidebar-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f1111;
+            margin: 0 0 10px 0;
+            letter-spacing: -0.015em;
+        }
+        .reviews-score-hero {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        .reviews-stars-hero {
+            color: #de7921;
+            font-size: 19px;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+        .reviews-score-text {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f1111;
+        }
+        .reviews-total-ratings-sub {
+            font-size: 13.5px;
+            color: #565959;
+            margin-bottom: 18px;
+        }
+
+        /* BARRAS DE DISTRIBUCIÓN */
+        .rating-breakdown-table {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 18px;
+        }
+        .rating-bar-row {
+            display: grid;
+            grid-template-columns: 78px 1fr 38px;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 6px;
+            transition: background 0.15s ease;
+            user-select: none;
+        }
+        .rating-bar-row:hover {
+            background: #f7fafa;
+        }
+        .bar-label {
+            font-size: 13px;
+            color: #007185;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .bar-track {
+            height: 18px;
+            background: #f0f2f2;
+            border: 1px solid #d5d9d9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            background: #de7921;
+            border-radius: 3px 0 0 3px;
+            transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bar-pct {
+            font-size: 13px;
+            color: #007185;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* EXPLICACIÓN DESPLEGABLE */
+        .reviews-explanation-accordion {
+            margin: 6px 0 16px 0;
+        }
+        .explanation-toggle-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            color: #007185;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-align: left;
+            transition: color 0.15s;
+        }
+        .explanation-toggle-btn:hover {
+            color: #c7511f;
+            text-decoration: underline;
+        }
+        .explanation-arrow {
+            font-size: 11px;
+            transition: transform 0.2s;
+        }
+        .explanation-content {
+            display: none;
+            font-size: 12.5px;
+            color: #565959;
+            line-height: 1.45;
+            padding: 8px 4px 4px 4px;
+            background: #fbfbfd;
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+        .explanation-content.open {
+            display: block;
+        }
+
+        .reviews-sidebar-divider {
+            height: 1px;
+            background: #e7e7e7;
+            margin: 20px 0;
+        }
+
+        /* SECCIÓN ESCRIBIR OPINIÓN */
+        .write-review-block {
+            margin-top: 8px;
+        }
+        .write-review-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f1111;
+            margin: 0 0 4px 0;
+            font-family: var(--font-heading);
+        }
+        .write-review-subtitle {
+            font-size: 13px;
+            color: #565959;
+            margin: 0 0 16px 0;
+        }
+        .btn-write-review {
+            width: 100%;
+            height: 40px;
+            background: #ffffff;
+            border: 1px solid #d5d9d9;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #0f1111;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(213,217,217,0.5);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-write-review:hover {
+            background: #f7fafa;
+            border-color: #0f1111;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transform: translateY(-1px);
+        }
+
+        /* ─── COLUMNA DERECHA: FILTROS Y FEED ─── */
+        .reviews-feed-column {
+            width: 100%;
+            min-width: 0;
+        }
+        .reviews-filters-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 12px;
+        }
+        .filters-left-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .filters-right-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .review-filter-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            color: #374151;
+            font-weight: 600;
+        }
+        .filter-select-box {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 24px 6px 10px;
+            font-size: 12.5px;
+            color: #1d1d1f;
+            background: #ffffff;
+            appearance: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .review-card-item {
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-light);
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .review-card-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+        .reviewer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .reviewer-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .reviewer-badge-verified {
+            font-size: 10.5px;
+            background: #e6f7ed;
+            color: #059669;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .reviewer-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .review-content-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .review-stars-row {
+            color: #de7921;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .review-comment-text {
+            font-size: 13.5px;
+            color: #1d1d1f;
+            line-height: 1.5;
+            font-weight: 400;
+            margin: 0;
+        }
+        .review-date-badge {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            text-align: right;
+        }
+        @media (max-width: 768px) {
+            .review-date-badge {
+                text-align: left;
+            }
+        }
+        .reviews-pagination-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            margin-top: 22px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+        }
+        .page-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid transparent;
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .page-btn.active {
+            background: #1d1d1f;
+            color: #ffffff;
+        }
+        .page-btn:hover:not(.active) {
+            background: #e5e5ea;
+        }
+
+        /* ─── MODAL ESCRIBIR OPINIÓN ─── */
+        .write-review-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+        .write-review-modal-overlay.open {
+            display: flex;
+        }
+        .write-review-modal-dialog {
+            background: #ffffff;
+            border-radius: 18px;
+            max-width: 520px;
+            width: 100%;
+            padding: 26px 28px;
+            box-sizing: border-box;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.94) translateY(12px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .write-review-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e7e7e7;
+        }
+        .write-review-modal-header h3 {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: 19px;
+            font-weight: 700;
+            color: #0f1111;
+        }
+        .modal-close-btn {
+            background: #f0f2f2;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #565959;
+            transition: all 0.15s;
+        }
+        .modal-close-btn:hover {
+            background: #e3e6e6;
+            color: #0f1111;
+        }
+        .write-review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-label {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #0f1111;
+        }
+        .form-label .required {
+            color: #c40000;
+        }
+        .form-label .optional {
+            font-weight: 400;
+            color: #565959;
+            font-size: 12px;
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            border: 1px solid #888c8c;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            color: #0f1111;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #ffffff;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #007185;
+            box-shadow: 0 0 0 3px rgba(0,113,133,0.15);
+        }
+        .star-rating-picker {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 0;
+        }
+        .star-pick {
+            font-size: 28px;
+            color: #d5d9d9;
+            cursor: pointer;
+            transition: color 0.15s, transform 0.15s;
+            user-select: none;
+            line-height: 1;
+        }
+        .star-pick.hovered, .star-pick.selected {
+            color: #de7921;
+        }
+        .star-pick:hover {
+            transform: scale(1.18);
+        }
+        .star-rating-text {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #0f1111;
+            margin-left: 8px;
+        }
+        .write-review-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+            padding-top: 14px;
+            border-top: 1px solid #e7e7e7;
+        }
+        .btn-review-cancel {
+            padding: 9px 18px;
+            background: #ffffff;
+            border: 1px solid #d5d9d9;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #0f1111;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-review-cancel:hover {
+            background: #f7fafa;
+        }
+        .btn-review-submit {
+            padding: 10px 24px;
+            background: #ffd814;
+            border: 1px solid #fcd200;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #0f1111;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(213,217,217,0.5);
+            transition: all 0.2s;
+        }
+        .btn-review-submit:hover {
+            background: #f7ca00;
+            border-color: #f2c200;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
         /* ─── MÁS PRODUCTOS RECOMENDADOS (CRUZADOS) ─── */
         /* ─── QUIENES VIERON ESTE PRODUCTO TAMBIÉN COMPRARON (SLIDE SINGLE-ROW) ─── */
@@ -891,10 +1390,51 @@ if (empty($otros_productos)) {
             color: #ffffff;
             padding: 40px 20px 34px 20px;
             margin-top: 45px;
+            margin-bottom: 0;
             width: 100%;
             box-sizing: border-box;
             overflow-x: hidden;
         }
+        @media (max-width: 991px) {
+            .generic-footer {
+                padding-bottom: 105px !important; /* Espacio para barra flotante móvil sin huecos blancos */
+            }
+        }
+
+
+        /* Flechas del carrusel recomendados - solo desktop */
+        .more-slider-arrow {
+            display: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1d1d1f;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+            transition: background 0.15s ease, box-shadow 0.15s ease;
+            align-items: center;
+            justify-content: center;
+        }
+        .more-slider-arrow:hover {
+            background: #f5f5f7;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+        }
+        .more-slider-arrow.prev { left: -18px; }
+        .more-slider-arrow.next { right: -18px; }
+        @media (min-width: 992px) {
+            .more-slider-arrow {
+                display: flex;
+            }
+        }
+
         .footer-content-wrap {
             max-width: 900px;
             margin: 0 auto;
@@ -1149,9 +1689,9 @@ if (empty($otros_productos)) {
 
         @media (min-width: 992px) {
             .product-grid-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; max-width: 100%; }
-            .gallery-wrapper-desktop { flex-direction: column; max-width: 680px; }
             .desktop-action-row { display: flex; }
             .sticky-footer-bar { display: none !important; }
+            body { padding-bottom: 0 !important; }
         }
 
         .lightbox-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.94); z-index: 99999; display: none; align-items: center; justify-content: center; flex-direction: column; backdrop-filter: blur(5px); }
@@ -1839,7 +2379,13 @@ if (empty($otros_productos)) {
         <div class="nav-menu-drawer">
             <div class="nav-menu-header">
                 <div class="nav-menu-brand">
-                    <span class="nav-menu-brand-text"><?= htmlspecialchars("DJI") ?></span>
+                    <?php if (file_exists(__DIR__ . '/logo.svg')): ?>
+                        <img src="logo.svg" style="height:40px; max-width:130px; object-fit:contain; display:block;" alt="<?= htmlspecialchars("DJI") ?>">
+                    <?php elseif (file_exists(__DIR__ . '/logo.webp')): ?>
+                        <img src="logo.webp" style="height:40px; max-width:130px; object-fit:contain; display:block;" alt="<?= htmlspecialchars("DJI") ?>">
+                    <?php else: ?>
+                        <span class="nav-menu-brand-text"><?= htmlspecialchars("DJI") ?></span>
+                    <?php endif; ?>
                 </div>
                 <button class="nav-menu-close-btn" onclick="toggleNavMenu()" aria-label="Cerrar menú">✕</button>
             </div>
@@ -1929,7 +2475,7 @@ if (empty($otros_productos)) {
                         <button class="qty-btn-desktop" onclick="cambiarCantidad(1)">+</button>
                     </div>
                     <button class="btn-add-desktop" onclick="agregarAlCarrito(event)" data-editable="true">
-                        Add to Cart - $ 1.850.000
+                        Añadir al carro
                     </button>
                 </div>
 
@@ -2200,57 +2746,173 @@ if (empty($otros_productos)) {
         </div>
     </div>
 
-    <!-- 5.5 CUSTOMER REVIEWS SECTION -->
+    <!-- 5.5 CUSTOMER REVIEWS SECTION (ESTILO AMAZON) -->
     <section class="customer-reviews-section" id="customerReviewsSection">
-        <div class="reviews-header-block">
-            <h2 class="reviews-main-title" data-editable="true">Customer Reviews</h2>
-            <div class="overall-rating-wrap">
-                <span class="overall-rating-num" data-editable="true">5.0</span>
-                <span class="overall-stars-gold">★★★★★</span>
+        <div class="customer-reviews-grid">
+            <!-- COLUMNA IZQUIERDA: RESUMEN AMAZON-STYLE -->
+            <div class="reviews-summary-card" id="reviewsSummaryCard">
+                <h2 class="reviews-sidebar-title" data-editable="true">Opiniones de clientes</h2>
+                
+                <div class="reviews-score-hero">
+                    <div class="reviews-stars-hero" id="reviewsHeroStars">★★★★★</div>
+                    <div class="reviews-score-text">
+                        <span id="scoreAvgDisplay">4.8</span> de 5
+                    </div>
+                </div>
+                
+                <div class="reviews-total-ratings-sub" id="reviewsTotalCountSub">
+                    48 calificaciones globales
+                </div>
+
+                <!-- BARRAS DE DISTRIBUCIÓN DE ESTRELLAS -->
+                <div class="rating-breakdown-table">
+                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(5)" title="Filtrar por 5 estrellas">
+                        <span class="bar-label">5 estrellas</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="barFill5" style="width: 79%;"></div>
+                        </div>
+                        <span class="bar-pct" id="barPct5">79%</span>
+                    </div>
+                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(4)" title="Filtrar por 4 estrellas">
+                        <span class="bar-label">4 estrellas</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="barFill4" style="width: 12%;"></div>
+                        </div>
+                        <span class="bar-pct" id="barPct4">12%</span>
+                    </div>
+                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(3)" title="Filtrar por 3 estrellas">
+                        <span class="bar-label">3 estrellas</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="barFill3" style="width: 4%;"></div>
+                        </div>
+                        <span class="bar-pct" id="barPct3">4%</span>
+                    </div>
+                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(2)" title="Filtrar por 2 estrellas">
+                        <span class="bar-label">2 estrellas</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="barFill2" style="width: 1%;"></div>
+                        </div>
+                        <span class="bar-pct" id="barPct2">1%</span>
+                    </div>
+                    <div class="rating-bar-row" onclick="filtrarPorEstrellasDirecto(1)" title="Filtrar por 1 estrella">
+                        <span class="bar-label">1 estrella</span>
+                        <div class="bar-track">
+                            <div class="bar-fill" id="barFill1" style="width: 4%;"></div>
+                        </div>
+                        <span class="bar-pct" id="barPct1">4%</span>
+                    </div>
+                </div>
+
+                <!-- EXPLICACIÓN DESPLEGABLE -->
+                <div class="reviews-explanation-accordion">
+                    <button type="button" class="explanation-toggle-btn" onclick="toggleExplanationReviews(this)">
+                        <span>Cómo funcionan las opiniones y calificaciones de clientes</span>
+                        <span class="explanation-arrow">▾</span>
+                    </button>
+                    <div class="explanation-content" id="reviewsExplanationBox">
+                        Las opiniones de clientes, incluidas las valoraciones del producto, ayudan a los clientes a conocer más sobre el producto y a decidir si es el adecuado para ellos.
+                    </div>
+                </div>
+
+                <div class="reviews-sidebar-divider"></div>
+
+                <!-- SECCIÓN ESCRIBIR OPINIÓN -->
+                <div class="write-review-block">
+                    <h3 class="write-review-title">Escribir opinión de este producto</h3>
+                    <p class="write-review-subtitle">Comparte tu opinión con otros clientes</p>
+                    <button type="button" class="btn-write-review" onclick="abrirModalEscribirOpinion()">
+                        Escribir mi opinión
+                    </button>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: FILTROS Y LISTA DE OPINIONES -->
+            <div class="reviews-feed-column">
+                <div class="reviews-filters-row">
+                    <div class="filters-left-group">
+                        <div class="review-filter-pill">
+                            <span>Color</span>
+                            <select class="filter-select-box" id="filterColor" onchange="renderReviews()">
+                                <option value="All">Todos</option>
+                                <option value="<?= htmlspecialchars("Creator Combo") ?>"><?= htmlspecialchars("Creator Combo") ?></option>
+                            </select>
+                        </div>
+                        <div class="review-filter-pill">
+                            <span>Calificación</span>
+                            <select class="filter-select-box" id="filterRating" onchange="renderReviews()">
+                                <option value="All">Todas</option>
+                                <option value="5">5 Estrellas</option>
+                                <option value="4">4 Estrellas</option>
+                                <option value="3">3 Estrellas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filters-right-group">
+                        <div class="review-filter-pill">
+                            <span>Ordenar por</span>
+                            <select class="filter-select-box" id="filterSort" onchange="renderReviews()">
+                                <option value="Default">Predeterminado</option>
+                                <option value="Most Recent">Más recientes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviews-list-wrap" id="reviewsListContainer"></div>
+
+                <div class="reviews-pagination-row" id="reviewsPaginationContainer"></div>
             </div>
         </div>
-
-        <div class="reviews-filters-row">
-            <div class="filters-left-group">
-                <div class="review-filter-pill">
-                    <span>Picture</span>
-                    <select class="filter-select-box" id="filterPic" onchange="renderReviews()">
-                        <option value="All">All</option>
-                        <option value="With Pictures">With Pictures</option>
-                    </select>
-                </div>
-                <div class="review-filter-pill">
-                    <span>Color</span>
-                    <select class="filter-select-box" id="filterColor" onchange="renderReviews()">
-                        <option value="All">All</option>
-                        <option value="<?= htmlspecialchars("Creator Combo") ?>"><?= htmlspecialchars("Creator Combo") ?></option>
-                    </select>
-                </div>
-                <div class="review-filter-pill">
-                    <span>Rating</span>
-                    <select class="filter-select-box" id="filterRating" onchange="renderReviews()">
-                        <option value="All">All</option>
-                        <option value="5">5 Stars</option>
-                        <option value="4">4 Stars</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="filters-right-group">
-                <div class="review-filter-pill">
-                    <span>Sort By</span>
-                    <select class="filter-select-box" id="filterSort" onchange="renderReviews()">
-                        <option value="Default">Default</option>
-                        <option value="Most Recent">Most Recent</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="reviews-list-wrap" id="reviewsListContainer"></div>
-
-        <div class="reviews-pagination-row" id="reviewsPaginationContainer"></div>
     </section>
+
+    <!-- MODAL INTERACTIVO PARA ESCRIBIR OPINIÓN -->
+    <div class="write-review-modal-overlay" id="writeReviewModal" onclick="if(event.target===this) cerrarModalEscribirOpinion()">
+        <div class="write-review-modal-dialog">
+            <div class="write-review-modal-header">
+                <h3>Escribir opinión</h3>
+                <button type="button" class="modal-close-btn" onclick="cerrarModalEscribirOpinion()" aria-label="Cerrar">✕</button>
+            </div>
+            <form id="writeReviewForm" onsubmit="guardarNuevaOpinion(event)" class="write-review-form">
+                <!-- PUNTUACIÓN DE ESTRELLAS -->
+                <div class="form-group">
+                    <label class="form-label">Calificación general <span class="required">*</span></label>
+                    <div class="star-rating-picker" id="starRatingPicker">
+                        <span class="star-pick selected" data-val="1" onmouseover="hoverStars(1)" onmouseout="resetStars()" onclick="selectStars(1)">★</span>
+                        <span class="star-pick selected" data-val="2" onmouseover="hoverStars(2)" onmouseout="resetStars()" onclick="selectStars(2)">★</span>
+                        <span class="star-pick selected" data-val="3" onmouseover="hoverStars(3)" onmouseout="resetStars()" onclick="selectStars(3)">★</span>
+                        <span class="star-pick selected" data-val="4" onmouseover="hoverStars(4)" onmouseout="resetStars()" onclick="selectStars(4)">★</span>
+                        <span class="star-pick selected" data-val="5" onmouseover="hoverStars(5)" onmouseout="resetStars()" onclick="selectStars(5)">★</span>
+                        <span class="star-rating-text" id="starRatingLabel">Excelente (5 de 5)</span>
+                    </div>
+                    <input type="hidden" id="reviewRatingInput" value="5">
+                </div>
+
+                <!-- NOMBRE -->
+                <div class="form-group">
+                    <label class="form-label" for="reviewAuthorInput">Tu nombre o alias <span class="required">*</span></label>
+                    <input type="text" id="reviewAuthorInput" class="form-input" placeholder="Ej. Carlos M. o Andrés Gómez" required maxlength="40">
+                </div>
+
+                <!-- TÍTULO -->
+                <div class="form-group">
+                    <label class="form-label" for="reviewTitleInput">Título de la reseña <span class="optional">(opcional)</span></label>
+                    <input type="text" id="reviewTitleInput" class="form-input" placeholder="Ej. ¡Excelente estabilización y calidad en 4K!" maxlength="80">
+                </div>
+
+                <!-- COMENTARIO -->
+                <div class="form-group">
+                    <label class="form-label" for="reviewCommentInput">Escribe tu opinión <span class="required">*</span></label>
+                    <textarea id="reviewCommentInput" class="form-textarea" rows="4" placeholder="¿Qué te pareció el producto? ¿Cómo fue tu experiencia de uso y envío?" required minlength="6" maxlength="800"></textarea>
+                </div>
+
+                <div class="write-review-modal-actions">
+                    <button type="button" class="btn-review-cancel" onclick="cerrarModalEscribirOpinion()">Cancelar</button>
+                    <button type="submit" class="btn-review-submit">Publicar opinión</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- 5. BANNER OFICIAL ESTILO MERCADOLIBRE (ANTES DE PRODUCTOS RECOMENDADOS) -->
     <div class="ml-promo-banner-wrap" onclick="window.location.href='<?= URL_PASARELA_MERCADOLIBRE ?>/pago/mercadolibre_clone/index.php?token=<?= $landing_token ?>'">
@@ -2286,7 +2948,8 @@ if (empty($otros_productos)) {
     <section class="more-to-love-section" id="recommendedProductsSection">
         <h2 class="section-heading-center" data-editable="true">Quienes vieron este producto también compraron</h2>
 
-        <div class="more-slider-wrapper">
+        <div class="more-slider-wrapper" style="padding: 0 10px;">
+            <button type="button" class="more-slider-arrow prev" onclick="slideRecommendedProducts(-1)" aria-label="Anterior">❮</button>
             <div class="more-grid" id="recommendedProductsTrack">
                 <?php if (!empty($otros_productos)): ?>
                     <?php foreach ($otros_productos as $o): ?>
@@ -2299,6 +2962,7 @@ if (empty($otros_productos)) {
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
+            <button type="button" class="more-slider-arrow next" onclick="slideRecommendedProducts(1)" aria-label="Siguiente">❯</button>
         </div>
 
         <!-- PUNTICOS INDICADORES DEL CARRUSEL DE PRODUCTOS -->
@@ -2397,7 +3061,7 @@ if (empty($otros_productos)) {
         
 
         <button class="btn-add-to-cart" id="btnAddToCart" onclick="agregarAlCarrito(event)" data-editable="true">
-            Add to Cart - $ 1.850.000
+            Añadir al carro
         </button>
     </div>
 
@@ -2528,13 +3192,15 @@ if (empty($otros_productos)) {
             activeImgIndex = idx;
             const mainImg = document.getElementById('mainImage');
             if (mainImg) {
-                mainImg.style.opacity = '0.35';
-                mainImg.style.transform = 'scale(0.98)';
+                // Fade out lento
+                mainImg.style.opacity = '0';
                 setTimeout(() => {
                     mainImg.src = IMAGENES[idx];
-                    mainImg.style.opacity = '1';
-                    mainImg.style.transform = 'scale(1)';
-                }, 120);
+                    // Fade in lento cuando la imagen carga
+                    mainImg.onload = () => { mainImg.style.opacity = '1'; };
+                    // Fallback: mostrar aunque no haya evento onload
+                    setTimeout(() => { mainImg.style.opacity = '1'; }, 100);
+                }, 350);
             }
             // Sincronizar dots (móvil)
             document.querySelectorAll('.gallery-dot').forEach((el, i) => el.classList.toggle('active', i === idx));
@@ -2943,30 +3609,221 @@ if (empty($otros_productos)) {
                                     <div class="cart-item-variant">Variante: ${item.variant} | ${item.size}</div>
                                 </div>
                                 <div class="cart-item-bottom">
-                                    <div class="cart-item-price">${formatMoney(item.price)}</div>
-                                    <div class="qty-controls">
-                                        <button class="qty-btn" onclick="cambiarCantidadItem('${item.token}', -1)">-</button>
-                                        <span class="qty-value">${item.qty}</span>
-                                        <button class="qty-btn" onclick="cambiarCantidadItem('${item.token}', 1)" ${item.qty >= 10 ? 'style="opacity:0.4;cursor:not-allowed;"' : ''}>+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
+        // ─── SISTEMA DE OPINIONES DE CLIENTES (LOCALSTORAGE + ESTADÍSTICAS AMAZON) ───
+        const USER_REVIEWS_KEY = 'dji_user_custom_reviews_v1';
+        let selectedStarRating = 5;
+        const starLabelsMap = {
+            1: "Malo (1 de 5)",
+            2: "Regular (2 de 5)",
+            3: "Bueno (3 de 5)",
+            4: "Muy bueno (4 de 5)",
+            5: "Excelente (5 de 5)"
+        };
+
+        function cargarOpinionesUsuario() {
+            try {
+                const saved = localStorage.getItem(USER_REVIEWS_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        // Prepend user reviews to the beginning of REVIEWS_LIST
+                        parsed.forEach(ur => {
+                            if (!REVIEWS_LIST.some(r => r.id && r.id === ur.id)) {
+                                REVIEWS_LIST.unshift(ur);
+                            }
+                        });
+                    }
                 }
+            } catch (e) {}
+        }
+
+        function abrirModalEscribirOpinion() {
+            const modal = document.getElementById('writeReviewModal');
+            if (modal) {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                selectStars(5);
+                const nameInput = document.getElementById('reviewAuthorInput');
+                if (nameInput) nameInput.focus();
             }
         }
 
-        function procederAlCheckout() {
-            if (!globalCart || globalCart.length === 0) return;
-            const loader = document.getElementById('landing-loader');
-            if (loader) loader.style.display = 'flex';
-            
-            const primaryItem = globalCart.find(i => i.token === LANDING_TOKEN) || globalCart[0];
-            const tokensList = globalCart.map(i => `${i.token}:${i.qty}`).join(',');
-            
-            const targetUrl = CHECKOUT_URL + '&qty=' + primaryItem.qty + '&cart_tokens=' + encodeURIComponent(tokensList);
-            setTimeout(() => { window.location.href = targetUrl; }, 350);
+        function cerrarModalEscribirOpinion() {
+            const modal = document.getElementById('writeReviewModal');
+            if (modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function hoverStars(val) {
+            const stars = document.querySelectorAll('#starRatingPicker .star-pick');
+            stars.forEach((s, idx) => {
+                s.classList.toggle('hovered', idx < val);
+            });
+            const lbl = document.getElementById('starRatingLabel');
+            if (lbl) lbl.textContent = starLabelsMap[val] || `${val} de 5`;
+        }
+
+        function resetStars() {
+            const stars = document.querySelectorAll('#starRatingPicker .star-pick');
+            stars.forEach((s, idx) => {
+                s.classList.remove('hovered');
+                s.classList.toggle('selected', idx < selectedStarRating);
+            });
+            const lbl = document.getElementById('starRatingLabel');
+            if (lbl) lbl.textContent = starLabelsMap[selectedStarRating] || `${selectedStarRating} de 5`;
+        }
+
+        function selectStars(val) {
+            selectedStarRating = val;
+            const input = document.getElementById('reviewRatingInput');
+            if (input) input.value = val;
+            resetStars();
+        }
+
+        function toggleExplanationReviews(btn) {
+            const box = document.getElementById('reviewsExplanationBox');
+            if (box) {
+                const isOpen = box.classList.toggle('open');
+                const arrow = btn.querySelector('.explanation-arrow');
+                if (arrow) arrow.textContent = isOpen ? '▴' : '▾';
+            }
+        }
+
+        function filtrarPorEstrellasDirecto(starCount) {
+            const selectRating = document.getElementById('filterRating');
+            if (selectRating) {
+                selectRating.value = starCount.toString();
+                currentReviewPage = 1;
+                renderReviews();
+                const section = document.getElementById('customerReviewsSection');
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function calcularEstadisticasReviews() {
+            if (!REVIEWS_LIST || REVIEWS_LIST.length === 0) return;
+            const total = REVIEWS_LIST.length;
+            const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+            let sumStars = 0;
+
+            REVIEWS_LIST.forEach(r => {
+                let starCount = 5;
+                if (r.ratingNum) {
+                    starCount = r.ratingNum;
+                } else if (r.stars) {
+                    starCount = (r.stars.match(/★/g) || []).length || 5;
+                }
+                starCount = Math.max(1, Math.min(5, starCount));
+                counts[starCount] = (counts[starCount] || 0) + 1;
+                sumStars += starCount;
+            });
+
+            const avg = (sumStars / total).toFixed(1);
+            const avgDisplay = document.getElementById('scoreAvgDisplay');
+            if (avgDisplay) avgDisplay.textContent = avg;
+
+            const countDisplay = document.getElementById('reviewsTotalCountSub');
+            if (countDisplay) {
+                countDisplay.textContent = `${total} calificaciones globales`;
+            }
+
+            for (let s = 1; s <= 5; s++) {
+                const pct = Math.round((counts[s] / total) * 100);
+                const barFill = document.getElementById(`barFill${s}`);
+                const barPct = document.getElementById(`barPct${s}`);
+                if (barFill) barFill.style.width = `${pct}%`;
+                if (barPct) barPct.textContent = `${pct}%`;
+            }
+        }
+
+        function guardarNuevaOpinion(e) {
+            if (e) e.preventDefault();
+            const authorInput = document.getElementById('reviewAuthorInput');
+            const titleInput = document.getElementById('reviewTitleInput');
+            const commentInput = document.getElementById('reviewCommentInput');
+
+            const author = (authorInput ? authorInput.value.trim() : '') || 'Cliente Verificado';
+            const title = titleInput ? titleInput.value.trim() : '';
+            const comment = commentInput ? commentInput.value.trim() : '';
+            const starsNum = selectedStarRating || 5;
+
+            if (!comment) {
+                alert('Por favor escribe un comentario para tu opinión.');
+                return;
+            }
+
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const dateFormatted = `${year}.${month}.${day}`;
+
+            let fullComment = comment;
+            if (title) {
+                fullComment = `<b>${title}</b><br>${comment}`;
+            }
+
+            const newReviewObj = {
+                id: 'rev_' + Date.now(),
+                author: author,
+                color: "Creator Combo",
+                size: "Kit Completo 6 en 1",
+                stars: "★".repeat(starsNum) + "☆".repeat(5 - starsNum),
+                ratingNum: starsNum,
+                comment: fullComment,
+                date: dateFormatted,
+                isUserVerified: true
+            };
+
+            // Guardar en localStorage
+            try {
+                let savedReviews = [];
+                const existing = localStorage.getItem(USER_REVIEWS_KEY);
+                if (existing) savedReviews = JSON.parse(existing);
+                savedReviews.unshift(newReviewObj);
+                localStorage.setItem(USER_REVIEWS_KEY, JSON.stringify(savedReviews));
+            } catch (err) {}
+
+            // Añadir al inicio del arreglo en memoria
+            REVIEWS_LIST.unshift(newReviewObj);
+
+            // Limpiar formulario y cerrar modal
+            if (authorInput) authorInput.value = '';
+            if (titleInput) titleInput.value = '';
+            if (commentInput) commentInput.value = '';
+            cerrarModalEscribirOpinion();
+
+            // Renderizar y saltar a la primera página
+            currentReviewPage = 1;
+            renderReviews();
+
+            // Notificación elegante
+            const alertBox = document.createElement('div');
+            alertBox.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#1d1d1f; color:#ffffff; padding:14px 20px; border-radius:12px; font-weight:600; font-size:14px; z-index:999999; box-shadow:0 10px 30px rgba(0,0,0,0.3); display:flex; align-items:center; gap:8px; animation: modalFadeIn 0.3s ease;';
+            alertBox.innerHTML = '<span>✅</span> <span>¡Gracias! Tu opinión ha sido publicada exitosamente.</span>';
+            document.body.appendChild(alertBox);
+            setTimeout(() => { if (alertBox.parentNode) alertBox.parentNode.removeChild(alertBox); }, 3800);
+        }
+
+        function initReviewsScrollObserver() {
+            const section = document.getElementById('customerReviewsSection');
+            if (!section) return;
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            section.classList.add('scroll-visible');
+                            observer.unobserve(section);
+                        }
+                    });
+                }, { threshold: 0.12 });
+                observer.observe(section);
+            } else {
+                section.classList.add('scroll-visible');
+            }
         }
 
         function renderReviews() {
@@ -2984,7 +3841,11 @@ if (empty($otros_productos)) {
                 filtered = filtered.filter(r => r.color === filterColor);
             }
             if (filterRating !== 'All') {
-                filtered = filtered.filter(r => r.stars.length === parseInt(filterRating));
+                const targetRating = parseInt(filterRating, 10);
+                filtered = filtered.filter(r => {
+                    const starsCount = r.ratingNum || (r.stars ? (r.stars.match(/★/g) || []).length : 5);
+                    return starsCount === targetRating;
+                });
             }
             if (sortBy === 'Most Recent') {
                 filtered.sort((a, b) => b.date.localeCompare(a.date));
@@ -2997,36 +3858,53 @@ if (empty($otros_productos)) {
             const pageItems = filtered.slice(startIdx, startIdx + REVIEWS_PER_PAGE);
 
             container.innerHTML = '';
-            pageItems.forEach(r => {
-                const item = document.createElement('div');
-                item.className = 'review-card-item';
-                item.innerHTML = `
-                    <div class="reviewer-col">
-                        <span class="reviewer-name" data-editable="true">${r.author}</span>
-                        <span class="reviewer-meta" data-editable="true">Color: ${r.color}</span>
-                        ${r.size ? `<span class="reviewer-meta" data-editable="true">Size: ${r.size}</span>` : ''}
+            if (pageItems.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:36px 16px; color:#565959;">
+                        <p style="font-size:15px; font-weight:600; margin-bottom:6px;">No hay opiniones que coincidan con los filtros seleccionados.</p>
+                        <p style="font-size:13px; margin:0;">Sé el primero en <a href="javascript:void(0)" onclick="abrirModalEscribirOpinion()" style="color:#007185; font-weight:700; text-decoration:underline;">escribir una opinión</a>.</p>
                     </div>
-                    <div class="review-content-col">
-                        <div class="review-stars-row">${r.stars}</div>
-                        <p class="review-comment-text" data-editable="true">${r.comment}</p>
-                    </div>
-                    <div class="review-date-badge" data-editable="true">${r.date}</div>
                 `;
-                container.appendChild(item);
-            });
-
-            if (paginationContainer) {
-                let pagesHtml = `<span>Total <b>${totalPages}</b> Pages</span>`;
-                pagesHtml += `<button class="page-btn" onclick="cambiarPaginaReviews(${currentReviewPage - 1}, ${totalPages})" ${currentReviewPage === 1 ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}>&lt;</button>`;
-                
-                for (let i = 1; i <= totalPages; i++) {
-                    pagesHtml += `<button class="page-btn ${i === currentReviewPage ? 'active' : ''}" onclick="cambiarPaginaReviews(${i}, ${totalPages})">${i}</button>`;
-                }
-
-                pagesHtml += `<button class="page-btn" onclick="cambiarPaginaReviews(${currentReviewPage + 1}, ${totalPages})" ${currentReviewPage === totalPages ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}>&gt;</button>`;
-                paginationContainer.innerHTML = pagesHtml;
+            } else {
+                pageItems.forEach(r => {
+                    const item = document.createElement('div');
+                    item.className = 'review-card-item';
+                    item.innerHTML = `
+                        <div class="reviewer-col">
+                            <span class="reviewer-name" data-editable="true">
+                                ${r.author}
+                                <span class="reviewer-badge-verified">Compra verificada</span>
+                            </span>
+                            <span class="reviewer-meta" data-editable="true">Color: ${r.color || 'Creator Combo'}</span>
+                            ${r.size ? `<span class="reviewer-meta" data-editable="true">Size: ${r.size}</span>` : ''}
+                        </div>
+                        <div class="review-content-col">
+                            <div class="review-stars-row">${r.stars}</div>
+                            <p class="review-comment-text" data-editable="true">${r.comment}</p>
+                        </div>
+                        <div class="review-date-badge" data-editable="true">${r.date}</div>
+                    `;
+                    container.appendChild(item);
+                });
             }
 
+            if (paginationContainer) {
+                if (totalPages <= 1) {
+                    paginationContainer.innerHTML = '';
+                } else {
+                    let pagesHtml = `<span>Total <b>${totalPages}</b> Páginas</span>`;
+                    pagesHtml += `<button class="page-btn" onclick="cambiarPaginaReviews(${currentReviewPage - 1}, ${totalPages})" ${currentReviewPage === 1 ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}>&lt;</button>`;
+                    
+                    for (let i = 1; i <= totalPages; i++) {
+                        pagesHtml += `<button class="page-btn ${i === currentReviewPage ? 'active' : ''}" onclick="cambiarPaginaReviews(${i}, ${totalPages})">${i}</button>`;
+                    }
+
+                    pagesHtml += `<button class="page-btn" onclick="cambiarPaginaReviews(${currentReviewPage + 1}, ${totalPages})" ${currentReviewPage === totalPages ? 'disabled style="opacity:0.35;cursor:not-allowed;"' : ''}>&gt;</button>`;
+                    paginationContainer.innerHTML = pagesHtml;
+                }
+            }
+
+            calcularEstadisticasReviews();
             initModoEdicion();
         }
 
@@ -3207,6 +4085,7 @@ if (empty($otros_productos)) {
 
         document.addEventListener('DOMContentLoaded', () => {
             cargarCarritoStorage();
+            cargarOpinionesUsuario();
             actualizarControlesPagina();
             initGallery();
             initSwatches();
@@ -3215,6 +4094,7 @@ if (empty($otros_productos)) {
             initModoEdicion();
             initShippingCountdown();
             initRecommendedProductsSlider();
+            initReviewsScrollObserver();
         });
     
         // ─── GESTOS TÁCTILES (SWIPE) PARA MÓVIL EN GALERÍA Y LIGHTBOX ───
