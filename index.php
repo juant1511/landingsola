@@ -685,22 +685,22 @@ if (empty($otros_productos)) {
             display: block;
         }
         .footer-payment-badge.badge-amex img {
-            transform: scale(1.42);
+            transform: scale(1.25);
         }
         .footer-payment-badge.badge-visa img {
-            transform: scale(1.18);
+            transform: scale(1.05);
         }
         .footer-payment-badge.badge-master img {
-            transform: scale(1.22);
+            transform: scale(0.90);
         }
         .footer-payment-badge.badge-pse img {
-            transform: scale(1.12);
+            transform: scale(0.86);
         }
         .footer-payment-badge.badge-nequi img {
-            transform: scale(1.22);
+            transform: scale(0.86);
         }
         .footer-payment-badge.badge-contraentrega img {
-            transform: scale(1.22);
+            transform: scale(0.92);
         }
         .footer-legal-row {
             display: flex;
