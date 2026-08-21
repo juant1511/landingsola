@@ -2635,8 +2635,8 @@ if (empty($otros_productos)) {
             </div>
 
             <!-- Video Card 6 -->
-            <div class="video-review-card" data-youtube-id="oXjW-qI9Vf8" data-video-title="DJI Osmo Pocket 3 Vlogging Test" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://i.ytimg.com/vi/oXjW-qI9Vf8/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Vlogging" loading="lazy">
+            <div class="video-review-card" data-youtube-id="kJQP7kiw5Fk" data-video-title="DJI Osmo Pocket 3 Vlogging Test" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Vlogging" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -2655,8 +2655,8 @@ if (empty($otros_productos)) {
             </div>
 
             <!-- Video Card 7 -->
-            <div class="video-review-card" data-youtube-id="Gj4bVv252lE" data-video-title="DJI Pocket 3 Low Light & 4K Test" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://i.ytimg.com/vi/Gj4bVv252lE/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Low Light" loading="lazy">
+            <div class="video-review-card" data-youtube-id="_OBlgSz8sSM" data-video-title="DJI Pocket 3 Low Light & 4K Test" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/_OBlgSz8sSM/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Low Light" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -2675,8 +2675,8 @@ if (empty($otros_productos)) {
             </div>
 
             <!-- Video Card 8 -->
-            <div class="video-review-card" data-youtube-id="qWb1q0uR6v0" data-video-title="DJI Pocket 3 ActiveTrack 6.0" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://i.ytimg.com/vi/qWb1q0uR6v0/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 ActiveTrack" loading="lazy">
+            <div class="video-review-card" data-youtube-id="kXYiU_JCYtU" data-video-title="DJI Pocket 3 ActiveTrack 6.0" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/kXYiU_JCYtU/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 ActiveTrack" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -2695,8 +2695,8 @@ if (empty($otros_productos)) {
             </div>
 
             <!-- Video Card 9 -->
-            <div class="video-review-card" data-youtube-id="bL44e4jRk18" data-video-title="DJI Osmo Pocket 3 Unboxing Creator" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://i.ytimg.com/vi/bL44e4jRk18/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Osmo Pocket 3 Unboxing" loading="lazy">
+            <div class="video-review-card" data-youtube-id="l482T0yNkeo" data-video-title="DJI Osmo Pocket 3 Unboxing Creator" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/l482T0yNkeo/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Osmo Pocket 3 Unboxing" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -2715,8 +2715,8 @@ if (empty($otros_productos)) {
             </div>
 
             <!-- Video Card 10 -->
-            <div class="video-review-card" data-youtube-id="1uA3V-bB45w" data-video-title="DJI Pocket 3 Battery & Accessories" onclick="manejarClickVideoCard(this, event)">
-                <img class="video-card-thumb" src="https://i.ytimg.com/vi/1uA3V-bB45w/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Accessories" loading="lazy">
+            <div class="video-review-card" data-youtube-id="eVTXPUF4Oz4" data-video-title="DJI Pocket 3 Battery & Accessories" onclick="manejarClickVideoCard(this, event)">
+                <img class="video-card-thumb" src="https://i.ytimg.com/vi/eVTXPUF4Oz4/hqdefault.jpg" referrerpolicy="no-referrer" alt="DJI Pocket 3 Accessories" loading="lazy">
                 <div class="video-card-gradient"></div>
                 <div class="video-card-badge-play">▶</div>
                 <div class="video-card-info">
@@ -3537,11 +3537,11 @@ if (empty($otros_productos)) {
 
             const mobileBtn = document.getElementById('btnAddToCart');
             if (mobileBtn) {
-                mobileBtn.textContent = 'Add to Cart - ' + formatMoney((currentQty > 0 ? currentQty : 1) * PRECIO_UNITARIO);
+                mobileBtn.textContent = 'Añadir al carro';
             }
             const desktopBtn = document.querySelector('.btn-add-desktop');
             if (desktopBtn) {
-                desktopBtn.textContent = 'Add to Cart - ' + formatMoney((currentQty > 0 ? currentQty : 1) * PRECIO_UNITARIO);
+                desktopBtn.textContent = 'Añadir al carro';
             }
         }
 
@@ -3609,6 +3609,32 @@ if (empty($otros_productos)) {
                                     <div class="cart-item-variant">Variante: ${item.variant} | ${item.size}</div>
                                 </div>
                                 <div class="cart-item-bottom">
+                                    <div class="cart-item-price">${formatMoney(item.price)}</div>
+                                    <div class="qty-controls">
+                                        <button class="qty-btn" onclick="cambiarCantidadItem('${item.token}', -1)">-</button>
+                                        <span class="qty-value">${item.qty}</span>
+                                        <button class="qty-btn" onclick="cambiarCantidadItem('${item.token}', 1)" ${item.qty >= 10 ? 'style="opacity:0.4;cursor:not-allowed;"' : ''}>+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        function procederAlCheckout() {
+            if (!globalCart || globalCart.length === 0) return;
+            const loader = document.getElementById('landing-loader');
+            if (loader) loader.style.display = 'flex';
+            
+            const primaryItem = globalCart.find(i => i.token === LANDING_TOKEN) || globalCart[0];
+            const tokensList = globalCart.map(i => `${i.token}:${i.qty}`).join(',');
+            
+            const targetUrl = CHECKOUT_URL + '&qty=' + primaryItem.qty + '&cart_tokens=' + encodeURIComponent(tokensList);
+            setTimeout(() => { window.location.href = targetUrl; }, 350);
+        }
+
         // ─── SISTEMA DE OPINIONES DE CLIENTES (LOCALSTORAGE + ESTADÍSTICAS AMAZON) ───
         const USER_REVIEWS_KEY = 'dji_user_custom_reviews_v1';
         let selectedStarRating = 5;
