@@ -7,7 +7,8 @@
   },
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/(.*\\.(?:png|jpg|jpeg|gif|webp|svg|css|js|ico|woff|woff2|ttf|eot))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
